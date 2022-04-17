@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class="row">
+        <div  class="col-md-7 col-lg-7 col-xl-7">
+            <div>
+                <a [routerLink] = "['/Home']" class="navbar-brand">
+                    <img src="assets/URL.png" style="width:40px;">
+                    <span id="url-shortner-image">URL Shortner</span>
+                </a>
+            </div>
+
+            <div class="custom_carousel mt-5 signup_image_section">
+                <img *ngFor="let image of imagesContainer; let i=index;" 
+                [src]="image.imageSrcUrl" [alt]="image.imageAlt" class="fade" [ngClass]="{'image-active': selectedIndex === i}">
+            
+                <!-- Dots -->
+                <div *ngIf="indicator" class="carousel-dot-container">
+                    <span *ngFor="let dot of imagesContainer;let i=index;" 
+                           class="dot" [ngClass]="{'active': selectedIndex === i}"
+                           (click)="selectImage(i)">
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 mt-md-5 mt-sm-2 mt-xs-1 mt-lg-5">
+            <div id="signup_text" class="col-12 font-weight-bold">
+                Sign Up
+            </div>
+            <div id="signup_sub_text" class="col-12 font-weight-bold">
+                Create your account
+            </div>
+            <div class="mt-5">
+                <form [formGroup]="signupForm" name="signupForm" #updateSignupForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
+                    <mat-form-field class="field col-12" id="name-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="name-input-label">Name</mat-label>
+                        <input id="name-input" type="text" matInput required formControlName="name">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">person</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field class="field col-12" id="username-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="username-input-label">Email</mat-label>
+                        <input id="username-input" type="email" matInput required formControlName="email">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">mail</mat-icon>
+                        <mat-error *ngIf="signupForm.controls['email'].hasError('required')">
+                            Email is required.
+                        </mat-error>
+                        <mat-error *ngIf="signupForm.controls['email'].hasError('email')">
+                            Please enter a valid email.
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="field col-md-6" id="password-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="password-input-label">Password</mat-label>
+                        <input id="password-input" type="password" matInput required formControlName="password">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
+                        <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+                            Password is required.
+                        </mat-error>
+                        <mat-error *ngIf="signupForm.controls['password'].hasError('minlength')">
+                            Password must contain at least 8 characters.
+                        </mat-error>
+                        <mat-error *ngIf="signupForm.controls['password'].errors?.['noSpace']">
+                            Password must not contain space.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="field col-md-6" id="password-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="password-input-label">Confirm Password</mat-label>
+                        <input id="password-input" type="password" matInput required formControlName="password">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
+                        <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+                            Password is required.
+                        </mat-error>
+                        <mat-error *ngIf="signupForm.controls['password'].hasError('minlength')">
+                            Password must contain at least 8 characters.
+                        </mat-error>
+                        <mat-error *ngIf="signupForm.controls['password'].errors?.['noSpace']">
+                            Password must not contain space.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="col-12 font-weight-bold">
+                        <div class="mr-auto">
+                            <mat-checkbox id="terms_and_condition">I agree to the terms and condition</mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <button class="signupButton col-12" [disabled]="signupForm.invalid" mat-raised-button>Sign Up</button>
+                    </div>
+
+                    <div class="col-12 text-center font-weight-bold mt-4">
+                        <p style="color: #4359df;">Already have an account? <a [routerLink]="['/login']" class="linkStyling">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>

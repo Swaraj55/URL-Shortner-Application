@@ -1,0 +1,146 @@
+// Media Breakpoints
+@media screen and (max-width: 768px) {
+    #web-animation-section {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+    }
+}
+
+#url-shortner-image {
+    color: #4359df;
+    font-weight: 600;
+    font-size: 1.7rem;
+    position: absolute;
+}
+
+//For Navbar Custom Toggler Button
+.navbar-toggler.navbar-toggler {
+    border-color: #4359df;
+    font-size: 17px;
+}
+/* Setting the stroke to blue using rgba values rgba(67, 89, 223, 0.8) */
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(67, 89, 223, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+
+//CSS Code for "Get Started" Button (START)
+#get_started_btn {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    padding: 18px 30px;
+    font-weight: 500;
+    letter-spacing: 2px;;
+}
+
+#get_started_btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: #4359df;
+    z-index: -1;
+    transition: all ease 0.5s;
+}
+
+#get_started_btn:hover:before {
+    width: 100%;
+}
+//CSS Code for "Get Started" Button (END)
+
+
+
+//Web icons images (START)
+#images {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(520px, #4359df, transparent 50%);
+    margin-left: 200px;
+}
+
+#www {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.web_icon_styling {
+    width: 100px;
+    height: 100px;
+}
+
+.web-related-icons{
+    height: 100%;
+    animation: web-icon-rotation 60s linear infinite;
+}
+@keyframes web-icon-rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.web-related-icons img{
+    position: absolute;
+}
+
+.web-related-icons img:nth-child(1){
+    top: 0;
+    left: 42%;
+}
+.web-related-icons img:nth-child(2){
+    top: 25%;
+    right: 0;
+}
+.web-related-icons img:nth-child(3){
+    top: 70%;
+    left: 70%
+}
+.web-related-icons img:nth-child(4){
+    top: 25%;
+    left: 0;
+}
+.web-related-icons img:nth-child(5){
+    top: 70%;
+    left: 10%
+}
+//Web icons images (END)
+
+//Wave Image Styling (START)
+#wave {
+    position: sticky;
+    width: 100%;
+    height: 200px;
+    left: 0;
+    bottom: 0;
+    line-height: 0;
+}
+//Wave Image Styling (END)
+
+
+
+.card {
+    border: 0px solid #4359df;
+    background-color: #1e1f31;
+    color: #fff;
+}
+.imageStyling {
+    width: 60px;
+    height: 60px;
+}
+.customFooterTheme {
+    background: linear-gradient(to right, #1e1f31, #24d7bb);
+    color: #fff;
+}

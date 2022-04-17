@@ -4,11 +4,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "strictPropertyInitialization": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -30,3 +31,10 @@
     "strictTemplates": true
   }
 }
+
+// If the --strictPropertyInitialization flag is enabled, the type checker verifies that 
+// each instance property declared in a class either
+
+// 1) has a type that includes undefined,
+// 2) has an explicit initializer, or
+// 3) is definitely assigned to in the constructor.
