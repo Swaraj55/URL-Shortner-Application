@@ -4,7 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@an
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['./sign-up.component.scss', '../../theme.scss'],
 })
 export class SignUpComponent implements OnInit {
 
@@ -51,7 +51,11 @@ export class SignUpComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['',[Validators.required, Validators.minLength(8), this.passwordWithNoSpace]],
-      confirmPassword: ['',[Validators.required, Validators.minLength(8), this.passwordWithNoSpace]]
+      confirmPassword: ['',[Validators.required, this.passwordWithNoSpace]]
+    }, {
+      validators: [
+        this.comparePassword('password', 'confirmPassword')
+      ]
     })
   }
 
@@ -61,6 +65,24 @@ export class SignUpComponent implements OnInit {
         return {noSpace: true}
       }
       return null;
+    }
+  }
+
+  //Custom Validator for password and confirm password to check they are same or not
+  private comparePassword(password: string, confirmPassword: string) {
+    return (formGroup: FormGroup) => {
+      const passwordControl = formGroup.controls[password];
+      const confirmPasswordControl = formGroup.controls[confirmPassword];
+
+      if(passwordControl.pristine && confirmPasswordControl.pristine) {
+        return null;
+      }
+
+      if(passwordControl.value !== confirmPasswordControl.value && passwordControl && confirmPasswordControl) {
+        confirmPasswordControl.setErrors({notSame: true});
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
     }
   }
 
@@ -96,12 +118,7 @@ export class SignUpComponent implements OnInit {
       "email": this.signupForm.controls['email'].value,
       "password": btoa(this.signupForm.controls['password'].value)
     }
-    // this.authService.onLogin(payload).subscribe((data) => {
-    //   console.log(data)
-    //   sessionStorage.setItem('token' , data.token)
-    //   this.updateLoginForm.resetForm({})
-    //   this._router.navigate(['/dashboard'])
-    // })
+
     this.updateSignupForm.resetForm({})
   }
 }

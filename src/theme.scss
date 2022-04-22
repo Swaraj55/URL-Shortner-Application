@@ -1,0 +1,58 @@
+// Import theming functions
+@import '~@angular/material/theming';
+
+// Define the application's custom theme.
+$success: mat-palette($mat-green);
+$danger: mat-palette($mat-red);
+
+::ng-deep {
+    .mat-snack-bar-success{
+        color: #ffffff !important;
+        background-color: mat-color($success, 500) !important;
+    }
+    .mat-snack-bar-danger {
+        color: #ffffff !important;
+        background-color: mat-color($danger, 500) !important;
+    }
+
+    //The below code when field is empty
+    .mat-form-field-empty.mat-form-field-label {
+        color: #4359df;
+    }
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+        color: #24d7bb;
+    }
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label {
+        color: #f44336;
+    }
+    .ng-valid .mat-form-field-label {
+        color: #4359df;
+    }
+
+    //The below code apply when the input field is empty or intial state of the input field
+    .mat-form-field-appearance-outline .mat-form-field-outline{
+        color: aliceblue;
+    }
+    //The Below code apply when we put focus on the input field
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+        color: #24d7bb;
+    }  
+
+    .field input{
+        caret-color: #24d7bb;/*The 'caret-color' is CSS property sets the color of 
+        the color of the insertion caret, the visible marker(or blinking marker)*/
+    }
+    .mat-form-field-infix .mat-input-element{
+        color: #4359df;
+    }
+
+    //For Checkbox ripple effect custom color
+    .mat-checkbox-ripple .mat-ripple-element,
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+        background-color: #4359df !important;
+    }
+    //Checkbox custom border color
+    .mat-checkbox-frame {
+        border-color: #4359df !important;
+    }
+} 

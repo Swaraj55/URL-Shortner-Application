@@ -66,15 +66,15 @@
 
                     <mat-form-field class="field col-md-6" id="password-field" floatlabel="auto" appearance="outline">
                         <mat-label id="password-input-label">Confirm Password</mat-label>
-                        <input id="password-input" type="password" matInput required formControlName="password">
+                        <input id="password-input" type="password" matInput required formControlName="confirmPassword">
                         <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
-                        <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+                        <mat-error *ngIf="signupForm.controls['confirmPassword'].hasError('required')">
                             Password is required.
                         </mat-error>
-                        <mat-error *ngIf="signupForm.controls['password'].hasError('minlength')">
-                            Password must contain at least 8 characters.
+                        <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['notSame']">
+                            Password and Confirm Password must be same.
                         </mat-error>
-                        <mat-error *ngIf="signupForm.controls['password'].errors?.['noSpace']">
+                        <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['noSpace']">
                             Password must not contain space.
                         </mat-error>
                     </mat-form-field>
