@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-
+import { SignUpService } from './sign-up.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -40,6 +40,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private signupService: SignUpService
   ) { }
 
   ngOnInit(): void {
@@ -114,11 +115,20 @@ export class SignUpComponent implements OnInit {
     if(this.signupForm.invalid) {
       return;
     } 
+
+    let d = new Date();
     let payload = {
       "email": this.signupForm.controls['email'].value,
-      "password": btoa(this.signupForm.controls['password'].value)
+      "password": btoa(this.signupForm.controls['password'].value),
+      "confirm_password": btoa(this.signupForm.controls['confirmPassword'].value),
+      "name": this.signupForm.controls['name'].value,
+      "account_creation": d.toISOString()
     }
 
+    console.log(payload);
+    this.signupService.signUpUser(payload).subscribe((data: any) => {
+      console.log(data);
+    })
     this.updateSignupForm.resetForm({})
   }
 }

@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SignUpComponent } from './sign-up.component';
+import { SignUpService } from './sign-up.service';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -18,6 +20,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     MatButtonModule,
     MatFormFieldModule,
@@ -26,6 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     MatCheckboxModule
   ],
-  exports: [SignUpComponent]
+  exports: [SignUpComponent],
+  providers: [SignUpService],
 })
 export class SignUpModule { }
