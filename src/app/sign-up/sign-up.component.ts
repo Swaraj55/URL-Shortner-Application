@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { SignUpService } from './sign-up.service';
 @Component({
   selector: 'app-sign-up',
@@ -40,7 +42,9 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignUpService
+    private signupService: SignUpService,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +111,15 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  openSnackBar(message: string, action: string, cssClass: string) {
+    this._snackBar.open(message, action, {
+        verticalPosition: 'top',
+        horizontalPosition: 'right',
+        panelClass: cssClass,
+        duration: 4000
+   });
+  } 
+
 
   onSubmit() {
     this.isSubmitted = true;
@@ -121,14 +134,19 @@ export class SignUpComponent implements OnInit {
       "email": this.signupForm.controls['email'].value,
       "password": btoa(this.signupForm.controls['password'].value),
       "confirm_password": btoa(this.signupForm.controls['confirmPassword'].value),
-      "name": this.signupForm.controls['name'].value,
+      "username": this.signupForm.controls['name'].value,
       "account_creation": d.toISOString()
     }
 
     console.log(payload);
     this.signupService.signUpUser(payload).subscribe((data: any) => {
-      console.log(data);
+      if(data.status === 'success') {
+        this.openSnackBar('You successfully signup in URL Shortner!', '', 'mat-snack-bar-success');
+        this.router.navigate(['/login']);
+        this.updateSignupForm.resetForm({});
+      } else {
+        this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
+      }
     })
-    this.updateSignupForm.resetForm({})
   }
 }

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { SESSION_STORAGE, StorageService,StringStorageTranscoder } from 'ngx-webstorage-service';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { SESSION_STORAGE, StorageService,StorageTranscoders,StringStorageTranscoder } from 'ngx-webstorage-service';
 import { NGXLogger } from 'ngx-logger';
+import { environment } from 'src/environments/environment';
 
 const CURRENT_USER_KEY = 'currentUser';
 
@@ -11,5 +12,62 @@ const CURRENT_USER_KEY = 'currentUser';
 })
 export class AuthenticationService {
 
-  constructor() { }
+  authenticatedUser: any;
+  public currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
+
+  constructor(
+    @Inject(SESSION_STORAGE) private storage: StorageService,
+    private _httpClient: HttpClient,
+    private logger: NGXLogger,
+  ) {
+    this.currentUserSubject = new BehaviorSubject<any>(this.storage.get(CURRENT_USER_KEY, StorageTranscoders.JSON));
+    this.currentUser = this.currentUserSubject.asObservable();
+   }
+
+  public get currentUserValue(): any {
+    return this.currentUserSubject.value;
+  } 
+
+  login(username: string, password: string) {
+
+    let endPointOrigin = `${environment.basicURL}`;
+
+    let apiUrl = endPointOrigin + '/auth';
+
+    this.logger.debug(apiUrl);
+
+    return this._httpClient.post(apiUrl, { username, password }, { observe: 'response' }).pipe(map((authResponse: any) => {
+      const userInfo = authResponse.body;
+      console.log(userInfo);
+      if(userInfo.status === 'success'){
+        this.logger.debug('User logged in successfully');
+        this.authenticatedUser = {
+          username: userInfo.user.username,
+          token: userInfo.token,
+          email: userInfo.user.email,
+          id: userInfo.user._id,
+          accountCreation: userInfo.user.account_creation,
+        }
+
+        this.storage.set(CURRENT_USER_KEY, this.authenticatedUser, StorageTranscoders.JSON);
+        sessionStorage.setItem('username', this.authenticatedUser.username);
+        sessionStorage.setItem('token', this.authenticatedUser.token);
+        sessionStorage.setItem('email', this.authenticatedUser.email);
+        sessionStorage.setItem('id', this.authenticatedUser.id);
+
+        this.currentUserSubject.next(this.authenticatedUser);
+      }
+
+      return authResponse;
+    }))
+  }
+
+public isAuthenticatedUser(): boolean {
+  if(this.currentUserValue){
+    return true;
+  }
+
+  return false;
+}
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../../@seceon/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +38,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar) {}
+    private _snackBar: MatSnackBar,
+    private authService: AuthenticationService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     if (this.autoSlide) {
@@ -102,15 +107,19 @@ export class LoginComponent implements OnInit {
       return;
     }
     let payload = {
-      email: this.loginForm.controls['email'].value,
+      username: this.loginForm.controls['email'].value,
       password: btoa(this.loginForm.controls['password'].value),
     };
 
-    if (payload.email === 'administrator@CTO0000.com' && payload.password === 'CTO@123456789') {
-      this.openSnackBar('Login Successful', '', 'mat-snack-bar-success');
-    } else {
-      this.openSnackBar('Invalid Credentials', '', 'mat-snack-bar-danger');
-    }
-    this.updateLoginForm.resetForm({});
+    this.authService.login(payload.username, payload.password).subscribe((data: any) => {
+      // console.log('data', data);
+      if(data.body.status === 'success') {
+        this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
+        // this.router.navigate(['/dashboard']);
+        this.updateLoginForm.resetForm({});
+      } else {
+        this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
+      }
+    });
   }
 }
