@@ -5,6 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
+  //Lazy loading
+  {path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
+  
   {path: 'Home', component: LandingPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignUpComponent},

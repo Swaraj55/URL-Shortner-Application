@@ -10,6 +10,8 @@ import { LandingPageModule } from './landing-page/landing-page.module';
 import { LoginModule } from './login/login.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { JwtInterceptor } from '../../@url-shortner/helpers/jwt.interceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent

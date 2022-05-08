@@ -1,0 +1,78 @@
+mat-sidenav {
+    width: 200px;
+    margin: 16px;
+    border-right: none;
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 5px);
+    background-color: #1e1f31;
+}
+
+.content {
+    height: calc(100vh - 39px);
+    margin: 16px;
+    margin-left: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: #ffffff;
+
+    border-radius: 10px;
+}
+
+// Logo related styles
+.url-shorten-image {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#url-shortner-image {
+    color: #4359df;
+    font-weight: 600;
+    font-size: 1.7rem;
+    position: absolute;
+}
+
+mat-divider {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+//Buttons inside the mat-sidenav
+.menu-button {
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    font-family: Dosis, "Josefin Sans", sans-serif;
+
+    mat-icon {
+        margin-right: 12px;
+    }
+}
+
+.bottom-button {
+    width: 100%;
+    margin: 16px 0 10px 0;
+    background-color: #4359df;
+    color: #ffffff;
+}
+
+// ripple effect on all buttons
+::ng-deep {
+    .mat-button:hover {
+        background-color: rgba(67, 89, 223, 0.5);
+    }
+}

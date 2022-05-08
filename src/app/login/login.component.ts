@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
       // console.log('data', data);
       if(data.body.status === 'success') {
         this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
-        // this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/home']);
         this.updateLoginForm.resetForm({});
       } else {
         this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
