@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+}
+
+td {
+    font-size: 9pt;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.table-no-records-found {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    background-color: #4359df;
+    color: white;
+}
+
+::ng-deep {
+    .table-no-record-found {
+        background-color: rgba(67, 89, 223, 0.5);
+        color: black;
+        text-align: center;
+    }
+    .mat-paginator {
+        background-color: rgb(67, 89, 223);
+    }
+    .mat-paginator-page-size {
+            width: 250px;
+    }
+    
+    .mat-paginator-page-size-label {
+        width: 200px;
+    }
+    
+    .mat-list-item {
+        /*min-height: 80px !important;*/
+        font-size: 10pt !important;
+    }
+}

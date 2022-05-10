@@ -9,22 +9,22 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" (click)="navigate('Dashbaord')">
             <mat-icon>dashboard</mat-icon>
             <span>Dashbaord</span>
         </button>
         
-        <button mat-button class="menu-button" (click)="navigate()">
+        <button mat-button class="menu-button" (click)="navigate('Tables')">
             <mat-icon>table_chart</mat-icon>
             <span>Tables</span>
         </button>
 
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" (click)="navigate('QR Generator')">
             <mat-icon>settings_overscan</mat-icon>
             <span>QR Generator</span>
         </button>
 
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" (click)="navigate('Profile')">
             <mat-icon>person</mat-icon>
             <span>Profile</span>
         </button>
@@ -36,6 +36,19 @@
     
     <mat-sidenav-content>
         <div class="content mat-elevation-z4">
+            <div class="d-flex">
+                <div class="p-2 mr-auto">
+                    <button mat-icon-button >
+                        <mat-icon style="color: #1e1f31;">home</mat-icon> {{currentSideNavItem}}
+                    </button>
+                </div>
+
+                <div class="p-2">
+                    <button id="help-button" mat-icon-button>
+                        <mat-icon>input</mat-icon>
+                    </button>
+                </div>
+            </div>
             <app-url-shorten-table *ngIf="navContent"></app-url-shorten-table>
         </div>
     </mat-sidenav-content>

@@ -1,1 +1,42 @@
-<p>url-shorten-table works!</p>
+<div style="padding: 10px;">
+    <table id="url-shortner-table" mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="url">
+            <th class="url" mat-header-cell *matHeaderCellDef  mat-sort-header>URL</th>
+            <td class="url" mat-cell *matCellDef="let data"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="shortUrl">
+            <th class="shortUrl" mat-header-cell *matHeaderCellDef  mat-sort-header>Short URL</th>
+            <td class="shortUrl" mat-cell *matCellDef="let data"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <th class="createdAt" mat-header-cell *matHeaderCellDef  mat-sort-header>Create Time</th>
+            <td class="createdAt" mat-cell *matCellDef="let data"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th class="actions" mat-header-cell *matHeaderCellDef  mat-sort-header>Actions</th>
+            <td class="actions" mat-cell *matCellDef="let data"></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"
+            (clicl)="selection.toggle(row)"
+            (mouseover)="row.hovered = true"
+            (mouseout)="row.hovered = false">
+        </tr>
+    </table>
+
+    <div *ngIf="dataSource.data.length === 0" class="table-no-record-found">
+        Table has no record.
+    </div>
+    
+    <mat-paginator [length]="length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="pageEvent = $event"
+                    showFirstLastButtons
+    ></mat-paginator>
+</div>

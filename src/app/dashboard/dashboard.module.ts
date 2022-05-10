@@ -10,6 +10,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.module';
 
 
@@ -26,7 +29,9 @@ import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.mod
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
