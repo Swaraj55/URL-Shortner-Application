@@ -14,6 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.module';
+import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.mod
     DashboardRoutingModule,
     RouterModule,
     UrlShortenTableModule,
+    DashboardMainModule,
 
     MatButtonModule,
     MatDividerModule,

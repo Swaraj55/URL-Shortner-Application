@@ -50,6 +50,7 @@
                 </div>
             </div>
             <app-url-shorten-table *ngIf="navContent"></app-url-shorten-table>
+            <app-dashboard-main *ngIf="!navContent"></app-dashboard-main>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

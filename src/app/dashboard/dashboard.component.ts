@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatSidenav) sideNav: MatSidenav; //Through this we can get reference of sidenav
   navContent: boolean = false;
-  currentSideNavItem: string;
+  currentSideNavItem: string = " / " + "Dashboard";
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -26,6 +26,9 @@ export class DashboardComponent implements OnInit {
     if(sideNavContent === 'Tables') {
       this.navContent = true;
       this.currentSideNavItem = " / " + "URL Shortner Table";
+    } else if(sideNavContent === 'Dashbaord') {
+      this.navContent = false;
+      this.currentSideNavItem = " / " + "Dashboard";
     }
   }
 
