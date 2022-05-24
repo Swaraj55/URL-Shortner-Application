@@ -16,6 +16,11 @@
             <td class="shortUrl" mat-cell *matCellDef="let data"></td>
         </ng-container>
 
+        <ng-container matColumnDef="status">
+            <th class="status" mat-header-cell *matHeaderCellDef  mat-sort-header>Status</th>
+            <td class="status" mat-cell *matCellDef="let data"></td>
+        </ng-container>
+
         <ng-container matColumnDef="createdAt">
             <th class="createdAt" mat-header-cell *matHeaderCellDef  mat-sort-header>Create Time</th>
             <td class="createdAt" mat-cell *matCellDef="let data"></td>

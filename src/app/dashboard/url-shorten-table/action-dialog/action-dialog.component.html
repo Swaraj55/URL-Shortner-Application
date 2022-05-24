@@ -1,5 +1,5 @@
 <div mat-dialog-title class="h6">
-    Add Url
+    {{dialogTitle}}
 </div>
 
 <div mat-dialog-content class="row">
@@ -29,10 +29,7 @@
 
         <mat-form-field class="col-12">
             <mat-label class='short_url-label '>Short URL</mat-label>
-            <input id='short_url' matInput formControlName="short_url" required>
-            <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('required')">
-                Short url is required.
-            </mat-error>
+            <input id='short_url' matInput formControlName="short_url">
             <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('maxlength')">
                 Short url of length equal to 6.
             </mat-error>

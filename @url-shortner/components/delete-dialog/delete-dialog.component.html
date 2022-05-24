@@ -1,0 +1,13 @@
+<div mat-dialog-title class="h5 alert-text mb-24">Alert</div>
+
+<div mat-dialog-content class="h5 mb-24">
+    <div>Are you sure you want to delete the selected item?</div>
+    <div id="description" class="h5 mt-12" >{{deleteItem.description}}</div>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button id="cancel-button" mat-raised-button class="button-text mr-12"
+            (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+    <button id="delete-button" mat-raised-button color="warn" class="mr-24 button-text"
+            (click)="closeDialog()" cdkFocusInitial>Delete</button>
+</div>
