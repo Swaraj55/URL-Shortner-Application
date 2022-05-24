@@ -55,4 +55,13 @@ $danger: mat-palette($mat-red);
     .mat-checkbox-frame {
         border-color: #4359df !important;
     }
+
+
+    .mat-dialog-container {
+        background-color: #1e1f31;
+    }
+
+    .mat-form-field-appearance-legacy .ng-untouched .mat-form-field-underline {
+        color: #4359df;
+    }
 } 

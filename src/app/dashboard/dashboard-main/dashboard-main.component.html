@@ -1,6 +1,6 @@
 <div class="container-fluid" id="stistics-overview">
     <div class="row mt-4">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 mt-2">
             <div class="card upper-section w-100 mat-elevation-z6">
                 <div class="card-body">
                     <div class="iconbg">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 mt-2">
             <div class="card upper-section w-100 mat-elevation-z6">
                 <div class="card-body">
                     <div class="iconbg">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 mt-2">
             <div class="card upper-section w-100 mat-elevation-z6">
                 <div class="card-body">
                     <div class="iconbg">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 mt-2">
             <div class="card upper-section w-100 mat-elevation-z6">
                 <div class="card-body">
                     <div class="iconbg">
@@ -55,23 +55,25 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mt-2">
             <div class="card w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
                     <h5>New Short URLs (Last 15 Days)</h5>
                     <div class="new-short-url" *ngIf="isNewShortUrlsData">
                         No Data Found
+                        <!-- https://www.amcharts.com/demos-v4/clustered-column-chart-v4/ -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mt-2">
             <div class="card w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
                     <h5>URLs Status</h5>
                     <div class="new-short-url" *ngIf="isUrlStatusData">
                         No Data Found
+                        <!-- https://www.amcharts.com/demos-v4/pie-chart-v4/ -->
                     </div>
                 </div>
             </div>
@@ -79,23 +81,25 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mt-2">
             <div class="card w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
                     <h5>Devices</h5>
                     <div class="new-short-url" *ngIf="isNewShortUrlsData">
                         No Data Found
+                        <!-- https://www.amcharts.com/demos-v4/pie-chart-with-legend-v4/ -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mt-2">
             <div class="card w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
                     <h5>Browsers</h5>
                     <div class="new-short-url" *ngIf="isUrlStatusData">
                         No Data Found
+                        <!-- https://www.amcharts.com/demos-v4/pie-chart-with-legend-v4/ -->
                     </div>
                 </div>
             </div>

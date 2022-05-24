@@ -1,0 +1,60 @@
+<div mat-dialog-title class="h6">
+    Add Url
+</div>
+
+<div mat-dialog-content class="row">
+    <form [formGroup]="shortUrlForm" novalidate>
+        <mat-form-field id="custom_type" class="col-12">
+            <mat-label class="custom_type_label ">Custom Type: </mat-label>
+            <mat-select id='custom_type' formControlName="custom_type" required>
+                <mat-option *ngFor="let item of customTypeDropDown" [value]="item">
+                    {{item}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="shortUrlForm.controls['custom_type'].hasError('required')">
+                Custom url type is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+            <mat-label class='original_url-label '>Original URL</mat-label>
+            <input id='original_url' matInput formControlName="original_url" required>
+            <mat-error *ngIf="shortUrlForm.controls['original_url'].hasError('required')">
+                Original url is required.
+            </mat-error>
+            <mat-error *ngIf="shortUrlForm.controls['original_url'].hasError('pattern')">
+                Please enter a valid url.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+            <mat-label class='short_url-label '>Short URL</mat-label>
+            <input id='short_url' matInput formControlName="short_url" required>
+            <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('required')">
+                Short url is required.
+            </mat-error>
+            <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('maxlength')">
+                Short url of length equal to 6.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+            <mat-label class='status-label '>Status: </mat-label>
+            <mat-select id='status' formControlName="status" required>
+                <mat-option *ngFor="let item of status" [value]="item">
+                    {{item}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="shortUrlForm.controls['status'].hasError('required')">
+                Status is required.
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button id='cancel-button' mat-raised-button class="button-text mr-12" (click)="closeDialog()">Cancel </button>
+    <button id='save-button' mat-raised-button color="accent" (click)="saveShortUrl()" class="mr-24 button-text"
+        [disabled]="shortUrlForm.invalid">Save
+    </button>
+</div>

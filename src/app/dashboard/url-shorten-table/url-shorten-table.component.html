@@ -1,4 +1,9 @@
 <div style="padding: 10px;">
+    <div>
+        <button id="add-button" mat-raised-button class="button-text mb-5 h6" (click)="openDialog('Add',{})">
+            Add Url
+        </button>
+    </div>
     <table id="url-shortner-table" mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="url">
@@ -16,9 +21,24 @@
             <td class="createdAt" mat-cell *matCellDef="let data"></td>
         </ng-container>
 
+        <!-- Actions Column -->
         <ng-container matColumnDef="actions">
-            <th class="actions" mat-header-cell *matHeaderCellDef  mat-sort-header>Actions</th>
-            <td class="actions" mat-cell *matCellDef="let data"></td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+            <td mat-cell *matCellDef="let data">
+                <button id="email-action-button" mat-icon-button class="button-text mt-6" [matMenuTriggerFor]="actionMenu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #actionMenu="matMenu">
+                    <button id="edit-button" mat-menu-item class="button-text" (click)="openDialog('Edit',data)">
+                        <mat-icon>edit</mat-icon>
+                        <span class="button-text">Edit Url</span>
+                    </button>
+                    <button id="schedule-button" mat-menu-item class="button-text" (click)="openDeleteDialog(data)">
+                        <mat-icon>delete</mat-icon>
+                        <span class="button-text">Delete Url</span>
+                    </button>
+                </mat-menu>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
