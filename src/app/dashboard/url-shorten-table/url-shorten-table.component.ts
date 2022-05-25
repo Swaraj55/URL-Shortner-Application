@@ -90,6 +90,9 @@ export class UrlShortenTableComponent implements OnInit {
   // Add row data to the table.
   addRowData(rowData: any) {
     console.log(rowData);
+    this.urlShortenTableService.createUrlShorten(rowData).subscribe((data: any) => {
+      console.log(data);
+    })
   }
 
   // Update row data in the table.

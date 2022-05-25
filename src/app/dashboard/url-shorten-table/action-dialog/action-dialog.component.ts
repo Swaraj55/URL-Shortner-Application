@@ -79,14 +79,16 @@ export class ActionDialogComponent implements OnInit {
       return;
     }
 
+    const d = new Date();
+
     let payload = {
       main_url: this.shortUrlForm.value.original_url,
       shorted_url: this.shortUrlForm.value.short_url || '',
       status: this.shortUrlForm.value.status,
       url_type: this.shortUrlForm.value.custom_type,
-      creator: sessionStorage.getItem('id'),
-      url_created_date: Date.now(),
-      modify_time: Date.now()
+      creator: `ObjectId(${sessionStorage.getItem('id')})`,
+      url_created_date: d.toISOString(),
+      modify_time: d.toISOString()
     }
 
     //console.log('obj in action dialog: ', JSON.stringify(obj));
