@@ -30,7 +30,7 @@
         <mat-form-field class="col-12">
             <mat-label class='short_url-label '>Short URL</mat-label>
             <input id='short_url' matInput formControlName="short_url">
-            <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('maxlength')">
+            <mat-error *ngIf="shortUrlForm.controls['short_url'].hasError('pattern')">
                 Short url of length equal to 6.
             </mat-error>
         </mat-form-field>

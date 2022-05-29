@@ -30,17 +30,34 @@ table {
     color: aliceblue;
 }
 
+.mat-row.hovered {
+    background: #4359df80;
+}
+  
+.mat-row.highlighted {
+    background: #4359df80;
+}
+
 ::ng-deep {
     .table-no-record-found {
-        background-color: rgba(67, 89, 223, 0.5);
-        color: black;
+        background-color: #4359df;
+        color: aliceblue;
         text-align: center;
     }
+
+    .mat-cell {
+        color: aliceblue;
+    }
+
     .mat-paginator {
         background-color: rgb(67, 89, 223);
     }
+
     .mat-paginator-page-size {
             width: 250px;
+            .mat-form-field-underline {
+                color: aliceblue;
+            }
     }
     
     .mat-paginator-page-size-label {
@@ -50,5 +67,12 @@ table {
     .mat-list-item {
         /*min-height: 80px !important;*/
         font-size: 10pt !important;
+    }
+
+    .mat-paginator-page-size-label {
+        color: aliceblue;
+    }
+    .mat-paginator-range-label {
+        color: aliceblue;
     }
 }

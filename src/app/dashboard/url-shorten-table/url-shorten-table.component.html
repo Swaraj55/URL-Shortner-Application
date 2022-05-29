@@ -4,26 +4,31 @@
             Add Url
         </button>
     </div>
-    <table id="url-shortner-table" mat-table [dataSource]="dataSource" matSort>
+    <table id="url-shortner-table" mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+        <ng-container matColumnDef="custom_type">
+            <th class="custom_type" mat-header-cell *matHeaderCellDef  mat-sort-header>Custom Type</th>
+            <td class="custom_type" mat-cell *matCellDef="let data">{{data.custom_type}}</td>
+        </ng-container>
 
         <ng-container matColumnDef="url">
             <th class="url" mat-header-cell *matHeaderCellDef  mat-sort-header>URL</th>
-            <td class="url" mat-cell *matCellDef="let data"></td>
+            <td class="url" mat-cell *matCellDef="let data">{{data.url}}</td>
         </ng-container>
 
         <ng-container matColumnDef="shortUrl">
             <th class="shortUrl" mat-header-cell *matHeaderCellDef  mat-sort-header>Short URL</th>
-            <td class="shortUrl" mat-cell *matCellDef="let data"></td>
+            <td class="shortUrl" mat-cell *matCellDef="let data">{{data.shortUrl}}</td>
         </ng-container>
 
         <ng-container matColumnDef="status">
             <th class="status" mat-header-cell *matHeaderCellDef  mat-sort-header>Status</th>
-            <td class="status" mat-cell *matCellDef="let data"></td>
+            <td class="status" mat-cell *matCellDef="let data">{{data.status}}</td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">
             <th class="createdAt" mat-header-cell *matHeaderCellDef  mat-sort-header>Create Time</th>
-            <td class="createdAt" mat-cell *matCellDef="let data"></td>
+            <td class="createdAt" mat-cell *matCellDef="let data">{{data.createdAt}}</td>
         </ng-container>
 
         <!-- Actions Column -->
@@ -35,12 +40,12 @@
                 </button>
                 <mat-menu #actionMenu="matMenu">
                     <button id="edit-button" mat-menu-item class="button-text" (click)="openDialog('Edit',data)">
-                        <mat-icon>edit</mat-icon>
-                        <span class="button-text">Edit Url</span>
+                        <mat-icon style="color: #4359df;">edit</mat-icon>
+                        <span class="button-text" style="color: #4359df;">Edit Url</span>
                     </button>
                     <button id="schedule-button" mat-menu-item class="button-text" (click)="openDeleteDialog(data)">
-                        <mat-icon>delete</mat-icon>
-                        <span class="button-text">Delete Url</span>
+                        <mat-icon style="color: #4359df;">delete</mat-icon>
+                        <span class="button-text" style="color: #4359df;">Delete Url</span>
                     </button>
                 </mat-menu>
             </td>

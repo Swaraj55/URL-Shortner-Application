@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../@url-shortner/services/authentication.service';
+import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
 
 @Component({
   selector: 'app-login',

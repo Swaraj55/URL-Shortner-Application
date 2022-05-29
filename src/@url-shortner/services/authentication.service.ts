@@ -21,7 +21,7 @@ export class AuthenticationService {
     private _httpClient: HttpClient,
     private logger: NGXLogger,
   ) {
-    this.currentUserSubject = new BehaviorSubject<any>(this.storage.get(CURRENT_USER_KEY, StorageTranscoders.JSON));
+    this.currentUserSubject = new BehaviorSubject<any>(storage.get(CURRENT_USER_KEY, StorageTranscoders.JSON));
     this.currentUser = this.currentUserSubject.asObservable();
    }
 

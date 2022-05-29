@@ -8,7 +8,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '@url-shortner/services/authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -18,18 +18,21 @@ export class JwtInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('JwtInterceptor', request);
     const currentUser = this.authenticationService.currentUserValue;
     console.log(currentUser);
-    if (currentUser && currentUser.token) {
+    if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('token') !== '') {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`,
-          username: currentUser.username,
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+          username: `${sessionStorage.getItem('username')}`,
           locale: navigator.language,
-          session_token: currentUser.token,
+          session_token: `${sessionStorage.getItem('token')}`,
           timzone: Intl.DateTimeFormat().resolvedOptions().timeZone
         }
       });
+
+      console.log('JwtInterceptor35', request);
     }
     return next.handle(request);
   }

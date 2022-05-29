@@ -7,7 +7,7 @@ import { UrlShortenTableService } from './url-shorten-table.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { ActionDialogComponent } from './action-dialog/action-dialog.component';
-import { DeleteDialogComponent } from '@url-shortner/components/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '../../../@url-shortner/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-url-shorten-table',
@@ -16,10 +16,11 @@ import { DeleteDialogComponent } from '@url-shortner/components/delete-dialog/de
 })
 export class UrlShortenTableComponent implements OnInit {
 
-  length = null;
+  urlShortnerData: any[] = [];
+  length: any = null;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  displayedColumns: any[] = ['url', 'shortUrl', 'status', 'createdAt', 'actions'];
+  displayedColumns: any[] = ['custom_type', 'url', 'shortUrl', 'status', 'createdAt', 'actions'];
   pageEvent: PageEvent;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -41,6 +42,9 @@ export class UrlShortenTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRowsData();
+
+    this.urlShortnerData.length = 0;
   }
 
   openDialog(action: string, obj: any) {
@@ -87,6 +91,24 @@ export class UrlShortenTableComponent implements OnInit {
     });
   }
 
+  sortData(sort: Sort) {
+    const data = this.dataSource.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.sortedData.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'createdAt':
+          return compare(a.createdAt, b.createdAt, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
   // Add row data to the table.
   addRowData(rowData: any) {
     console.log(rowData);
@@ -103,4 +125,41 @@ export class UrlShortenTableComponent implements OnInit {
   deleteRow(rowData: any) {
     console.log(rowData);
   }
+
+  getRowsData() {
+    let params = {
+      creator: `${sessionStorage.getItem('id')}`,
+    }
+    this.urlShortenTableService.getUrlShortenTableData(params).subscribe((data: any) => {
+      console.log(data);
+      this.urlShortnerData.length = 0;
+      if(data.status === 'success') {
+        const shortUrlData = data.result;
+        shortUrlData.forEach((element: any) => {
+          // console.log(element);
+          let urlObj = {
+            custom_type: element.url_type,
+            url: element.main_url,
+            shortUrl: element.shorted_url,
+            status: element.status,
+            createdAt: new Date(element.url_created_date).toLocaleString()
+          }
+
+          this.urlShortnerData.push(urlObj);
+        });
+        this.dataSource = new MatTableDataSource(this.urlShortnerData);
+        this.length = this.urlShortnerData.length;
+        this.dataSource.sort = this.sort;
+        this.sortedData = this.dataSource;
+        this.dataSource.paginator = this.paginator;
+
+        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+      }
+    });
+  }
 }
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+

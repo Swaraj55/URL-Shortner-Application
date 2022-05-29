@@ -27,7 +27,7 @@ import {MatDialogModule} from '@angular/material/dialog'
   declarations: [UrlShortenTableComponent, ActionDialogComponent],
   imports: [
     CommonModule,
-    HttpClientModule,
+    // HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,

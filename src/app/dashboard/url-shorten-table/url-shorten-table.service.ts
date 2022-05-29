@@ -17,8 +17,10 @@ export class UrlShortenTableService {
     return this.sendRequest<any>('POST', theUrl, payload, {});
   }
 
-  getUrlShortenTableData() {
-    return this.http.get('http://localhost:3000/urlShortenTable');
+  getUrlShortenTableData(params: any) {
+    console.log(params);
+    const theUrl = 'http://localhost:3000/api/v1/read/url-shortner/selectByDB';
+    return this.sendRequest<any>('GET', theUrl, {}, params);
   }
 
   private sendRequest<T>(verb: string, url: string, body?: any, params?: any): Observable<T> {

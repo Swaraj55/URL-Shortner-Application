@@ -17,6 +17,7 @@ export class ActionDialogComponent implements OnInit {
   error: string = '';
   local_data: any;
   originalUrlRegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
+  exactlySixCharsRegExp = /^[a-zA-Z]{6}$/g;
 
   // Close the dialog using 'Esc'key
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -33,7 +34,7 @@ export class ActionDialogComponent implements OnInit {
   ) { 
     // This data is from the parent component. Usually a data grid row.
     this.local_data = {...data};
-    // console.log('data in action dialog: ', JSON.stringify(this.local_data));
+    console.log('data in action dialog: ', JSON.stringify(this.local_data));
 
     if(this.local_data.action === 'Add') {
       this.dialogTitle = 'Add';
@@ -46,11 +47,30 @@ export class ActionDialogComponent implements OnInit {
     this.shortUrlForm = this._formBuilder.group({
       custom_type: ['', [Validators.required]],
       original_url: ['', [Validators.required, Validators.pattern(this.originalUrlRegExp)]],
-      short_url: ['', [Validators.maxLength(6)]],
+      short_url: ['', [Validators.pattern(this.exactlySixCharsRegExp)]],
       status: ['', [Validators.required]],
     });
 
     this.handleFormChanges();
+
+    if(this.local_data.action === 'Edit') {
+      //Using this logic we can patch the specific value in frequency dropdown
+      let customTypeIndex = -1;
+      var customTypeValue = this.local_data['custom_type'];
+      var frequencyTypeObj = this.customTypeDropDown.find((item, index) => {
+        if(item === customTypeValue){
+          customTypeIndex = index;
+          return index;
+        }
+      });
+
+      this.shortUrlForm.patchValue({
+        custom_type: this.customTypeDropDown[customTypeIndex],
+        original_url: this.local_data['url'],
+        short_url: this.local_data['shortUrl'],
+        status: this.local_data['status'],
+      });
+    }
   }
 
   closeDialog() {
