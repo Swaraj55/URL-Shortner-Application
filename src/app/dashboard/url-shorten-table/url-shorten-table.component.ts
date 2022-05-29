@@ -8,6 +8,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { ActionDialogComponent } from './action-dialog/action-dialog.component';
 import { DeleteDialogComponent } from '../../../@url-shortner/components/delete-dialog/delete-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-url-shorten-table',
@@ -33,7 +34,8 @@ export class UrlShortenTableComponent implements OnInit {
 
   constructor(
     private urlShortenTableService: UrlShortenTableService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) { 
     this.dataSource = new MatTableDataSource();
     this.sortedData = this.dataSource;
@@ -91,6 +93,15 @@ export class UrlShortenTableComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string, cssClass: string) {
+    this._snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: cssClass,
+      duration: 4000,
+    });
+  }
+
   sortData(sort: Sort) {
     const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
@@ -113,7 +124,15 @@ export class UrlShortenTableComponent implements OnInit {
   addRowData(rowData: any) {
     console.log(rowData);
     this.urlShortenTableService.createUrlShorten(rowData).subscribe((data: any) => {
-      console.log(data);
+      if(data.status === 'success') {
+        this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-success');
+      } else {
+        this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-danger');
+      }
+    }, (error: any) => {
+      this.openSnackBar(`${error}`, '', 'mat-snack-bar-danger');
+    }, () => {
+      this.getRowsData();
     })
   }
 
@@ -131,7 +150,7 @@ export class UrlShortenTableComponent implements OnInit {
       creator: `${sessionStorage.getItem('id')}`,
     }
     this.urlShortenTableService.getUrlShortenTableData(params).subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.urlShortnerData.length = 0;
       if(data.status === 'success') {
         const shortUrlData = data.result;

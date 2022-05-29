@@ -29,16 +29,22 @@ table {
     background-color: #4359df;
     color: aliceblue;
 }
+// Import theming functions
+@import '~@angular/material/theming';
 
-.mat-row.hovered {
-    background: #4359df80;
-}
-  
-.mat-row.highlighted {
-    background: #4359df80;
-}
+$success: mat-palette($mat-green);
+$danger: mat-palette($mat-red);
 
 ::ng-deep {
+    .mat-snack-bar-success{
+        color: #ffffff !important;
+        background-color: mat-color($success, 500) !important;
+    }
+    .mat-snack-bar-danger {
+        color: #ffffff !important;
+        background-color: mat-color($danger, 500) !important;
+    }
+
     .table-no-record-found {
         background-color: #4359df;
         color: aliceblue;
@@ -73,6 +79,12 @@ table {
         color: aliceblue;
     }
     .mat-paginator-range-label {
+        color: aliceblue;
+    }
+    .mat-select-value{
+        color: aliceblue;
+    }
+    .mat-select-arrow {
         color: aliceblue;
     }
 }

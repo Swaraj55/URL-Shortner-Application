@@ -40,12 +40,16 @@
                 </button>
                 <mat-menu #actionMenu="matMenu">
                     <button id="edit-button" mat-menu-item class="button-text" (click)="openDialog('Edit',data)">
-                        <mat-icon style="color: #4359df;">edit</mat-icon>
-                        <span class="button-text" style="color: #4359df;">Edit Url</span>
+                        <mat-icon style="color: #1e1f31;">edit</mat-icon>
+                        <span class="button-text" style="color: #1e1f31;">Edit Url</span>
                     </button>
                     <button id="schedule-button" mat-menu-item class="button-text" (click)="openDeleteDialog(data)">
-                        <mat-icon style="color: #4359df;">delete</mat-icon>
-                        <span class="button-text" style="color: #4359df;">Delete Url</span>
+                        <mat-icon style="color: #1e1f31;">delete</mat-icon>
+                        <span class="button-text" style="color: #1e1f31;">Delete Url</span>
+                    </button>
+                    <button id="schedule-button" mat-menu-item class="button-text">
+                        <mat-icon style="color: #1e1f31;">open_in_new</mat-icon>
+                        <span class="button-text" style="color: #1e1f31;">Redirect Url</span>
                     </button>
                 </mat-menu>
             </td>

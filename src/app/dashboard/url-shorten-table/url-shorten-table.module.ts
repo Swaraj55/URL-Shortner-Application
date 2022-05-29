@@ -23,8 +23,10 @@ import {MatOptionModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog'
 
+import { DeleteDialogComponent } from '../../../@url-shortner/components/delete-dialog/delete-dialog.component';
+
 @NgModule({
-  declarations: [UrlShortenTableComponent, ActionDialogComponent],
+  declarations: [UrlShortenTableComponent, ActionDialogComponent, DeleteDialogComponent],
   imports: [
     CommonModule,
     // HttpClientModule,
