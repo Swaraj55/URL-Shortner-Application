@@ -23,6 +23,17 @@ export class UrlShortenTableService {
     return this.sendRequest<any>('GET', theUrl, {}, params);
   }
 
+  deleteUrlShorten(payload: any) {
+    console.log(payload)
+    const theUrl = 'http://localhost:3000/api/v1/delete/url-shortner/delete';
+    return this.sendRequest<any>('DELETE', theUrl, payload, {});
+  }
+
+  updateUrlShorten(payload: any) {
+    const theUrl = 'http://localhost:3000/api/v1/update/url-shortner/update';
+    return this.sendRequest<any>('PATCH', theUrl, payload, {});
+  }
+
   private sendRequest<T>(verb: string, url: string, body?: any, params?: any): Observable<T> {
     return this.http.request<T>(verb, url, {body: body , params : params})
         .pipe(catchError((error: Response) =>

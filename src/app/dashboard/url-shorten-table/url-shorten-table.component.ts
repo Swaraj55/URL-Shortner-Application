@@ -68,12 +68,12 @@ export class UrlShortenTableComponent implements OnInit {
           this.addRowData(result.data);
         } else if(result?.event === 'Update') {
           this.updateRowData(result.data);
-        } 
+        }
       });
   }
 
   openDeleteDialog(data: any) {
-    console.log(data);
+    // console.log(data);
     const deleteDialogConfig = new MatDialogConfig();
     deleteDialogConfig.disableClose = true;
     deleteDialogConfig.autoFocus = true;
@@ -142,7 +142,16 @@ export class UrlShortenTableComponent implements OnInit {
   }
 
   deleteRow(rowData: any) {
-    console.log(rowData);
+    // console.log(rowData);
+    this.urlShortenTableService.deleteUrlShorten(rowData).subscribe((data: any) => {
+      if(data.status === 'success') {
+        this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-success');
+      } else {
+        this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-danger');
+      }
+    }, (error: any) => {
+      this.openSnackBar(`${error}`, '', 'mat-snack-bar-danger');
+    })
   }
 
   getRowsData() {

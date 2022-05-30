@@ -18,9 +18,9 @@ export class JwtInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('JwtInterceptor', request);
+    // console.log('JwtInterceptor', request);
     const currentUser = this.authenticationService.currentUserValue;
-    console.log(currentUser);
+    // console.log(currentUser);
     if (sessionStorage.getItem('token') !== null && sessionStorage.getItem('token') !== '') {
       request = request.clone({
         setHeaders: {
@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
 
-      console.log('JwtInterceptor35', request);
+      // console.log('JwtInterceptor35', request);
     }
     return next.handle(request);
   }
