@@ -43,4 +43,13 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('id');
+    this.router.navigate(['/login']);
+  }
 }

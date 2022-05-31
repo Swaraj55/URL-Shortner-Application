@@ -18,13 +18,13 @@ export class UrlShortenTableService {
   }
 
   getUrlShortenTableData(params: any) {
-    console.log(params);
+    // console.log(params);
     const theUrl = 'http://localhost:3000/api/v1/read/url-shortner/selectByDB';
     return this.sendRequest<any>('GET', theUrl, {}, params);
   }
 
   deleteUrlShorten(payload: any) {
-    console.log(payload)
+    // console.log(payload)
     const theUrl = 'http://localhost:3000/api/v1/delete/url-shortner/delete';
     return this.sendRequest<any>('DELETE', theUrl, payload, {});
   }

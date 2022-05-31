@@ -8,3 +8,7 @@
     color: white;
     opacity: 0.4;
 }
+
+::ng-deep .mat-select-value{    
+    color: black!important;
+}

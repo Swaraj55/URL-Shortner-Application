@@ -17,7 +17,7 @@ export class ActionDialogComponent implements OnInit {
   error: string = '';
   local_data: any;
   originalUrlRegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
-  exactlySixCharsRegExp = /^[a-zA-Z]{6}$/g;
+  exactlySixCharsRegExp = /^[a-zA-Z]{9}$/g;
 
   // Close the dialog using 'Esc'key
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -34,7 +34,7 @@ export class ActionDialogComponent implements OnInit {
   ) { 
     // This data is from the parent component. Usually a data grid row.
     this.local_data = {...data};
-    console.log('data in action dialog: ', JSON.stringify(this.local_data));
+    // console.log('data in action dialog: ', JSON.stringify(this.local_data));
 
     if(this.local_data.action === 'Add') {
       this.dialogTitle = 'Add';

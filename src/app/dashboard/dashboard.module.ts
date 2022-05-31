@@ -12,6 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.module';
 import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
@@ -33,7 +34,8 @@ import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
     MatToolbarModule,
     MatRippleModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

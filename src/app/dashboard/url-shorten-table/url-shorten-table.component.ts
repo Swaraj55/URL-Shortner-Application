@@ -122,7 +122,7 @@ export class UrlShortenTableComponent implements OnInit {
 
   // Add row data to the table.
   addRowData(rowData: any) {
-    console.log(rowData);
+    // console.log(rowData);
     this.urlShortenTableService.createUrlShorten(rowData).subscribe((data: any) => {
       if(data.status === 'success') {
         this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-success');
@@ -151,6 +151,8 @@ export class UrlShortenTableComponent implements OnInit {
       }
     }, (error: any) => {
       this.openSnackBar(`${error}`, '', 'mat-snack-bar-danger');
+    }, () => {
+      this.getRowsData();
     })
   }
 
@@ -184,6 +186,10 @@ export class UrlShortenTableComponent implements OnInit {
         this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
       }
     });
+  }
+
+  redirectToMainUrl(data: any) {
+    window.open(data.url, '_blank');
   }
 }
 
