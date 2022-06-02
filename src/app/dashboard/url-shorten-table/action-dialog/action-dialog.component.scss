@@ -9,6 +9,8 @@
     opacity: 0.4;
 }
 
-::ng-deep .mat-select-value{    
+:host::ng-deep {
+   .mat-select-value{    
     color: black!important;
+   }
 }

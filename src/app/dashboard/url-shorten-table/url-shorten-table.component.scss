@@ -11,7 +11,7 @@ table {
 td {
     font-size: 9pt;
     overflow: hidden;
-    word-wrap: break-word;
+    word-wrap: break-word !important;
 }
 
 th {
@@ -35,7 +35,7 @@ table {
 $success: mat-palette($mat-green);
 $danger: mat-palette($mat-red);
 
-::ng-deep {
+:host::ng-deep {
     .mat-snack-bar-success{
         color: #ffffff !important;
         background-color: mat-color($success, 500) !important;

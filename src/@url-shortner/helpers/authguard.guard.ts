@@ -18,7 +18,7 @@ export class AuthguardGuard implements CanActivate {
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  boolean {
-    console.log("Route...",route)
+    // console.log("Route...",route)
     const currentUser = this.authenticationService.currentUserValue;
 
     if(!this.authenticationService.isAuthenticatedUser()){

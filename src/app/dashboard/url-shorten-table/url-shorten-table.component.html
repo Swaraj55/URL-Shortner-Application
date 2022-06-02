@@ -23,7 +23,7 @@
 
         <ng-container matColumnDef="status">
             <th class="status" mat-header-cell *matHeaderCellDef  mat-sort-header>Status</th>
-            <td class="status" mat-cell *matCellDef="let data">{{data.status}}</td>
+            <td class="status" mat-cell [ngClass]="{'active': data.status === 'Active', 'inactive': data.status === 'Inactive'}" *matCellDef="let data">{{data.status}}</td>
         </ng-container>
 
         <ng-container matColumnDef="createdAt">

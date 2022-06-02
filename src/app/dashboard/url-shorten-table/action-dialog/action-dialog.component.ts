@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit, Optional } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, Optional, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-action-dialog',
   templateUrl: './action-dialog.component.html',
-  styleUrls: ['./action-dialog.component.scss']
+  styleUrls: ['./action-dialog.component.scss'],
 })
 export class ActionDialogComponent implements OnInit {
 
@@ -34,7 +34,7 @@ export class ActionDialogComponent implements OnInit {
   ) { 
     // This data is from the parent component. Usually a data grid row.
     this.local_data = {...data};
-    // console.log('data in action dialog: ', JSON.stringify(this.local_data));
+    console.log('data in action dialog: ', JSON.stringify(this.local_data));
 
     if(this.local_data.action === 'Add') {
       this.dialogTitle = 'Add';
@@ -64,6 +64,11 @@ export class ActionDialogComponent implements OnInit {
         }
       });
 
+      //In UPDATE case user can only change the Status of the url
+      this.shortUrlForm.get('original_url')?.disable();
+      this.shortUrlForm.get('short_url')?.disable();
+      this.shortUrlForm.get('custom_type')?.disable();
+
       this.shortUrlForm.patchValue({
         custom_type: this.customTypeDropDown[customTypeIndex],
         original_url: this.local_data['url'],
@@ -78,17 +83,23 @@ export class ActionDialogComponent implements OnInit {
   }
 
   handleFormChanges() {
-    this.shortUrlForm.get('custom_type')?.valueChanges.subscribe(value => {
-      if(value !== 'Custom') {
-        this.shortUrlForm.get('short_url')?.disable();
-        this.shortUrlForm.get('short_url')?.clearValidators();
-        this.shortUrlForm.get('short_url')?.setValue('');
+    this.shortUrlForm.get('custom_type')?.valueChanges.subscribe((value) => {
+      // console.log('value: ', value, this.local_data.action);
 
-        // Note:-
-        // Always use “updateValueAndValidity()” method after updating (either Add or Remove) 
-        // validators. Because all your changes related to control will be reflected only if 
-        // you put this statement i.e. updateValueAndValidity().
+      if(this.local_data.action === 'Add') {
+        if(value === 'Custom') {
+          this.shortUrlForm.get('short_url')?.enable();
+        } else {
+          this.shortUrlForm.get('short_url')?.disable();
+          this.shortUrlForm.get('short_url')?.clearValidators();
+          this.shortUrlForm.get('short_url')?.setValue('');
+        }
       }
+
+      // Note:-
+      // Always use “updateValueAndValidity()” method after updating (either Add or Remove)
+      // validators. Because all your changes related to control will be reflected only if
+      // you put this statement i.e. updateValueAndValidity().
     });
   }
 
@@ -102,16 +113,16 @@ export class ActionDialogComponent implements OnInit {
     const d = new Date();
 
     let payload = {
-      main_url: this.shortUrlForm.value.original_url,
-      shorted_url: this.shortUrlForm.value.short_url || '',
-      status: this.shortUrlForm.value.status,
-      url_type: this.shortUrlForm.value.custom_type,
+      main_url: this.shortUrlForm.controls['original_url']?.value,
+      shorted_url: this.shortUrlForm.controls['short_url']?.value || '',
+      status: this.shortUrlForm.controls['status']?.value,
+      url_type: this.shortUrlForm.controls['custom_type']?.value,
       creator: `ObjectId(${sessionStorage.getItem('id')})`,
       url_created_date: d.toISOString(),
       modify_time: d.toISOString()
     }
 
-    //console.log('obj in action dialog: ', JSON.stringify(obj));
+    // console.log('obj in action dialog: ', JSON.stringify(payload));
     // Send the form data back to the parent to process.
     this.dialogRef.close({event: this.local_data.action, data: payload});
 

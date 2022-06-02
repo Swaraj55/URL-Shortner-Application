@@ -120,6 +120,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
       }
+    }, (error: any) => {
+      this.openSnackBar('The email or password is incorrect!', '', 'mat-snack-bar-danger');
     });
   }
 }

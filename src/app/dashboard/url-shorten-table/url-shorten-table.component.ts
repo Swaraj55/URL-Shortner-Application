@@ -66,7 +66,7 @@ export class UrlShortenTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
         if(result?.event === 'Add') {
           this.addRowData(result.data);
-        } else if(result?.event === 'Update') {
+        } else if(result?.event === 'Edit') {
           this.updateRowData(result.data);
         }
       });
@@ -138,7 +138,18 @@ export class UrlShortenTableComponent implements OnInit {
 
   // Update row data in the table.
   updateRowData(rowData: any) {
-    console.log(rowData);
+    // console.log(rowData);
+    this.urlShortenTableService.updateUrlShorten(rowData).subscribe((data: any) => {
+      if(data.status === 'success') {
+        this.openSnackBar(`URL updated successfully!`, '', 'mat-snack-bar-success');
+      } else {
+        this.openSnackBar(`${data.message}`, '', 'mat-snack-bar-danger');
+      }
+    }, (error: any) => {
+      this.openSnackBar(`${error}`, '', 'mat-snack-bar-danger');
+    }, () => {
+      this.getRowsData();
+    })
   }
 
   deleteRow(rowData: any) {
