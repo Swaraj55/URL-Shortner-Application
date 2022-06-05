@@ -16,6 +16,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.module';
 import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
+import { UserProfileModule } from './user-profile/user-profile.module';
+import { QrGeneratorModule } from './qr-generator/qr-generator.module';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
     RouterModule,
     UrlShortenTableModule,
     DashboardMainModule,
+    UserProfileModule,
+    QrGeneratorModule,
 
     MatButtonModule,
     MatDividerModule,

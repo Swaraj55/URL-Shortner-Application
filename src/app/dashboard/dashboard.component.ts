@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   @ViewChild(MatSidenav) sideNav: MatSidenav; //Through this we can get reference of sidenav
-  navContent: boolean = false;
+  navTableContent: boolean = false;
+  navDashboardContent: boolean = true;
+  navProfileContent: boolean = false;
+  navQrContent: boolean = false;
   currentSideNavItem: string = " / " + "Dashboard";
 
   constructor(
@@ -24,11 +27,29 @@ export class DashboardComponent implements OnInit {
 
   navigate(sideNavContent: string) {
     if(sideNavContent === 'Tables') {
-      this.navContent = true;
+      this.navTableContent = true;
+      this.navDashboardContent = false;
+      this.navProfileContent = false;
+      this.navQrContent = false;
       this.currentSideNavItem = " / " + "URL Shortner Table";
     } else if(sideNavContent === 'Dashbaord') {
-      this.navContent = false;
+      this.navTableContent = false;
+      this.navDashboardContent = true;
+      this.navProfileContent = false;
+      this.navQrContent = false;
       this.currentSideNavItem = " / " + "Dashboard";
+    } else if(sideNavContent === 'Profile') {
+      this.navTableContent = false;
+      this.navDashboardContent = false;
+      this.navProfileContent = true;
+      this.navQrContent = false;
+      this.currentSideNavItem = " / " + "Profile";
+    } else {
+      this.navTableContent = false;
+      this.navDashboardContent = false;
+      this.navProfileContent = false;
+      this.navQrContent = true;
+      this.currentSideNavItem = " / " + "QR Generator";
     }
   }
 

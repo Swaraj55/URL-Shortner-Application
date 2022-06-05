@@ -49,8 +49,10 @@
                     </button>
                 </div>
             </div>
-            <app-url-shorten-table *ngIf="navContent"></app-url-shorten-table>
-            <app-dashboard-main *ngIf="!navContent"></app-dashboard-main>
+            <app-url-shorten-table *ngIf="navTableContent"></app-url-shorten-table>
+            <app-dashboard-main *ngIf="navDashboardContent"></app-dashboard-main>
+            <app-user-profile *ngIf="navProfileContent"></app-user-profile>
+            <app-qr-generator *ngIf="navQrContent"></app-qr-generator>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
