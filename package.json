@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "countries-list": "^2.6.1",
+    "ng2-tel-input": "^2.3.0",
     "ngx-logger": "^5.0.9",
     "ngx-webstorage-service": "^5.0.0",
     "ngx-wow": "^2.0.1",

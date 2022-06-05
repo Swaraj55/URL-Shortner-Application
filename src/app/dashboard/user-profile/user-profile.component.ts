@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { UserProfileActionDialogComponent } from './user-profile-action-dialog/user-profile-action-dialog.component';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,6 +18,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
+    private _dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -72,5 +77,21 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       //   this._translateService.instant('MESSAGES.IMAGE_WRONG_TYPE')
       // );
     }
+  }
+
+  //EDIT PROFILE
+  editProfile(action: string, obj: any) {
+    console.log("edit profile");
+    obj['action'] = action;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '80%';
+    dialogConfig.maxWidth = '1200px';
+    dialogConfig.data = obj;
+
+    //User row data being injected into the child component.
+    // Open the form dialog and pass the data from the user selected row in the data table.
+    const dialogRef = this._dialog.open(UserProfileActionDialogComponent, dialogConfig);
   }
 }
