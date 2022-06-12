@@ -12,6 +12,16 @@ export class UserProfileService {
     private http: HttpClient
   ) { }
 
+  saveUserProfileImage(payload: any) {
+    let theUrl = 'http://localhost:3000/api/v1/insert/user-profile-image';
+    return this.sendRequest<any>('POST', theUrl, payload, {});
+  }
+
+  getUserProfileImage(payload: any) {
+    const theUrl = 'http://localhost:3000/api/v1/read/user-profile-image';
+    return this.sendRequest<any>('GET', theUrl, {}, payload);
+  }
+
   readUserProfile(payload: any) {
     const theUrl = 'http://localhost:3000/api/v1/read/user-profile-info';
     return this.sendRequest<any>('GET', theUrl, {}, payload);

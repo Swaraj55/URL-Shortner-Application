@@ -9,12 +9,13 @@ import { UserProfileService } from './user-profile.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss', '../../../theme.scss']
 })
 export class UserProfileComponent implements OnInit, AfterViewInit {
 
   userImageForm: FormGroup = new FormGroup({});
   showAllData: any[] = [];
+  getUserImage: any;
 
   @ViewChild('userImage', {static: true}) userImage: ElementRef;
   @ViewChild('userLogo', {static: true}) userLogoInput: ElementRef;
@@ -32,6 +33,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     });
 
     this.getUserprofileInfo();
+    this.getImages();
   }
 
   ngAfterViewInit(): void {
@@ -40,15 +42,57 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
 
   private displayImage(image: any) {
-    let userImage = this.userImageForm.getRawValue().userLogo;
+    let user_image = this.userImageForm.getRawValue().userLogo;
     
     this.userImage.nativeElement.src = image;
     this.userImageForm.patchValue({
       userLogo: image
     });
-    userImage = image;
-    // this.saveImage(userImage);
+    user_image = image;
+    let userImageObj = {
+      user_image: user_image,
+      create_time: new Date().getTime(),
+      creator: `${sessionStorage.getItem('id')}`
+    }
+    // console.log(userImageObj);
+    this.saveImage(userImageObj);
   }
+
+  private saveImage(obj: any) {
+    console.log(obj);
+    console.log(this.getUserImage.result[0]._id);
+    let userImageId = this.getUserImage.result[0]._id;
+    
+    // this._userProfileService.saveUserProfileImage(obj).subscribe((data) => {
+    //   if(data.status === 'success') {
+    //     this.getImages();
+    //     this.openSnackBar(data.message, '', 'mat-snack-bar-success');
+    //   }
+    // }, (error) => {
+    //   console.log(error);
+    // }, () => {
+
+    // })
+  }
+
+  private getImages() {
+    let params = {
+      creator: `${sessionStorage.getItem('id')}`,
+    }
+
+    this._userProfileService.getUserProfileImage(params).subscribe((data) => {
+      console.log(data);
+      this.getUserImage = data;
+      if(data.status === 'success') {
+        if(data.result.length === 0) {
+          this.userImage.nativeElement.src = '../../../assets/user-images.png';  // set the image source path
+        } else {
+          this.userImage.nativeElement.src = data.result[0].user_image;
+        }
+      }
+    })
+  }
+
 
   //Handle the ViewChild click event and click the designated file input control to force a File Browser dialog.
   public browseFiles(id: string) {
@@ -56,6 +100,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     el1.click();
   }
 
+  //Handle the change event of the file input control.
   processImage(event: any, image: any) {
     console.log(event);
     let inputFile = event.target.files[0];
@@ -85,7 +130,9 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //EDIT PROFILE
+
+
+  //EDIT OR UPDATE PROFILE INFO
   editProfile(action: string, obj: any) {
     obj['action'] = action;
     const dialogConfig = new MatDialogConfig();
@@ -120,6 +167,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     });
   }
 
+  //SAVE USER PROFILE INFO
   saveUserProfileInfo(data: any) { 
     console.log(data);
     data.creator = `${sessionStorage.getItem('id')}`;
@@ -137,6 +185,7 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     })
   }
 
+  //GET USER PROFILE INFO
   getUserprofileInfo() {
     let params = {
       creator: `${sessionStorage.getItem('id')}`,
