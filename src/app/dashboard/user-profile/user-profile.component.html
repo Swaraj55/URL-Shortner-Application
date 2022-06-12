@@ -6,7 +6,7 @@
 
             <div class="col-12 rounded">
                 <div class="d-flex justify-content-center">
-                    <mat-card class="card">
+                    <mat-card class="matCard">
                         <!-- Profile Into Section -->
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
@@ -38,12 +38,60 @@
                         </div>
 
                         <!-- Profile Details Section -->
-                        <div class="row">
+                        <h5 class="mt-5 font-weight-bold">Profile Information</h5>
+                        
+                        <div class="row mt-3 profileInfo">
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Firstname : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.first_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Lastname : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Email : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Occupation : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.occupation}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">Country : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.country}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Mobile : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.phone_no}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">Address : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">
+                                                                            {{data?.address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">About : </td>
+                                            <td class="mr-1" *ngFor="let data of showAllData">{{data?.about}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </mat-card>

@@ -21,12 +21,16 @@ export class UserProfileActionDialogComponent implements OnInit {
 
   showAllData: any = [];
   countryList: any[] = [];
+  local_data: any;
 
   constructor(
     public dialogRef: MatDialogRef<UserProfileActionDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-  ) {}
+  ) {
+    this.local_data = {...data};
+    console.log('local_data ', this.local_data);
+  }
 
   ngOnInit(): void {
     let country = countries.countries;
@@ -57,6 +61,25 @@ export class UserProfileActionDialogComponent implements OnInit {
     this.stepThreeFormGroup = this.fb.group({
       about: ['', [Validators.required]],
     });
+
+    if(this.local_data.action === 'Update') {
+      this.stepOneFormGroup.patchValue({
+        firstname: this.local_data.first_name,
+        lastname: this.local_data.last_name,
+        email: this.local_data.email,
+        Occupation: this.local_data.occupation,
+      });
+
+      this.stepTwoFormGroup.patchValue({
+        address: this.local_data.address,
+        country: this.local_data.country,
+        phoneNo: this.local_data.phone_no,
+      });
+
+      this.stepThreeFormGroup.patchValue({
+        about: this.local_data.about,
+      });
+    }
   }
 
   closeDialog() {
@@ -69,12 +92,6 @@ export class UserProfileActionDialogComponent implements OnInit {
     this.showAllData.length = 0;
     this.showAllData.push(this.getConfiguredData());
   }
-
-  // getFormDataToShow() {
-  //   let getData =  this.getConfiguredData();
-
-  //   return getData;
-  // }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -110,7 +127,7 @@ export class UserProfileActionDialogComponent implements OnInit {
     console.log('rawData ', rawData);
 
     // Send the form data back to the parent to process.
-    // this.dialogRef.close({event: this.action, data: rawData});
+    this.dialogRef.close({event: 'Edit Profile', data: rawData});
 
     this.stepOneFormGroup.reset();
     this.stepTwoFormGroup.reset();

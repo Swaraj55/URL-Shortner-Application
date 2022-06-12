@@ -1,19 +1,29 @@
+@media only screen and (max-width: 576px) {
+    .matCard {
+        width: 95%;
+        position: absolute;
+        top: -100px;
+        border-radius: 10px;
+        height: max-content;
+    }
+}
+
 .backgroundStyle{
     position: relative;
     box-shadow: none;
     max-width:100%;
     width: 100%;
-    height: 50vh;
+    height: 45vh;
     border-radius: 0.75rem;
     background-position: 50% center;
     overflow: hidden;
     object-fit: cover;
 }
 
-.card {
+.matCard {
     width: 95%;
     position: absolute;
-    bottom: -50px;
+    bottom: -250px;
     border-radius: 10px;
 }
 
@@ -52,4 +62,8 @@
     letter-spacing: 0.02857em;
     font-weight: 400;
     color: #1e1f31;
+}
+
+.profileInfo {
+    line-height: 2;
 }
