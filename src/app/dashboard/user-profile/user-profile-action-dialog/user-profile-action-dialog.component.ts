@@ -87,7 +87,7 @@ export class UserProfileActionDialogComponent implements OnInit {
   }
 
   selectionChange(event: StepperSelectionEvent) {
-    console.log('selectionChange ', event);
+    // console.log('selectionChange ', event);
 
     this.showAllData.length = 0;
     this.showAllData.push(this.getConfiguredData());
@@ -112,7 +112,7 @@ export class UserProfileActionDialogComponent implements OnInit {
       country: this.secondFormData.country,
       phone_no: this.secondFormData.phoneNo,
       about: this.thirdFormData.about,
-      tenant_id: sessionStorage.getItem('id'),
+      action: this.local_data.action,
       create_time: new Date().getTime(),
       update_time: new Date().getTime(),
     };
