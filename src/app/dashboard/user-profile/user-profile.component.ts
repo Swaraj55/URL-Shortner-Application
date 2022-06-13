@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { of, switchMap } from 'rxjs';
 
 import { UserProfileActionDialogComponent } from './user-profile-action-dialog/user-profile-action-dialog.component';
 import { UserProfileService } from './user-profile.service';
@@ -60,19 +61,38 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
   private saveImage(obj: any) {
     console.log(obj);
-    console.log(this.getUserImage.result[0]._id);
-    let userImageId = this.getUserImage.result[0]._id;
-    
-    // this._userProfileService.saveUserProfileImage(obj).subscribe((data) => {
-    //   if(data.status === 'success') {
-    //     this.getImages();
-    //     this.openSnackBar(data.message, '', 'mat-snack-bar-success');
-    //   }
-    // }, (error) => {
-    //   console.log(error);
-    // }, () => {
-
-    // })
+    //Below If case runs when user is updating the profile image. Means it have already image in the database.
+    if(this.getUserImage.resultLength > 0) {
+      let userImageId = {creator: this.getUserImage.result[0].creator};
+      console.log(userImageId);
+      this._userProfileService.deleteUserProfileImage(userImageId).pipe(switchMap((data: any) => {
+        console.log(data);
+        if(data.status === 'success') {
+          return this._userProfileService.saveUserProfileImage(obj);
+        } else {
+          return of(data);
+        }
+      })).subscribe((data: any) => {
+        console.log(data);
+        if(data.status === 'success') {
+          this.getImages();
+          this.openSnackBar(data.message, '', 'mat-snack-bar-success');
+        } else {
+          this.openSnackBar(data.message, '', 'mat-snack-bar-danger');
+        }
+      })
+    } else {
+      //In case if user doesn't upload image ever before
+      this._userProfileService.saveUserProfileImage(obj).subscribe((data: any) => {
+        console.log(data);
+        if(data.status === 'success') {
+          this.getImages();
+          this.openSnackBar(data.message, '', 'mat-snack-bar-success');
+        } else {
+          this.openSnackBar(data.message, '', 'mat-snack-bar-danger');
+        }
+      })
+    }
   }
 
   private getImages() {

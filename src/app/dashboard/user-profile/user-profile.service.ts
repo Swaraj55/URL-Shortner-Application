@@ -22,6 +22,11 @@ export class UserProfileService {
     return this.sendRequest<any>('GET', theUrl, {}, payload);
   }
 
+  deleteUserProfileImage(payload: any) {
+    const theUrl = 'http://localhost:3000/api/v1/delete/user-profile-image/delete';
+    return this.sendRequest<any>('DELETE', theUrl, payload, {});
+  }
+
   readUserProfile(payload: any) {
     const theUrl = 'http://localhost:3000/api/v1/read/user-profile-info';
     return this.sendRequest<any>('GET', theUrl, {}, payload);
