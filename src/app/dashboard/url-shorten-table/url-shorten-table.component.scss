@@ -6,6 +6,8 @@
 
 table {
     width: 100%;
+    background-color: #4359df;
+    color: aliceblue;
 }
 
 td {
@@ -25,10 +27,13 @@ th {
     justify-content: center;
 }
 
-table {
-    background-color: #4359df;
-    color: aliceblue;
+.url {
+    max-width: 600px; /* feel free to include any other value */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 // Import theming functions
 @import '~@angular/material/theming';
 

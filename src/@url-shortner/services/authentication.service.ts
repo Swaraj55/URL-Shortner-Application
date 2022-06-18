@@ -13,6 +13,7 @@ const CURRENT_USER_KEY = 'currentUser';
 export class AuthenticationService {
 
   authenticatedUser: any;
+  apiUrl: string;
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -33,11 +34,15 @@ export class AuthenticationService {
 
     let endPointOrigin = `${environment.basicURL}`;
 
-    let apiUrl = endPointOrigin + '/auth';
+    if(endPointOrigin === '') {
+      endPointOrigin = location.origin;
+    }
+    let theURL = endPointOrigin + '/api/v1'
+    this.apiUrl = theURL + '/auth';
 
-    this.logger.debug(apiUrl);
+    this.logger.debug(this.apiUrl);
 
-    return this._httpClient.post(apiUrl, { username, password }, { observe: 'response' }).pipe(map((authResponse: any) => {
+    return this._httpClient.post(this.apiUrl, { username, password }, { observe: 'response' }).pipe(map((authResponse: any) => {
       const userInfo = authResponse.body;
       console.log(userInfo);
       if(userInfo.status === 'success'){

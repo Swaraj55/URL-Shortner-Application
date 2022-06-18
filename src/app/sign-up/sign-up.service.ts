@@ -9,15 +9,21 @@ import { environment } from 'src/environments/environment';
 })
 export class SignUpService {
 
-  endPointOrigin: string;
+  url: string;
   constructor(
     private _httpClient: HttpClient,
   ) { 
-    this.endPointOrigin = `${environment.basicURL}`;
+    let endPointOrigin = `${environment.basicURL}`;
+
+    if(endPointOrigin === '') {
+      endPointOrigin = location.origin;
+    }
+
+    this.url = endPointOrigin + '/api/v1'
   }
 
   signUpUser(data: any){
-    let theURL = this.endPointOrigin + '/signup';
+    let theURL = this.url + '/signup';
     return this.sendRequest<any>('POST', theURL, data, {});
   }
 

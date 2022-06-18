@@ -2,38 +2,48 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserProfileService {
 
+  url: string;
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    let endPointOrigin = `${environment.basicURL}`;
+
+    if(endPointOrigin === '') {
+      endPointOrigin = location.origin;
+    }
+
+    this.url = endPointOrigin + '/api/v1';
+   }
 
   saveUserProfileImage(payload: any) {
-    let theUrl = 'http://localhost:3000/api/v1/insert/user-profile-image';
+    let theUrl = this.url + '/insert/user-profile-image';
     return this.sendRequest<any>('POST', theUrl, payload, {});
   }
 
   getUserProfileImage(payload: any) {
-    const theUrl = 'http://localhost:3000/api/v1/read/user-profile-image';
+    const theUrl = this.url + '/read/user-profile-image';
     return this.sendRequest<any>('GET', theUrl, {}, payload);
   }
 
   deleteUserProfileImage(payload: any) {
-    const theUrl = 'http://localhost:3000/api/v1/delete/user-profile-image/delete';
+    const theUrl = this.url + '/delete/user-profile-image/delete';
     return this.sendRequest<any>('DELETE', theUrl, payload, {});
   }
 
   readUserProfile(payload: any) {
-    const theUrl = 'http://localhost:3000/api/v1/read/user-profile-info';
+    const theUrl = this.url + '/read/user-profile-info';
     return this.sendRequest<any>('GET', theUrl, {}, payload);
   }
 
   updateUserProfile(payload: any) {
-    const theUrl = 'http://localhost:3000/api/v1/insert/user-profile-info';
+    const theUrl = this.url + '/insert/user-profile-info';
     return this.sendRequest<any>('POST', theUrl, payload, {});
   }
 
