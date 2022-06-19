@@ -119,6 +119,7 @@ export class ActionDialogComponent implements OnInit {
       url_type: this.shortUrlForm.controls['custom_type']?.value,
       creator: `ObjectId(${sessionStorage.getItem('id')})`,
       url_created_date: d.toISOString(),
+      location: location.origin,
       modify_time: d.toISOString()
     }
 
