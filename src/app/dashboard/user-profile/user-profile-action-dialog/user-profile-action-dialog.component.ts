@@ -62,13 +62,27 @@ export class UserProfileActionDialogComponent implements OnInit {
       about: ['', [Validators.required]],
     });
 
-    if(this.local_data.action === 'Update') {
+    if(this.local_data.action === 'Edit') {
+      let username = (this.local_data.username).split(' ');
       this.stepOneFormGroup.patchValue({
-        firstname: this.local_data.first_name,
-        lastname: this.local_data.last_name,
+        firstname: username[0],
+        lastname: username[1],
+        email: this.local_data.email,
+      });
+      this.stepOneFormGroup.controls['email'].disable();
+
+    }
+
+    if(this.local_data.action === 'Update') {
+      // console.log((this.local_data.username).split(' '))
+      let username = (this.local_data.username).split(' ');
+      this.stepOneFormGroup.patchValue({
+        firstname: username[0],
+        lastname: username[1],
         email: this.local_data.email,
         Occupation: this.local_data.occupation,
       });
+      this.stepOneFormGroup.controls['email'].disable();
 
       this.stepTwoFormGroup.patchValue({
         address: this.local_data.address,

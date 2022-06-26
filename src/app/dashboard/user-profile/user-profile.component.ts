@@ -18,6 +18,9 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
   showAllData: any[] = [];
   getUserImage: any;
 
+  userFullName: any = '';
+  userEmail: any = '';
+
   @ViewChild('userImage', {static: true}) userImage: ElementRef;
   @ViewChild('userLogo', {static: true}) userLogoInput: ElementRef;
 
@@ -32,6 +35,14 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
     this.userImageForm = this.fb.group({
       userLogo: ['']
     });
+
+    if(sessionStorage.getItem('username') !== null && sessionStorage.getItem('username') !== '') {
+      this.userFullName = sessionStorage.getItem('username');   // set the user full name
+    }
+
+    if(sessionStorage.getItem('email') !== null && sessionStorage.getItem('email') !== '') {
+      this.userEmail = sessionStorage.getItem('email');   // set the user email
+    }
 
     this.getUserprofileInfo();
     this.getImages();
@@ -155,6 +166,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
   //EDIT OR UPDATE PROFILE INFO
   editProfile(action: string, obj: any) {
     obj['action'] = action;
+    obj.username = this.userFullName;
+    obj.email = this.userEmail;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -163,6 +176,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
 
     if(this.showAllData[0] !== undefined) {
       this.showAllData[0].action = 'Update';
+      this.showAllData[0].username = this.userFullName;
+      this.showAllData[0].email = this.userEmail;
       dialogConfig.data = this.showAllData[0];
     } else {
       dialogConfig.data = obj;
@@ -215,6 +230,8 @@ export class UserProfileComponent implements OnInit, AfterViewInit {
       if(data.status === 'success') {
         this.showAllData.length = 0;
         this.showAllData.push(data.result[0]);
+        this.userFullName = data.result[0].first_name + ' ' + data.result[0].last_name;
+        sessionStorage.setItem('username', this.userFullName);
       }
 
       console.log(this.showAllData);
