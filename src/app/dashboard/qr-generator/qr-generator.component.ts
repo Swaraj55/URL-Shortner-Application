@@ -46,4 +46,33 @@ export class QrGeneratorComponent implements OnInit {
       //console.log(data);
     })
   }
+
+  downloadQrCode() {
+    if(this.selectedShortUrlCode) {
+      let image = new Image();
+      image.src = this.selectedShortUrlCode;
+      image.onload = () => {
+        let canvas = document.createElement('canvas');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        let context = canvas.getContext('2d') as CanvasRenderingContext2D;
+        context.imageSmoothingEnabled = false;
+        context.drawImage(image, 0, 0);
+        console.log(canvas, image)
+        this.saveScreenshot(canvas);
+      }
+    }
+  }
+
+  saveScreenshot(canvas: any) {
+    let fileName = "shareable-qr-code";
+    const link = document.createElement('a');
+    link.download = fileName + '.png';
+    console.log(canvas)
+    canvas.toBlob(function(blob: any) {
+        console.log(blob)
+        link.href = URL.createObjectURL(blob);
+        link.click();
+    });
+  };
 }

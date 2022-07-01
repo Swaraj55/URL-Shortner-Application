@@ -23,8 +23,13 @@
 
     <div class="row">
         <div class="col-12 text-center">
-            <div class="mt-5" *ngIf="selectedShortUrlCode">
+            <div class="mt-4" *ngIf="selectedShortUrlCode">
                 <img id="qr_code" [src]="selectedShortUrlCode" alt="Short Url QR code">
+                <div class="mt-2 mb-3">
+                    <button style="width: 320px;" mat-raised-button color="primary" (click)="downloadQrCode()">
+                        Download
+                    </button>
+                </div>
             </div>
         </div>
     </div>

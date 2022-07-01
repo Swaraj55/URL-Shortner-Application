@@ -8,7 +8,7 @@ import { QrGeneratorService } from './qr-generator.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatOptionModule} from '@angular/material/core';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [QrGeneratorComponent],
@@ -17,6 +17,7 @@ import {MatOptionModule} from '@angular/material/core';
     MatSelectModule,
     MatFormFieldModule,
     MatOptionModule,
+    MatButtonModule,
     ReactiveFormsModule,
     FormsModule
   ],
