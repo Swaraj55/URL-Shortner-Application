@@ -1,19 +1,31 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    
+            <div class="d-flex">
+                <img src="../../../assets/qr-code.png" width="100px" height="100px" alt="Scan the QR code">
+                <div id="title" class="row h2 font-weight-bold">
+                    QR codes platform provides you offline to online experience.
+                    Instantly generate a QR Code for any of your URL Shortner 
+                </div>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
-            <mat-form-field class="w-50">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 p-2 text-center">
+            <mat-form-field class="w-100">
                 <mat-label>Short URL</mat-label>
-                <mat-select>
-                    <mat-option>Extra cheese</mat-option>
-                    <mat-option>Mushroom</mat-option>
-                    <mat-option>Onion</mat-option>
-                    <mat-option>Pepperoni</mat-option>
-                    <mat-option>Sausage</mat-option>
+                <mat-select [formControl]="shorted_url">
+                    <mat-option (click)="changeShortUrl(url)" *ngFor="let url of shortedURL" [id]="url.shorted_url" [value]="url.shorted_url">
+                        {{url.shorted_url}}
+                    </mat-option>
                 </mat-select>
               </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="mt-5" *ngIf="selectedShortUrlCode">
+                <img id="qr_code" [src]="selectedShortUrlCode" alt="Short Url QR code">
+            </div>
         </div>
     </div>
 </div>
