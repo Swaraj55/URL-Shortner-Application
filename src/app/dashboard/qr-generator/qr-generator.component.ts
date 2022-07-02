@@ -49,14 +49,24 @@ export class QrGeneratorComponent implements OnInit {
 
   downloadQrCode() {
     if(this.selectedShortUrlCode) {
+      /*
+      *The Image() constructor creates a new HTMLImageElement instance. 
+      *It is functionally equivalent to document.createElement('img').
+      */
       let image = new Image();
       image.src = this.selectedShortUrlCode;
+      //The .onload event occurs only when an object has been loaded.
       image.onload = () => {
         let canvas = document.createElement('canvas');
         canvas.width = image.width;
         canvas.height = image.height;
+        /**
+         * The CanvasRenderingContext2D is an object that is used to issue 2D drawing commands to a canvas. 
+         * It is obtained by passing '2d' to the HTMLCanvasElement.getContext() method.
+         */
         let context = canvas.getContext('2d') as CanvasRenderingContext2D;
         context.imageSmoothingEnabled = false;
+        //Draws image to the canvas at dx, dy using the natural size of the image.
         context.drawImage(image, 0, 0);
         console.log(canvas, image)
         this.saveScreenshot(canvas);
@@ -68,9 +78,9 @@ export class QrGeneratorComponent implements OnInit {
     let fileName = "shareable-qr-code";
     const link = document.createElement('a');
     link.download = fileName + '.png';
-    console.log(canvas)
+    // console.log(canvas)
     canvas.toBlob(function(blob: any) {
-        console.log(blob)
+        // console.log(blob)
         link.href = URL.createObjectURL(blob);
         link.click();
     });
