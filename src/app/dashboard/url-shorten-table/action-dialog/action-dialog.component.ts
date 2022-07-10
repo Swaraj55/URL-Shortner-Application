@@ -120,7 +120,8 @@ export class ActionDialogComponent implements OnInit {
       creator: `ObjectId(${sessionStorage.getItem('id')})`,
       url_created_date: d.toISOString(),
       location: location.origin,
-      modify_time: d.toISOString()
+      modify_time: d.toISOString(),
+      total_url_clicks: 0
     }
 
     // console.log('obj in action dialog: ', JSON.stringify(payload));

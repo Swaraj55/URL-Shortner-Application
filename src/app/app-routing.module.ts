@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthguardGuard } from '../@url-shortner/helpers/authguard.guard';
 
 const routes: Routes = [
   //Lazy loading
