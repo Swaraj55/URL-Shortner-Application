@@ -27,6 +27,11 @@ export class DashboardMainService {
     return this.sendRequest<any>('GET', theUrl, {}, payload);
   }
 
+  getDeviceData(payload: any) {
+    const theUrl = this.url + '/read/device-name-with-click';
+    return this.sendRequest<any>('GET', theUrl, {}, payload);
+  }
+
   private sendRequest<T>(verb: string, url: string, body?: any, params?: any): Observable<T> {
     return this.httpClient.request<T>(verb, url, {body: body , params : params})
         .pipe(catchError((error: Response) =>
