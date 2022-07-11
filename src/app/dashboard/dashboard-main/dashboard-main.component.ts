@@ -16,14 +16,79 @@ am4core.useTheme(am4themes_material);
   styleUrls: ['./dashboard-main.component.scss'],
 })
 export class DashboardMainComponent implements OnInit {
+
   isNewShortUrlsData: boolean = true;
+  urlStatusData: boolean = true;
   isUrlStatusData: boolean = true;
+  totalUrlClick: number = 0;
 
   constructor(private dashboardMainService: DashboardMainService) {}
 
   ngOnInit(): void {
+    this.getUrlDataInfo();
     this.createChartsTypesofBrowserAndClick();
     this.createChartsTypesofDeviceAndClick();
+  }
+
+  getUrlDataInfo() {
+    let params = {
+      creator: `${sessionStorage.getItem('id')}`,
+    }
+
+    this.dashboardMainService.getUrlData(params).subscribe((data: any) => {
+      // console.log(data)
+      if(data.status === 'success') {
+        this.createUrlStatusChart(data.result);
+        data.result.forEach((item: any) => {
+          this.totalUrlClick += item.total_url_clicks
+        })
+      }
+    });
+  }
+
+  createUrlStatusChart(data: any) {
+    // console.log(data)
+    // Create chart instance
+    let chart = am4core.create("urlStatus", am4charts.PieChart);
+    chart.logo.__disabled = true;
+
+    this.urlStatusData = false;
+    let chartData = [], activeCount = 0, inActiveCount = 0;
+    //@ts-ignore
+    data.forEach((item, index) => {
+        if(item.status === 'Active') {
+          activeCount++;
+        } else {
+          inActiveCount++;
+        }
+    });
+
+    console.log(activeCount, inActiveCount)
+    if(activeCount !== 0) {
+      chartData.push({url_status: 'Active', url_count: activeCount})
+    }
+    if(inActiveCount !== 0) {
+      chartData.push({url_status: 'Inactive', url_count: inActiveCount})
+    }
+    chart.data = chartData;
+    // Add and configure Series
+    var pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "url_count";
+    pieSeries.dataFields.category = "url_status";
+    pieSeries.slices.template.stroke = am4core.color('#1e1f31');
+    pieSeries.slices.template.strokeOpacity = 1;
+    pieSeries.slices.template.tooltipText = '{category} URL: {value}';
+
+    pieSeries.labels.template.fontFamily =
+            'Dosis, Josefin Sans, sans-serif';
+    pieSeries.labels.template.fill = am4core.color('#fff');
+
+    // This creates initial animation
+    pieSeries.hiddenState.properties.opacity = 1;
+    pieSeries.hiddenState.properties.endAngle = -90;
+    pieSeries.hiddenState.properties.startAngle = -90;
+
+    chart.hiddenState.properties.radius = am4core.percent(0);
   }
 
   createChartsTypesofBrowserAndClick() {
@@ -52,6 +117,7 @@ export class DashboardMainComponent implements OnInit {
           let pieSeries = chart.series.push(new am4charts.PieSeries());
           pieSeries.dataFields.value = 'value';
           pieSeries.dataFields.category = 'label';
+          pieSeries.hiddenState.properties.endAngle = -90; // Fan Out Animation
 
           // Let's cut a hole in our Pie chart the size of 30% the radius
           chart.innerRadius = am4core.percent(30);
@@ -130,6 +196,7 @@ export class DashboardMainComponent implements OnInit {
           let pieSeries = chart.series.push(new am4charts.PieSeries());
           pieSeries.dataFields.value = 'value';
           pieSeries.dataFields.category = 'label';
+          pieSeries.hiddenState.properties.endAngle = -90; // Fan Out Animation
 
           // Let's cut a hole in our Pie chart the size of 30% the radius
           chart.innerRadius = am4core.percent(30);

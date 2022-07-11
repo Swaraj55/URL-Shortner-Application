@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-title">
                         <h5>Total Clicks</h5>
-                        <h4>100</h4>
+                        <h4>{{totalUrlClick}}</h4>
                     </div>
                 </div>
             </div>
@@ -71,16 +71,16 @@
             <div class="card last-four-cards w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
                     <h5>URLs Status</h5>
-                    <div class="new-short-url" *ngIf="isUrlStatusData">
+                    <div class="new-short-url" *ngIf="urlStatusData">
                         No Data Found
-                        <!-- https://www.amcharts.com/demos-v4/pie-chart-v4/ -->
                     </div>
+                    <div class="thirdRow" id="urlStatus"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-3 mb-2">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 mt-2">
             <div class="card last-four-cards w-100 mat-elevation-z6 second-section">
                 <div class="card-body">
