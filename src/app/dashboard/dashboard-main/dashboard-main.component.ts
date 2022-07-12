@@ -16,11 +16,13 @@ am4core.useTheme(am4themes_material);
   styleUrls: ['./dashboard-main.component.scss'],
 })
 export class DashboardMainComponent implements OnInit {
-
   isNewShortUrlsData: boolean = true;
   urlStatusData: boolean = true;
   isUrlStatusData: boolean = true;
+  lastSevenDays: boolean = true;
   totalUrlClick: number = 0;
+  disableUrls: number = 0;
+  lastThirtyDaysUrlData: number = 0;
 
   constructor(private dashboardMainService: DashboardMainService) {}
 
@@ -28,20 +30,21 @@ export class DashboardMainComponent implements OnInit {
     this.getUrlDataInfo();
     this.createChartsTypesofBrowserAndClick();
     this.createChartsTypesofDeviceAndClick();
+    this.createChartForNewUrl();
   }
 
   getUrlDataInfo() {
     let params = {
       creator: `${sessionStorage.getItem('id')}`,
-    }
+    };
 
     this.dashboardMainService.getUrlData(params).subscribe((data: any) => {
       // console.log(data)
-      if(data.status === 'success') {
+      if (data.status === 'success') {
         this.createUrlStatusChart(data.result);
         data.result.forEach((item: any) => {
-          this.totalUrlClick += item.total_url_clicks
-        })
+          this.totalUrlClick += item.total_url_clicks;
+        });
       }
     });
   }
@@ -49,38 +52,39 @@ export class DashboardMainComponent implements OnInit {
   createUrlStatusChart(data: any) {
     // console.log(data)
     // Create chart instance
-    let chart = am4core.create("urlStatus", am4charts.PieChart);
+    let chart = am4core.create('urlStatus', am4charts.PieChart);
     chart.logo.__disabled = true;
 
     this.urlStatusData = false;
-    let chartData = [], activeCount = 0, inActiveCount = 0;
+    let chartData = [],
+      activeCount = 0,
+      inActiveCount = 0;
     //@ts-ignore
     data.forEach((item, index) => {
-        if(item.status === 'Active') {
-          activeCount++;
-        } else {
-          inActiveCount++;
-        }
+      if (item.status === 'Active') {
+        activeCount++;
+      } else {
+        inActiveCount++;
+      }
     });
-
-    console.log(activeCount, inActiveCount)
-    if(activeCount !== 0) {
-      chartData.push({url_status: 'Active', url_count: activeCount})
+    this.disableUrls = inActiveCount;
+    // console.log(activeCount, inActiveCount);
+    if (activeCount !== 0) {
+      chartData.push({ url_status: 'Active', url_count: activeCount });
     }
-    if(inActiveCount !== 0) {
-      chartData.push({url_status: 'Inactive', url_count: inActiveCount})
+    if (inActiveCount !== 0) {
+      chartData.push({ url_status: 'Inactive', url_count: inActiveCount });
     }
     chart.data = chartData;
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "url_count";
-    pieSeries.dataFields.category = "url_status";
+    pieSeries.dataFields.value = 'url_count';
+    pieSeries.dataFields.category = 'url_status';
     pieSeries.slices.template.stroke = am4core.color('#1e1f31');
     pieSeries.slices.template.strokeOpacity = 1;
     pieSeries.slices.template.tooltipText = '{category} URL: {value}';
 
-    pieSeries.labels.template.fontFamily =
-            'Dosis, Josefin Sans, sans-serif';
+    pieSeries.labels.template.fontFamily = 'Dosis, Josefin Sans, sans-serif';
     pieSeries.labels.template.fill = am4core.color('#fff');
 
     // This creates initial animation
@@ -186,7 +190,9 @@ export class DashboardMainComponent implements OnInit {
           const dataForChart = [];
           for (let i = 0; i < chartData.length; i++) {
             dataForChart.push({
-              label: (chartData[i].device_name).charAt(0).toUpperCase() + (chartData[i].device_name).slice(1),
+              label:
+                chartData[i].device_name.charAt(0).toUpperCase() +
+                chartData[i].device_name.slice(1),
               value: chartData[i].device_clicks,
             });
           }
@@ -243,7 +249,64 @@ export class DashboardMainComponent implements OnInit {
           );
           hoverShadow.opacity = 0.7;
           hoverShadow.blur = 5;
-        }  
+        }
+      }
+    });
+  }
+
+  createChartForNewUrl() {
+    let chart = am4core.create('sevenDaysData', am4charts.XYChart);
+    chart.logo.__disabled = true;
+
+    let param = { creator: sessionStorage.getItem('id') };
+    this.dashboardMainService.getLastSevenData(param).subscribe((data: any) => {
+      // console.log(data);
+      if (data.status === 'success') {
+        this.lastThirtyDaysUrlData = data.lastThirtyDaysInfo;
+        // if (data.resultLength > 0) {
+        //   this.lastSevenDays = false;
+
+        //   //@ts-ignore
+        //   chart.data = data.lastSevenDaysData;
+
+        //   var categoryAxis = chart.xAxes.push(new am4charts.DateAxis());
+        //   categoryAxis.renderer.grid.template.location = 0;
+        //   categoryAxis.renderer.minGridDistance = 10;
+        //   categoryAxis.renderer.cellStartLocation = 0.2;
+        //   categoryAxis.renderer.cellEndLocation = 1;
+        //   categoryAxis.renderer.inversed = true;
+        //   categoryAxis.renderer.grid.template.disabled = true;
+
+        //   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        //   valueAxis.min = 0;
+        //   valueAxis.extraMax = 0.1;
+
+        //   var series = chart.series.push(new am4charts.ColumnSeries());
+        //   series.dataFields.dateX = 'creation_date';
+        //   series.dataFields.valueY = 'total_clicks';
+        //   //@ts-ignore
+        //   series.tooltip.fontFamily = 'Dosis, Josefin Sans, sans-serif';
+        //   series.fontFamily = 'Dosis, Josefin Sans, sans-serif';
+        //   series.columns.template.strokeOpacity = 0;
+        //   series.columns.template.column.cornerRadiusTopRight = 10;
+        //   series.columns.template.column.cornerRadiusTopLeft = 10;
+
+        //   var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+        //   labelBullet.label.verticalCenter = 'bottom';
+        //   labelBullet.label.dy = -10;
+        //   labelBullet.fontFamily = 'Dosis, Josefin Sans, sans-serif';
+        //   labelBullet.label.fill = am4core.color('#fff');
+        //   labelBullet.label.text =
+        //     "{values.valueY.workingValue.formatNumber('#.')}";
+
+        //   chart.zoomOutButton.disabled = true;
+
+        //   // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+        //   series.columns.template.adapter.add('fill', function (fill, target) {
+        //     //@ts-ignore
+        //     return chart.colors.getIndex(target.dataItem.index);
+        //   });
+        // }
       }
     });
   }

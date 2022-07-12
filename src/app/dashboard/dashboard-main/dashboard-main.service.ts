@@ -37,6 +37,11 @@ export class DashboardMainService {
     return this.sendRequest<any>('GET', theUrl, {}, params);
   }
 
+  getLastSevenData(params: any) {
+    const theUrl = this.url + '/read/seven_days_data';
+    return this.sendRequest<any>('GET', theUrl, {}, params);
+  }
+
   private sendRequest<T>(verb: string, url: string, body?: any, params?: any): Observable<T> {
     return this.httpClient.request<T>(verb, url, {body: body , params : params})
         .pipe(catchError((error: Response) =>
