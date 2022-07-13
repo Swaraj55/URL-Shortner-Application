@@ -1,0 +1,75 @@
+.text-header {
+    text-align: center;
+}
+
+.sub-text-header {
+    color: #4359df;
+}
+
+.team-main-section {
+    background-color: #4359df;
+    width: 60%;
+    margin: 4% auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cols {
+    flex-basis: 50%;
+    text-align: center;
+    overflow: hidden; //Zoom-in effect comes on the image (.cols img:hover{})
+    position: relative; // This was done for (.col .arrow-pointing-to-image) the reason span show into the image
+}
+
+.cols img {
+    width: 100%; 
+    height: 400px;
+    cursor: pointer;
+    transition: 1s;
+    // CSS transitions allows you to change property values smoothly, over a given duration.
+}
+
+.cols p {
+    margin: 20px 0;
+}
+
+.social-link .fa-brands {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid white;
+    margin: 0 7px; //0 for top/bottom and 7px for left/right
+    cursor: pointer;
+    transition: transform .5s;
+}
+
+.social-link .fa-brands:hover {
+    background-color: #1e1f31;
+    border: 1px solid #1e1f31;
+    transform: translateY(-7px); //It means social media icons lift upward
+}
+
+//On hove Zoom In effect comes on image
+.cols img:hover {
+    transform: scale(1.1);
+    //The scale() method increases or decreases the size of an element (according to the parameters given for the width and height).
+    //IMPORTANT: Aftr doing below code Image is coming out of div or column. Let fix --- with overflow: hidden property into the .cols {}
+}
+
+.cols .arrow-pointing-to-image {
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 15px solid #4359df;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 2;// We set this property because when we hover the image (.arrow-pointing-to-image) was removed so that's why we set the z-index
+}
+
+.link-decoration {
+    text-decoration: none;
+    color: white;
+}

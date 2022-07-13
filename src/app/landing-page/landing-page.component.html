@@ -22,7 +22,7 @@
                     <a class="nav-link" href="#">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
+                    <a class="nav-link" [routerLink] = "['/team']">Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink] = "['/login']" style="cursor: pointer;">Log In</a>
@@ -47,7 +47,7 @@
                 URL Shortner is a web application that allows you to shorten your long URLs.
                 It is a free service that is provided by URL Shortner.
             </p>
-            <a href="#" id="get_started_btn" class="wow animate__animated animate__fadeInDown ml-xs-2 ml-lg-5 mt-lg-5">
+            <a [routerLink] = "['/login']" id="get_started_btn" class="wow animate__animated animate__fadeInDown ml-xs-2 ml-lg-5 mt-lg-5">
                 Get Started
             </a>
         </div>
