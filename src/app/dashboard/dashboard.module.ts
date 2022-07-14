@@ -18,6 +18,7 @@ import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.mod
 import { DashboardMainModule } from './dashboard-main/dashboard-main.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { QrGeneratorModule } from './qr-generator/qr-generator.module';
+import { SecurityModule } from './security/security.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { QrGeneratorModule } from './qr-generator/qr-generator.module';
     DashboardMainModule,
     UserProfileModule,
     QrGeneratorModule,
+    SecurityModule,
 
     MatButtonModule,
     MatDividerModule,

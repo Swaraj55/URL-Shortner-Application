@@ -1,0 +1,24 @@
+.main-heading {
+    color: #1e1f31;
+}
+
+.loginButton {
+    background-color: #4359df;
+    color: white;
+    padding: 5px 0px;
+    font-size: 1rem;
+}
+
+.loginButton:disabled {
+    background-color: #4359df;
+    color: white;
+    opacity: 0.4;
+}
+
+.mfa-off {
+    color: orange;
+}
+
+.mfa-on {
+    color: green;
+}

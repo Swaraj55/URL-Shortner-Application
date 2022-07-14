@@ -138,7 +138,7 @@ export class SignUpComponent implements OnInit {
       "account_creation": d.toISOString()
     }
 
-    console.log(payload);
+    // console.log(payload);
     this.signupService.signUpUser(payload).subscribe((data: any) => {
       if(data.status === 'success') {
         this.openSnackBar('You successfully signup in URL Shortner!', '', 'mat-snack-bar-success');

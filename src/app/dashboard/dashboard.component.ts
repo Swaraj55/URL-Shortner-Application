@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   navDashboardContent: boolean = true;
   navProfileContent: boolean = false;
   navQrContent: boolean = false;
+  navSecurityContent: boolean = false;
   currentSideNavItem: string = " / " + "Dashboard";
 
   constructor(
@@ -31,25 +32,38 @@ export class DashboardComponent implements OnInit {
       this.navDashboardContent = false;
       this.navProfileContent = false;
       this.navQrContent = false;
+      this.navSecurityContent = false;
       this.currentSideNavItem = " / " + "URL Shortner Table";
     } else if(sideNavContent === 'Dashbaord') {
       this.navTableContent = false;
       this.navDashboardContent = true;
       this.navProfileContent = false;
       this.navQrContent = false;
+      this.navSecurityContent = false;
       this.currentSideNavItem = " / " + "Dashboard";
     } else if(sideNavContent === 'Profile') {
       this.navTableContent = false;
       this.navDashboardContent = false;
       this.navProfileContent = true;
       this.navQrContent = false;
+      this.navSecurityContent = false;
       this.currentSideNavItem = " / " + "Profile";
-    } else {
+    } else if(sideNavContent === 'QR Generator'){
       this.navTableContent = false;
       this.navDashboardContent = false;
       this.navProfileContent = false;
       this.navQrContent = true;
+      this.navSecurityContent = false;
       this.currentSideNavItem = " / " + "QR Generator";
+    } else if(sideNavContent === 'Security'){
+      this.navTableContent = false;
+      this.navDashboardContent = false;
+      this.navProfileContent = false;
+      this.navQrContent = false;
+      this.navSecurityContent = true;
+      this.currentSideNavItem = " / " + "Security";
+    } else {
+      //Upgrade to pro
     }
   }
 

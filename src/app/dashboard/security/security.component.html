@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="h4 font-weight-bold main-heading">
+                Reset Password
+            </div>
+            <div class="lead">
+                Your new password must be different from previous used passwords.
+            </div>
+            <div class="mt-3">
+                <form [formGroup]="resetPassword" name="resetPassword" #updateResetForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
+                    <mat-form-field class="col-12" id="currnt-password-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="currnt-password-input-label">Currrent Password</mat-label>
+                        <input id="currnt-password-input" type="password" matInput required formControlName="currentPassword">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
+                        <mat-error *ngIf="resetPassword.controls['currentPassword'].hasError('required')">
+                            Password is required.
+                        </mat-error>
+                        <mat-error *ngIf="resetPassword.controls['currentPassword'].hasError('minlength')">
+                            Password must contain at least 8 characters.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12" id="new-password-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="new-password-input-label">New Password</mat-label>
+                        <input id="new-password-input" type="password" matInput required formControlName="newPassword">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
+                        <mat-error *ngIf="resetPassword.controls['newPassword'].hasError('required')">
+                            New password is required.
+                        </mat-error>
+                        <mat-error *ngIf="resetPassword.controls['newPassword'].hasError('minlength')">
+                            New password must contain at least 8 characters.
+                        </mat-error>
+                        <mat-error *ngIf="resetPassword.controls['newPassword'].errors?.['noSpace']">
+                            New Password must not contain space.
+                        </mat-error>
+                        <mat-error *ngIf="resetPassword.controls['newPassword'].errors?.['currentNewMatch']">
+                            Sorry, your new password cannot be the same as your current password.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-12" id="confirm-password-field" floatlabel="auto" appearance="outline">
+                        <mat-label id="confirm-password-input-label">Confirm Password</mat-label>
+                        <input id="confirm-password-input" type="password" matInput required formControlName="confirmPassword">
+                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
+                        <mat-error *ngIf="resetPassword.controls['confirmPassword'].hasError('required')">
+                            Confirm password is required.
+                        </mat-error>
+                        <mat-error *ngIf="resetPassword.controls['confirmPassword'].errors?.['notSame']">
+                            New Password and Confirm Password must be same.
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="col-12 mt-3">
+                        <button class="loginButton col-12 mat-elevation-z8" [disabled]="resetPassword.invalid"  mat-raised-button>Update Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-xs-3">
+            <div class="h4 font-weight-bold main-heading">
+                Multi-Factor Authentication
+            </div>
+            <div class="lead">
+                Multi-factor Authentication (MFA) is an authentication method that requires the user to provide two or more 
+                verification factors to gain access to a resource such as an application, online account, or a VPN. 
+            </div>
+            <mat-slide-toggle class="mt-3 font-weight-bold" [formControl]="slideMfaStatus" (click)="slideMFAStatus()" color="primary">MFA Status: <span class="{{textColorAccdToStatus}}">{{mfaStatus}}</span></mat-slide-toggle>
+        </div>
+    </div>
+</div>
