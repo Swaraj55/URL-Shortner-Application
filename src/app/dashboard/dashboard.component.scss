@@ -67,7 +67,7 @@ mat-divider {
 }
 
 // ripple effect on all buttons
-::ng-deep {
+:host :ng-deep {
     .mat-button:hover {
         background-color: rgba(67, 89, 223, 0.5);
     }

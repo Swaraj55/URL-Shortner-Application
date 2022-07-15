@@ -14,7 +14,9 @@ $danger: mat-palette($mat-red);
         color: #ffffff !important;
         background-color: mat-color($danger, 500) !important;
     }
+}
 
+:host ::ng-deep {
     //The below code when field is empty
     .mat-form-field-empty.mat-form-field-label {
         color: #4359df;

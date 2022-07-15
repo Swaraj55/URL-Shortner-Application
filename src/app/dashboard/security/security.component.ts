@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SecurityService } from './security.service';
 @Component({
   selector: 'app-security',
   templateUrl: './security.component.html',
@@ -16,13 +18,15 @@ export class SecurityComponent implements OnInit {
   @ViewChild('updateResetForm')  updateResetForm: NgForm;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private securityService: SecurityService,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
     this.resetPassword = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(8)]],
-      newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordWithNoSpace,]],
+      newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordWithNoSpace]],
       confirmPassword: ['', [Validators.required]]
     }, {
       validators: [
@@ -54,8 +58,6 @@ export class SecurityComponent implements OnInit {
 
       if(passwordControl.value !== confirmPasswordControl.value && passwordControl && confirmPasswordControl) {
         confirmPasswordControl.setErrors({notSame: true});
-      } else {
-        confirmPasswordControl.setErrors(null);
       }
     }
   }
@@ -69,8 +71,6 @@ export class SecurityComponent implements OnInit {
       const newPasswordControl = formGroup.controls['newPassword'];
       if(newPassword === originalPassword) {
         newPasswordControl.setErrors({currentNewMatch: true});
-      } else {
-        newPasswordControl.setErrors(null)
       }
     });
   }
@@ -83,6 +83,15 @@ export class SecurityComponent implements OnInit {
       this.mfaStatus = 'On';
       this.textColorAccdToStatus = 'mfa-on'
     }
+  }
+
+  openSnackBar(message: string, action: string, cssClass: string) {
+    this._snackBar.open(message, action, {
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: cssClass,
+      duration: 4000,
+    });
   }
 
   onSubmit() {
@@ -100,8 +109,18 @@ export class SecurityComponent implements OnInit {
       "creator": `ObjectId(${sessionStorage.getItem('id')})`
     }
 
-    console.log(payload)
-    //this.updateResetForm.resetForm({})
+    //console.log(payload)
+
+    this.securityService.updatePasswordChange(payload).subscribe((data: any) => {
+      if(data.status === 'success') {
+        this.openSnackBar(data.message, '', 'mat-snack-bar-success');
+        this.updateResetForm.resetForm({})
+      } else {
+        this.openSnackBar(data.message, '', 'mat-snack-bar-danger');
+      }
+    }, (error: any) => {
+      this.openSnackBar(error.message, '', 'mat-snack-bar-danger');
+    })
   }
 
 }
