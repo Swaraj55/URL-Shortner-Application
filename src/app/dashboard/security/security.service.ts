@@ -27,6 +27,16 @@ export class SecurityService {
     return this.sendRequest<any>('POST', theUrl, payload, {});
    }
 
+   enableDisableMFA(payload: any) {
+    const theUrl = this.url + '/update/enable-disable-mfa';
+    return this.sendRequest<any>('POST', theUrl, payload, {});
+   }
+
+   getUserInfo(params: any) {
+    const theUrl = this.url + '/read/user-info';
+    return this.sendRequest<any>('GET', theUrl, {}, params);
+   }
+
    private sendRequest<T>(verb: string, url: string, body?: any, params?: any): Observable<T> {
     return this.httpClient.request<T>(verb, url, {body: body , params : params})
         .pipe(catchError((error: Response) =>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -10,10 +10,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
+import { TwoFactorAuthenticationDialogModule } from './two-factor-authentication-dialog/two-factor-authentication-dialog.module';
 @NgModule({
   declarations: [
     LoginComponent
+  ],
+  entryComponents: [
+    TwoFactorAuthenticationDialogModule
   ],
   imports: [
     CommonModule,
@@ -26,8 +31,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+
+    TwoFactorAuthenticationDialogModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [LoginComponent]
 })
 export class LoginModule { }

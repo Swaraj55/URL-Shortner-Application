@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@an
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TwoFactorAuthenticationDialogComponent } from './two-factor-authentication-dialog/two-factor-authentication-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +42,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -99,6 +102,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  enableTwoFactorAuthentication(obj: any) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '75%';
+    dialogConfig.height = '600px';
+    dialogConfig.maxWidth = '400px';
+    dialogConfig.data = obj;
+    dialogConfig.panelClass = 'bg-image'
+
+    const dialogRef = this.dialog.open(TwoFactorAuthenticationDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event === 'enable-mfa') {
+        this.onSubmit();
+      }
+    })
+  }
+
   onSubmit() {
     this.isSubmitted = true;
 
@@ -110,15 +132,27 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.controls['email'].value,
       password: btoa(this.loginForm.controls['password'].value),
     };
+    this.commonLogin(payload)
+    
+  }
 
+  commonLogin(payload: any) {
     this.authService.login(payload.username, payload.password).subscribe((data: any) => {
-      // console.log('data', data);
       if(data.body.status === 'success') {
-        this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
-        this.router.navigate(['/dashboard/home']);
-        this.updateLoginForm.resetForm({});
+        // this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
+        // this.router.navigate(['/dashboard/home']);
+        console.log(data)
+        //this.updateLoginForm.resetForm({});
       } else {
-        this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
+        console.log(data)
+        if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'unenrolled') {
+          let result = {
+            username: this.loginForm.controls['email'].value,
+            password: btoa(this.loginForm.controls['password'].value),
+            mfa: data.body.results[0]
+          }
+          this.enableTwoFactorAuthentication(result)
+        }
       }
     }, (error: any) => {
       this.openSnackBar('The email or password is incorrect!', '', 'mat-snack-bar-danger');

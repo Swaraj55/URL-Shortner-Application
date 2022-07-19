@@ -71,8 +71,8 @@ export class AuthenticationService {
 public isAuthenticatedUser(): boolean {
   if(this.currentUserValue){
     return true;
+  } else {
+    return false;
   }
-
-  return false;
 }
 }

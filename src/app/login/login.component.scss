@@ -115,3 +115,9 @@
     color: white;
     opacity: 0.4;
 }
+
+::ng-deep {
+    .bg-image > mat-dialog-container {
+        background-color: #1e1f31 !important;
+    }
+}

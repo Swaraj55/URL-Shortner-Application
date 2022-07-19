@@ -2,7 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-
+import { AuthenticationService } from 'src/@url-shortner/services/authentication.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,7 +20,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private authService:AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -80,6 +81,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
+    this.authService.currentUserSubject.next(null)
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('currentUser');
     sessionStorage.removeItem('email');

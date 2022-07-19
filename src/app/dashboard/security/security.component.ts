@@ -15,6 +15,8 @@ export class SecurityComponent implements OnInit {
   slideMfaStatus =  new FormControl();
   textColorAccdToStatus: string = 'mfa-off'
 
+  statusOfMFA: boolean;
+
   @ViewChild('updateResetForm')  updateResetForm: NgForm;
 
   constructor(
@@ -34,6 +36,8 @@ export class SecurityComponent implements OnInit {
       ]
     });
 
+    this.multiFactorAuthStatus();
+    this.userInformation()
     this.handleFormChanges();
   }
 
@@ -77,12 +81,60 @@ export class SecurityComponent implements OnInit {
 
   slideMFAStatus() {
     if(this.slideMfaStatus.value) {
+      this.statusOfMFA = false
       this.mfaStatus = 'Off';
-      this.textColorAccdToStatus = 'mfa-off'
+      this.textColorAccdToStatus = 'mfa-off';
+      this.multiFactorAuthStatus();
     } else {
       this.mfaStatus = 'On';
       this.textColorAccdToStatus = 'mfa-on'
+      this.statusOfMFA = true;
+      this.multiFactorAuthStatus();
     }
+  }
+
+  multiFactorAuthStatus() {
+    let payload = {
+      mfaStatus: this.statusOfMFA,
+      creator: `ObjectId("${sessionStorage.getItem('id')}")`
+    }
+    
+    if(payload.mfaStatus !== undefined) {
+      this.securityService.enableDisableMFA(payload).subscribe((data: any) => {
+        console.log(data)
+        if(data.status === 'success') {
+          this.openSnackBar(data.message, '', 'mat-snack-bar-success');
+        } else {
+          this.openSnackBar(data.message, '', 'mat-snack-bar-danger');
+        }
+      }, (error) => {
+        this.openSnackBar(error, '', 'mat-snack-bar-danger');
+      }, () => {
+        this.userInformation();
+      })
+    }
+  }
+
+  userInformation() {
+    let params = {
+      creator: `ObjectId("${sessionStorage.getItem('id')}")`,
+    }
+
+    this.securityService.getUserInfo(params).subscribe((data: any) => {
+      // console.log(data.result.mfa_status);
+      if(data.result.mfa_status === "") {
+        this.mfaStatus = 'On';
+        this.textColorAccdToStatus = 'mfa-on'
+        this.slideMfaStatus.patchValue(true)
+      } 
+      
+      if(data.result.mfa_status === undefined) {
+        this.mfaStatus = 'Off';
+        this.textColorAccdToStatus = 'mfa-off';
+        this.slideMfaStatus.patchValue(false)
+      }
+      
+    })
   }
 
   openSnackBar(message: string, action: string, cssClass: string) {
