@@ -96,9 +96,9 @@ export class SecurityComponent implements OnInit {
   multiFactorAuthStatus() {
     let payload = {
       mfaStatus: this.statusOfMFA,
-      creator: `ObjectId("${sessionStorage.getItem('id')}")`
+      creator: `${sessionStorage.getItem('id')}`
     }
-    
+    // console.log("Status...", payload)
     if(payload.mfaStatus !== undefined) {
       this.securityService.enableDisableMFA(payload).subscribe((data: any) => {
         console.log(data)
@@ -117,9 +117,9 @@ export class SecurityComponent implements OnInit {
 
   userInformation() {
     let params = {
-      creator: `ObjectId("${sessionStorage.getItem('id')}")`,
+      creator: `${sessionStorage.getItem('id')}`,
     }
-
+    //console.log(params)
     this.securityService.getUserInfo(params).subscribe((data: any) => {
       // console.log(data.result.mfa_status);
       if(data.result.mfa_status) {
