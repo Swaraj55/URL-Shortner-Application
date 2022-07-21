@@ -1,0 +1,11 @@
+#verify-button {
+    background-color: #4359df;
+    color: white;
+    width: 100%;
+}
+
+#verify-button:disabled {
+    background-color: #4359df;
+    color: white;
+    opacity: 0.4;
+}

@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-two-factor-authentication-dialog',
   templateUrl: './two-factor-authentication-dialog.component.html',
-  styleUrls: ['./two-factor-authentication-dialog.component.scss']
+  styleUrls: ['./two-factor-authentication-dialog.component.scss', '../../../theme.scss']
 })
 export class TwoFactorAuthenticationDialogComponent implements OnInit {
 
@@ -24,7 +24,6 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.local_data = {...data}
-    console.log(this.local_data)
     this.secret_key = this.local_data.mfa.secret;
   }
 
@@ -32,12 +31,12 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
     this.getImageUrl();
 
     this.totpForm = this._formBuilder.group({
-      totp: ['',[Validators.required, Validators.maxLength(25)]]
+      totp: ['',[Validators.required, Validators.maxLength(6), Validators.pattern('^[0-9]*$')]]
     })
   }
 
   closeDialog() {
-    this.dialogRef.close({event: 'Cancel'});
+    this.dialogRef.close({event: 'Cancel', message: this.local_data.message});
   }
 
   onNoClick(): void {
@@ -50,12 +49,12 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    // let sendUserDetails = {
-    //   username: this.local_data.username,
-    //   password: this.local_data.password,
-    //   totp: this.totpForm.controls['totp'].value
-    // }
+    let sendUserDetails = {
+      username: this.local_data.username,
+      password: this.local_data.password,
+      totp: this.totpForm.controls['totp'].value,
+    }
 
-    // this.dialogRef.close({event: 'enable-mfa', data: sendUserDetails});
+    this.dialogRef.close({event: 'enable-mfa', data: sendUserDetails});
   }
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TwoFactorAuthenticationDialogComponent } from './two-factor-authentication-dialog/two-factor-authentication-dialog.component';
+import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog/two-factor-auth-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -115,8 +116,31 @@ export class LoginComponent implements OnInit {
 
     const dialogRef = this.dialog.open(TwoFactorAuthenticationDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
+      // console.log(result)
       if(result.event === 'enable-mfa') {
-        this.onSubmit();
+        this.commonLogin(result.data)
+      } else {
+        this.openSnackBar(result.message, '', 'mat-snack-bar-danger');
+      }
+    })
+  }
+
+  twoFactorAuthenticationDialog(obj: any) {
+    const dialogConfig = new MatDialogConfig();
+        // console.log(action);
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '75%';
+    dialogConfig.maxWidth = '500px';
+    dialogConfig.data = obj;
+    dialogConfig.panelClass = 'bg-image'
+
+    const dialogRef = this.dialog.open(TwoFactorAuthDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event === 'verify-totp') {
+        // this.validateOTP = 'Please wait while we verify your OTP.';
+        this.commonLogin(result.data)
       }
     })
   }
@@ -137,21 +161,39 @@ export class LoginComponent implements OnInit {
   }
 
   commonLogin(payload: any) {
-    this.authService.login(payload.username, payload.password).subscribe((data: any) => {
+    // console.log("From Common Login..", payload)
+    this.authService.login(payload.username, payload.password, payload.totp).subscribe((data: any) => {
       if(data.body.status === 'success') {
-        // this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
-        // this.router.navigate(['/dashboard/home']);
-        console.log(data)
+        this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
+        this.router.navigate(['/dashboard/home']);
+        // console.log(data)
         //this.updateLoginForm.resetForm({});
       } else {
-        console.log(data)
+        // console.log(data)
+        if(data.body.status === 'failed' && data.body.results.length === 0) {
+          this.openSnackBar(data.body.message, '', 'mat-snack-bar-danger');
+        }
         if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'unenrolled') {
+          // console.log("Enabled... UnEnrolled....")
           let result = {
             username: this.loginForm.controls['email'].value,
             password: btoa(this.loginForm.controls['password'].value),
-            mfa: data.body.results[0]
+            mfa: data.body.results[0],
+            message: data.body.message
           }
-          this.enableTwoFactorAuthentication(result)
+          this.enableTwoFactorAuthentication(result);
+        }
+        if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'enrolled') {
+          // console.log("Enabled... Enrolled....")
+          if(data.body.message === '2FA Enrollment successful. Please login again.') {
+            this.openSnackBar(data.body.message, '', 'mat-snack-bar-success');
+          }
+          
+          let result = {
+            username: this.loginForm.controls['email'].value,
+            password: btoa(this.loginForm.controls['password'].value),
+          }
+          this.twoFactorAuthenticationDialog(result);
         }
       }
     }, (error: any) => {

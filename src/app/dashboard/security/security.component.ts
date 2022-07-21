@@ -122,7 +122,7 @@ export class SecurityComponent implements OnInit {
 
     this.securityService.getUserInfo(params).subscribe((data: any) => {
       // console.log(data.result.mfa_status);
-      if(data.result.mfa_status === "") {
+      if(data.result.mfa_status) {
         this.mfaStatus = 'On';
         this.textColorAccdToStatus = 'mfa-on'
         this.slideMfaStatus.patchValue(true)

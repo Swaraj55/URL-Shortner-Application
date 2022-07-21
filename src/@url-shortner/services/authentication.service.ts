@@ -30,8 +30,9 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   } 
 
-  login(username: string, password: string) {
+  login(username: string, password: string, totp: string) {
 
+    // console.log("Username..", username, "Password...", password, "TOTP...", totp)
     let endPointOrigin = `${environment.basicURL}`;
 
     if(endPointOrigin === '') {
@@ -42,9 +43,9 @@ export class AuthenticationService {
 
     this.logger.debug(this.apiUrl);
 
-    return this._httpClient.post(this.apiUrl, { username, password }, { observe: 'response' }).pipe(map((authResponse: any) => {
+    return this._httpClient.post(this.apiUrl, { username, password, totp }, { observe: 'response' }).pipe(map((authResponse: any) => {
       const userInfo = authResponse.body;
-      console.log(userInfo);
+      // console.log(userInfo);
       if(userInfo.status === 'success'){
         this.logger.debug('User logged in successfully');
         this.authenticatedUser = {

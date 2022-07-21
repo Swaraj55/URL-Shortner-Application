@@ -27,8 +27,11 @@
             <mat-error id="totp-required-error" *ngIf="totpForm.controls['totp'].hasError('required')">
                 An authentication code is required.
             </mat-error>
-            <mat-error id="totp-required-error" *ngIf="totpForm.controls['totp'].hasError('maxLength')">
-                The authentication code must not exceed 25 digits.
+            <mat-error id="totp-required-error" *ngIf="totpForm.controls['totp'].hasError('maxlength')">
+                The authentication code must not exceed 6 digits.
+            </mat-error>
+            <mat-error id="totp-required-error" *ngIf="totpForm.controls['totp'].hasError('pattern')">
+                Please enter only number except special character, space, character.
             </mat-error>
         </mat-form-field>
     </form>

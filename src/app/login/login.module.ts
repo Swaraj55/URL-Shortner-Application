@@ -13,12 +13,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { TwoFactorAuthenticationDialogModule } from './two-factor-authentication-dialog/two-factor-authentication-dialog.module';
+import { TwoFactorAuthDialogModule } from './two-factor-auth-dialog/two-factor-auth-dialog.module';
 @NgModule({
   declarations: [
     LoginComponent
   ],
   entryComponents: [
-    TwoFactorAuthenticationDialogModule
+    TwoFactorAuthenticationDialogModule,
+    TwoFactorAuthDialogModule
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { TwoFactorAuthenticationDialogModule } from './two-factor-authentication
     MatCheckboxModule,
     MatDialogModule,
 
-    TwoFactorAuthenticationDialogModule
+    TwoFactorAuthenticationDialogModule,
+    TwoFactorAuthDialogModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [LoginComponent]
