@@ -158,7 +158,7 @@ export class SecurityComponent implements OnInit {
       "currentpassword": btoa(this.resetPassword.controls['currentPassword'].value),
       "newpassword": btoa(this.resetPassword.controls['newPassword'].value),
       "confirmpassword": btoa(this.resetPassword.controls['confirmPassword'].value),
-      "creator": `ObjectId(${sessionStorage.getItem('id')})`
+      "creator": `${sessionStorage.getItem('id')}`
     }
 
     //console.log(payload)
