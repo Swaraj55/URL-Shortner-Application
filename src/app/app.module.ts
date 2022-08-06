@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { JwtInterceptor } from '../@url-shortner/helpers/jwt.interceptor';
 import { TeamSectionComponent } from './team-section/team-section.component';
+import { ErrorInterceptor } from 'src/@url-shortner/helpers/error.interceptor';
 
 
 @NgModule({
@@ -37,6 +38,11 @@ import { TeamSectionComponent } from './team-section/team-section.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

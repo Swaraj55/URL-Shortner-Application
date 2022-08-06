@@ -25,9 +25,7 @@ export class JwtInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-          username: `${sessionStorage.getItem('username')}`,
           locale: navigator.language,
-          session_token: `${sessionStorage.getItem('token')}`,
           timzone: Intl.DateTimeFormat().resolvedOptions().timeZone
         }
       });
