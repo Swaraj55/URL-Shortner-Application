@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
 import { TwoFactorAuthenticationDialogComponent } from './two-factor-authentication-dialog/two-factor-authentication-dialog.component';
 import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog/two-factor-auth-dialog.component';
 

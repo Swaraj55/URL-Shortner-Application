@@ -1,7 +1,7 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import {Component, Inject, OnInit, Optional, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef} from '@angular/material/legacy-dialog';
 import * as countries from 'countries-list';
 
 @Component({

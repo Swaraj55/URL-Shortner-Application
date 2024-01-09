@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecurityComponent } from './security.component';
 
 //Angular Material
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
+import {MatLegacySlideToggleModule as MatSlideToggleModule} from '@angular/material/legacy-slide-toggle';
+import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
+import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
+import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import {MatIconModule} from '@angular/material/icon';
 
 

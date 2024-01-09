@@ -6,13 +6,13 @@ import { DashboardComponent } from './dashboard.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatLegacyTableModule as MatTableModule} from '@angular/material/legacy-table';
+import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
+import {MatLegacyTooltipModule as MatTooltipModule} from '@angular/material/legacy-tooltip';
 
 import { UrlShortenTableModule } from './url-shorten-table/url-shorten-table.module';
 import { DashboardMainModule } from './dashboard-main/dashboard-main.module';

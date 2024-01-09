@@ -5,12 +5,12 @@ import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog.component
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Angular Material
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
+import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
+import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
+import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/legacy-checkbox';
 
 @NgModule({
   declarations: [
