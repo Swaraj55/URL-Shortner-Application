@@ -19,7 +19,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 
 import { UserProfileActionDialogComponent } from './user-profile-action-dialog/user-profile-action-dialog.component';
-import {Ng2TelInputModule} from 'ng2-tel-input';
 
 @NgModule({
   declarations: [UserProfileComponent, UserProfileActionDialogComponent],
@@ -28,8 +27,7 @@ import {Ng2TelInputModule} from 'ng2-tel-input';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    Ng2TelInputModule,
-
+    
     MatCardModule,
     MatIconModule,
     MatButtonModule,
