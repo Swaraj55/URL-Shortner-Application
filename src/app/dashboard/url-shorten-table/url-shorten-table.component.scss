@@ -35,7 +35,7 @@ th {
 }
 
 // Import theming functions
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 
 $success: mat-palette($mat-green);
 $danger: mat-palette($mat-red);
