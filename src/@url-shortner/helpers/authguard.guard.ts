@@ -1,7 +1,7 @@
 // Generate this file using command: ng g guard authguard
 
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardGuard implements CanActivate {
+export class AuthguardGuard  {
 
   constructor(
     private authenticationService: AuthenticationService,
