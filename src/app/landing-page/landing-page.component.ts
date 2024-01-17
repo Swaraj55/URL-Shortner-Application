@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class LandingPageComponent implements OnInit {
 
   constructor(
-    private ngwWowService: NgwWowService,
+
     private router: Router
   ) {
-    this.ngwWowService.init();
+
   }
 
   ngOnInit(): void {

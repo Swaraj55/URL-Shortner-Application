@@ -9,24 +9,28 @@ import { UrlShortenTableService } from './url-shorten-table.service';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatLegacyTableModule as MatTableModule} from '@angular/material/legacy-table';
-import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
-import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
-import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
-import {MatSortModule} from '@angular/material/sort';
-import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatIconModule} from '@angular/material/icon';
-import {MatLegacyMenuModule as MatMenuModule} from '@angular/material/legacy-menu';
-import {MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select';
-import {MatLegacyOptionModule as MatOptionModule} from '@angular/material/legacy-core';
-import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
-import {MatLegacyDialogModule as MatDialogModule} from '@angular/material/legacy-dialog'
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DeleteDialogComponent } from '../../../@url-shortner/components/delete-dialog/delete-dialog.component';
 
 @NgModule({
-  declarations: [UrlShortenTableComponent, ActionDialogComponent, DeleteDialogComponent],
+  declarations: [
+    UrlShortenTableComponent,
+    ActionDialogComponent,
+    DeleteDialogComponent,
+  ],
   imports: [
     CommonModule,
     // HttpClientModule,
@@ -46,10 +50,10 @@ import { DeleteDialogComponent } from '../../../@url-shortner/components/delete-
     MatSelectModule,
     MatOptionModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [UrlShortenTableComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [UrlShortenTableService]
+  providers: [UrlShortenTableService],
 })
-export class UrlShortenTableModule { }
+export class UrlShortenTableModule {}

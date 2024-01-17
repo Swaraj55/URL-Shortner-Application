@@ -7,7 +7,7 @@
 }
 
 #url-shortner-image {
-    color: #4359df;
+    color: #4359df !important;
     font-weight: 600;
     font-size: 1.7rem;
     position: absolute;
@@ -82,19 +82,19 @@
 //Login Section.............
 
 #login_text {
-    color:#4359df;
+    color:#4359df !important;
     font-size: 2.5rem;
     padding-top: 50px;
 }
 
 #login_sub_text {
-    color: #ccc;
+    color: #ccc !important;
     font-size: 1.5rem;
 }
 
 //Remember me Label
 #remember_me {
-    color: #4359df;
+    color: #4359df !important;
     font-size: 0.9rem;
 }
 
@@ -104,15 +104,15 @@
 }
 
 .loginButton {
-    background-color: #4359df;
-    color: white;
+    background-color: #4359df !important;
+    color: white !important;
     padding: 5px 0px;
     font-size: 1rem;
 }
 
 .loginButton:disabled {
-    background-color: #4359df;
-    color: white;
+    background-color: #4359df !important;
+    color: white !important;
     opacity: 0.4;
 }
 

@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+// import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { LandingPageModule } from './landing-page/landing-page.module';
 import { LoginModule } from './login/login.module';
@@ -24,11 +24,11 @@ import { ErrorInterceptor } from 'src/@url-shortner/helpers/error.interceptor';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    LoggerModule.forRoot({ //Please go in to the ngx-logger package and see the documentation
-      disableConsoleLogging: true,
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR
-    }),
+    // LoggerModule.forRoot({ //Please go in to the ngx-logger package and see the documentation
+    //   disableConsoleLogging: true,
+    //   level: NgxLoggerLevel.DEBUG,
+    //   serverLogLevel: NgxLoggerLevel.ERROR
+    // }),
 
     LandingPageModule,
     LoginModule,

@@ -5,12 +5,12 @@ import { TwoFactorAuthenticationDialogComponent } from './two-factor-authenticat
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Angular Material
-import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
-import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
-import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
-import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/legacy-checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [TwoFactorAuthenticationDialogComponent],
@@ -24,13 +24,9 @@ import {MatLegacyCheckboxModule as MatCheckboxModule} from '@angular/material/le
     MatInputModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
   ],
-  exports: [
-    TwoFactorAuthenticationDialogComponent
-  ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  exports: [TwoFactorAuthenticationDialogComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TwoFactorAuthenticationDialogModule { }
+export class TwoFactorAuthenticationDialogModule {}

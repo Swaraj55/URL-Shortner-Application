@@ -24,33 +24,33 @@ $warning: mat-palette($mat-orange);
 :host ::ng-deep {
     //The below code when field is empty
     .mat-form-field-empty.mat-form-field-label {
-        color: #4359df;
+        color: #4359df !important;
     }
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
-        color: #24d7bb;
+        color: #24d7bb !important;
     }
     .mat-form-field-appearance-outline.mat-form-field-invalid.mat-focused .mat-form-field-label {
-        color: #f44336;
+        color: #f44336 !important;
     }
     .ng-valid .mat-form-field-label {
-        color: #4359df;
+        color: #4359df !important;
     }
 
     //The below code apply when the input field is empty or intial state of the input field
     .mat-form-field-appearance-outline .mat-form-field-outline{
-        color: aliceblue;
+        color: aliceblue !important;
     }
     //The Below code apply when we put focus on the input field
     .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
-        color: #24d7bb;
+        color: #24d7bb !important;
     }  
 
     .field input{
-        caret-color: #24d7bb;/*The 'caret-color' is CSS property sets the color of 
+        caret-color: #24d7bb !important;/*The 'caret-color' is CSS property sets the color of 
         the color of the insertion caret, the visible marker(or blinking marker)*/
     }
     .mat-form-field-infix .mat-input-element{
-        color: #4359df;
+        color: #4359df !important;
     }
 
     //For Checkbox ripple effect custom color
@@ -64,6 +64,6 @@ $warning: mat-palette($mat-orange);
     }
 
     .mat-form-field-appearance-legacy .ng-untouched .mat-form-field-underline {
-        color: #4359df;
+        color: #4359df !important;
     }
 } 

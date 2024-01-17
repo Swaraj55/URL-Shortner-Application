@@ -8,7 +8,6 @@ import { NgwWowModule } from 'ngx-wow';
   declarations: [LandingPageComponent],
   imports: [
     CommonModule,
-    NgwWowModule,
     RouterModule
   ],
   exports: [LandingPageComponent]

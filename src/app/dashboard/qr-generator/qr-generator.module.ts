@@ -5,10 +5,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QrGeneratorComponent } from './qr-generator.component';
 import { QrGeneratorService } from './qr-generator.service';
 
-import {MatLegacySelectModule as MatSelectModule} from '@angular/material/legacy-select';
-import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
-import {MatLegacyOptionModule as MatOptionModule} from '@angular/material/legacy-core';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatOptionModule} from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [QrGeneratorComponent],
