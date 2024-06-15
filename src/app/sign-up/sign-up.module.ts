@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { CustomInputModule } from 'src/@url-shortner/components/custom-input/cutom-input.component.module';
 @NgModule({
   declarations: [SignUpComponent],
   imports: [
@@ -27,7 +28,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CustomInputModule
   ],
   exports: [SignUpComponent],
   providers: [SignUpService],

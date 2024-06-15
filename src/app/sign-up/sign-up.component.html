@@ -31,53 +31,69 @@
             </div>
             <div class="mt-5">
                 <form [formGroup]="signupForm" name="signupForm" #updateSignupForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
-                    <mat-form-field class="field col-12" id="name-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="name-input-label">Name</mat-label>
-                        <input id="name-input" type="text" matInput required formControlName="name">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">person</mat-icon>
-                    </mat-form-field>
+                    <app-custom-input
+                        [label]="'Name'"
+                        [matLabelId]="'name-field-label'"
+                        [inputId]="'name-input'"
+                        [type]="'text'"
+                        [control]="nameControl"
+                        [required]="true"
+                        [icon]="'person'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-12'"
+                        [placeholder]="''"
+                        [appearance]="'outline'"
+                        [errorMessages]="{ required: 'Name is required.'}">
+                    </app-custom-input>
 
-                    <mat-form-field class="field col-12" id="username-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="username-input-label">Email</mat-label>
-                        <input id="username-input" type="email" matInput required formControlName="email">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">mail</mat-icon>
-                        <mat-error *ngIf="signupForm.controls['email'].hasError('required')">
-                            Email is required.
-                        </mat-error>
-                        <mat-error *ngIf="signupForm.controls['email'].hasError('email')">
-                            Please enter a valid email.
-                        </mat-error>
-                    </mat-form-field>
+                    <app-custom-input
+                        [label]="'Email'"
+                        [matLabelId]="'username-field-label'"
+                        [inputId]="'username-input'"
+                        [type]="'text'"
+                        [control]="emailControl"
+                        [required]="true"
+                        [icon]="'mail'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-12'"
+                        [placeholder]="''"
+                        [appearance]="'outline'"
+                        [errorMessages]="{ required: 'Name is required.', email: 'Please enter a valid email.'}">
+                    </app-custom-input>
                     
-                    <mat-form-field class="field col-md-6" id="password-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="password-input-label">Password</mat-label>
-                        <input id="password-input" type="password" matInput required formControlName="password">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
-                        <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
-                            Password is required.
-                        </mat-error>
-                        <mat-error *ngIf="signupForm.controls['password'].hasError('minlength')">
-                            Password must contain at least 8 characters.
-                        </mat-error>
-                        <mat-error *ngIf="signupForm.controls['password'].errors?.['noSpace']">
-                            Password must not contain space.
-                        </mat-error>
-                    </mat-form-field>
+                    <app-custom-input
+                        [label]="'Password'"
+                        [matLabelId]="'password-field-label'"
+                        [inputId]="'password-input'"
+                        [type]="'password'"
+                        [control]="passwordControl"
+                        [required]="true"
+                        [icon]="'vpn_key'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-md-6'"
+                        [placeholder]="''"
+                        [appearance]="'outline'"
+                        [errorMessages]="{ required: 'Password is required.', minlength: 'Password must contain at least 8 characters.', noSpace: 'Password must not contain space.' }">
+                    </app-custom-input>
 
-                    <mat-form-field class="field col-md-6" id="password-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="password-input-label">Confirm Password</mat-label>
-                        <input id="password-input" type="password" matInput required formControlName="confirmPassword">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
-                        <mat-error *ngIf="signupForm.controls['confirmPassword'].hasError('required')">
-                            Password is required.
-                        </mat-error>
-                        <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['notSame']">
-                            Password and Confirm Password must be same.
-                        </mat-error>
-                        <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['noSpace']">
-                            Password must not contain space.
-                        </mat-error>
-                    </mat-form-field>
+                    <app-custom-input
+                        [label]="'Confirm Password'"
+                        [matLabelId]="'confirm-password-field-label'"
+                        [inputId]="'confirm-password-field-input'"
+                        [type]="'password'"
+                        [control]="confirmPasswordControl"
+                        [required]="true"
+                        [icon]="'vpn_key'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-md-6'"
+                        [placeholder]="''"
+                        [appearance]="'outline'"
+                        [errorMessages]="{ required: 'Password is required.', notSame: 'Password and Confirm Password must be same.'}">
+                    </app-custom-input>
 
                     <div class="col-12 font-weight-bold">
                         <div class="mr-auto">

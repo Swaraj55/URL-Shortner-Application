@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, UntypedFormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SignUpService } from './sign-up.service';
@@ -62,6 +62,22 @@ export class SignUpComponent implements OnInit {
         this.comparePassword('password', 'confirmPassword')
       ]
     })
+  }
+
+  get nameControl(): UntypedFormControl {
+    return this.signupForm.get('name') as UntypedFormControl;
+  }
+
+  get emailControl(): UntypedFormControl {
+    return this.signupForm.get('email') as UntypedFormControl;
+  }
+
+  get passwordControl(): UntypedFormControl {
+    return this.signupForm.get('password') as UntypedFormControl;
+  }
+
+  get confirmPasswordControl(): UntypedFormControl {
+    return this.signupForm.get('confirmPassword') as UntypedFormControl;
   }
 
   passwordWithNoSpace(control: AbstractControl) {

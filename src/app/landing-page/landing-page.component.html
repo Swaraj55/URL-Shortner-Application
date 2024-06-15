@@ -1,178 +1,279 @@
-
- <!-- Navbar for URL Shortner -->
-<nav class="navbar navbar-expand-md">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand">
-            <img src="assets/URL.png" style="width:40px;">
-            <span id="url-shortner-image">URL Shortner</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navResponsive">
-            <ul class="navbar-nav ml-auto"> 
-                <!-- ml-auto push our content to the right of the navbar -->
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/Home']">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/team']">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/login']" style="cursor: pointer;">Log In</a>
-                </li>
-                <li class="nav-item" id="sign-up-btn">
-                    <a class="nav-link" [routerLink] = "['/signup']" style="cursor: pointer;">Sign Up</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Main Content of the landing page -->
 <div class="container-fluid">
-    <div class="row">
+    <section class="custom_navbar">
+        <div class="navbar">
+            <div class="brand_section">
+                <div class="link-svgrepo-com">
+                    <img width="40" height="40" src="../../assets/link_svgrepo.svg"/>
+                </div>
+                <div class="url-shortner">
+                    Url Shortner
+                </div>
+            </div>
+            <div class="section_1">
+                <span class="home mrgnR">
+                    Home
+                </span>
+                <span class="about mrgnR">
+                    About
+                </span>
+                <span class="services mrgnR">
+                    Services
+                </span>
+                <span class="team">
+                    Team
+                </span>
+            </div>
+            <div class="section_2">
+                <div class="log-in mr-4" [routerLink]="['/login']">
+                    Log in
+                </div>
+                <div class="signup_button" [routerLink]="['/signup']">
+                    <span class="sign-up">
+                        Sign up
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-            <h3 class="wow animate__animated animate__fadeInDown display-4 mt-lg-5 mt-xs-2 ml-xs-2 ml-lg-5 font-weight-bold" style="color: #4359df;">
-                Welcome to URL Shortner
-            </h3>
-            <p class="wow animate__animated animate__fadeInDown lead ml-xs-2 ml-lg-5" style="color:#ffffff">
-                URL Shortner is a web application that allows you to shorten your long URLs.
-                It is a free service that is provided by URL Shortner.
+    <!-- MAIN SECTION OF URL SHORTNER -->
+    <section class="main_section">
+        <div class="col-md-7">
+            <p class="short-links-section">
+                <span class="link_text">Short Links</span> for Smarter Sharing
             </p>
-            <a [routerLink] = "['/login']" id="get_started_btn" class="wow animate__animated animate__fadeInDown ml-xs-2 ml-lg-5 mt-lg-5">
-                Get Started
-            </a>
-        </div>
-
-        <div class="col-md-7 col-lg-7" id="web-animation-section">
-            <div id="images">
-                <div class="web-related-icons">
-                    <img class="web_icon_styling" src="assets/website.png" alt="World Wide Web(WWW)">
-                    <img class="web_icon_styling" src="assets/browser.png" alt="Browser">
-                    <img class="web_icon_styling" src="assets/web-page.png" alt="Web Page">
-                    <img class="web_icon_styling" src="assets/search.png" alt="Searching in Websites">
-                    <img class="web_icon_styling" src="assets/share-link.png" alt="Link">
-                </div>
-                <img id="www" src="assets/www.png" alt="World Wide Web(WWW)">
+            <div class="url-shortner-text">
+                URL Shortner is a web application that allows you to shorten your long URLs. It is a free service that is
+                provided by URL Shortner
+            </div>
+            <div class="get-started-button">
+                <span class="get-started">
+                    Get Started
+                </span>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <img src="assets/wave.png" alt="Wave" id="wave">
-    </div>
-</div>
 
-<!-- Feature Section -->
-<div class="container-fluid">
-    <div class="row text-center">
+        <div class="col-md-5">
+            <img src="../../assets/www-amico 1.svg" alt="Link Image">
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION OF URL SHORTNER -->
+    <section class="benefits_section">
         <div class="col-12">
-            <h1 class="wow animate__animated animate__fadeInDown display-4 font-weight-bold" style="color: #4359df;">
-                Features
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/like.png" alt="Like" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        ShortURL is easy and fast, enter the long link to get your shortened link.
-                    </p>
+            <div class="section_title_container">
+                <div class="rectangle-8"></div>
+                <div class="benefits">
+                    Benefits
                 </div>
-              </div>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/profits.png" alt="Statistics" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Check the amount of clicks that your shortened url received.
-                    </p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let benefit of benefits_sections_contents; let i = index">
+                <div class="custom_card mb-4" [ngStyle]="{'background-color': benefit.bgColor}">
+                    <div class="custom_card_group_1">
+                        <img class="bolt" src="../assets/vectors/bolt_7_x2.svg" />
+                    </div>
+                    <span class="custom_card_group_2">
+                        Short URL is easy and fast, enter the long link to get your shortened link.
+                    </span>
                 </div>
-              </div>
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/link.png" alt="URL" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Use any link, no matter what size, ShortURL always shortens.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/shield.png" alt="Shield" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        It is fast and secure, our service have HTTPS protocol and data encryption.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/responsive.png" alt="Devcies" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Compatible with smartphones, tablets and desktop.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/check.png" alt="Reliable" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        All links that try to disseminate spam, viruses and malware are deleted.
-                    </p>
-                </div>
-              </div>
-        </div>
-    </div>
-</div>
+    </section>
 
-<!-- Footer Section -->
-<footer>
-    <div class="container-fluid">
-        <div class="row customFooterTheme">
-            <div class="col-12 pt-4 pl-4 pb-4">
-                <a href="#" class="navbar-brand">
-                    <img src="assets/URL.png" style="width:40px;">
-                    <span id="url-shortner-image">URL Shortner</span>
-                </a>
-            </div>
-            <div class="col-md-4 text-center text-white"> 
-                <h5 class="wow animate__animated animate__fadeInUp ">Support</h5>
-                <hr class="dark">
-                <p class="wow animate__animated animate__fadeInUp ">Knowledge base</p>
-                <p class="wow animate__animated animate__fadeInUp ">Find an expert</p>
-                <p class="wow animate__animated animate__fadeInUp ">Request demo</p>
-            </div>
-            <div class="col-md-4 text-center text-white">
-                <h5 class="wow animate__animated animate__fadeInUp ">Company</h5>
-                <hr class="light">
-                <p class="wow animate__animated animate__fadeInUp ">About us</p>
-                <p class="wow animate__animated animate__fadeInUp ">Company Values</p>
-                <p class="wow animate__animated animate__fadeInUp ">Webinars</p>
-            </div>
-            <div class="col-md-4 text-center text-white">
-                <h5 class="wow animate__animated animate__fadeInUp ">Follow Us</h5>
-                <hr class="light">
-                <p class="wow animate__animated animate__fadeInUp ">Facebook</p>
-                <p class="wow animate__animated animate__fadeInUp ">Instagram</p>
-                <p class="wow animate__animated animate__fadeInUp ">YouTube</p>
-                <p class="wow animate__animated animate__fadeInUp ">Twitter</p>
+    <!-- FAETURES SECTION OF URL SHORTNER -->
+    <section class="benefits_section">
+        <div class="col-12">
+            <div class="section_title_container">
+                <div class="rectangle-8"></div>
+                <div class="benefits">
+                    Features
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let feature of feature_sections_contents; let last = last">
+                <div class="custom_feature_card">
+                    <div class="rectangle_top_section"></div>
+                    <div class="feature_title_section">
+                        <div class="feature_icon">
+                            <img src="{{feature.icons}}" alt="a">
+                        </div>
+                        <div class="feature_title">
+                            {{feature.title}}
+                        </div>
+                    </div>
+                    <div class="feature_content">
+                        {{feature.content}}
+                    </div>
+                    <ng-container *ngFor="let points of feature.sub_points">
+                        <div class="feature_sub_contents">
+                            <img class="bullets" src="{{feature.icons}}" alt="">
+                            <div class="sub_points">
+                                {{points}}
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="feature_get_started_button">
+                        <span>
+                            Get Started
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION OF URL SHORTNER -->
+    <section class="benefits_section">
+        <div class="col-12">
+            <div class="section_title_container">
+                <div class="rectangle-8"></div>
+                <div class="benefits">
+                    Achievements
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 text-white">
+                dfedf
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 p-4 achievements">
+                        <span class="k">
+                            500k
+                        </span>
+                        <span class="global-payments">
+                            Global payments
+                        </span>
+                     </div>
+                     <div class="col-xs-12 col-md-6 p-4 achievements">
+                        <span class="k">
+                            500k
+                        </span>
+                        <span class="global-payments">
+                            Global payments
+                        </span>
+                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 p-4 achievements">
+                        <span class="k">
+                            500k
+                        </span>
+                        <span class="global-payments">
+                            Global payments
+                        </span>
+                     </div>
+                     <div class="col-xs-12 col-md-6 p-4 achievements">
+                        <span class="k">
+                            500k
+                        </span>
+                        <span class="global-payments">
+                            Global payments
+                        </span>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- TESTIMONIALS SECTION OF URL SHORTNER -->
+    <section class="benefits_section">
+        <div class="col-12">
+            <div class="section_title_container">
+                <div class="rectangle-8"></div>
+                <div class="benefits">
+                    Testimonials
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let feature of testimonials;">
+                <div class="testimonial_card">
+                    <div class="comma">
+                        <img src="{{feature.comma_image}}" alt="Comma's">
+                        <img src="{{feature.comma_image}}" alt="Comma's">
+                    </div>
+
+                    <div class="testimonial_text">
+                        {{feature.quote}}
+                    </div>
+
+                    <div class="username">
+                        {{feature.name}}
+                    </div>
+
+                    <div class="rating">
+                        <img src="{{feature.rating_image}}" alt="Rating's">
+                        <img src="{{feature.rating_image}}" alt="Rating's">
+                        <img src="{{feature.rating_image}}" alt="Rating's">
+                        <img src="{{feature.rating_image}}" alt="Rating's">
+                        <img src="{{feature.rating_image}}" alt="Rating's">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION OF URL SHORTNER -->
+    <section class="benefits_section">
+        <div class="col-12">
+            <div class="section_title_container">
+                <div class="rectangle-8"></div>
+                <div class="benefits">
+                    FAQ's
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        
+        </div>
+    </section>    
+    
+
+    <!-- Footer -->
+<footer class="text-white pt-4">
+    <div class="benefits_section">
+      <div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+            <div class="brand_section">
+                <div class="link-svgrepo-com">
+                    <img width="45" height="35" src="../../assets/link_svgrepo.svg"/>
+                </div>
+                <div style="font-size: 18px;">
+                    Url Shortner
+                </div>
+            </div>
+        </div>
+        <!-- Second Column -->
+        <div class="col-md-4">
+            <div class="row text-center">
+                <div>Home</div>
+                <div class="mx-3">About</div>
+                <div class="mx-3">Services</div>
+                <div class="mx-3">Team</div>
+            </div>
+        </div>
+        
+        <!-- Fourth Column -->
+        <div class="col-md-4">
+            <div style="float: right;">
+                <div class="text-white">Privacy Policy</div>
+                <div class="text-white mt-2">Terms & Condition</div>
+            </div>
+
+        </div>
+      </div>
     </div>
-</footer>
+  </footer>
+  <!-- End Footer -->
+</div>

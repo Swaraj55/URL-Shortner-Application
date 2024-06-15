@@ -29,32 +29,37 @@
             </div>
             <div class="mt-5">
                 <form [formGroup]="loginForm" name="loginForm" #updateLoginForm = "ngForm" (ngSubmit)="onSubmit()" novalidate>
-                    <mat-form-field class="field col-12" id="username-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="username-input-label">Email</mat-label>
-                        <input id="username-input" type="email" matInput required formControlName="email">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">mail</mat-icon>
-                        <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
-                            Email is required.
-                        </mat-error>
-                        <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
-                            Please enter a valid email.
-                        </mat-error>
-                    </mat-form-field>
+                    <app-custom-input
+                        [label]="'Email'"
+                        [matLabelId]="'email-input-label'"
+                        [inputId]="'email-input'"
+                        [type]="'email'"
+                        [control]="emailControl"
+                        [required]="true"
+                        [icon]="'mail'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-12'"
+                        [placeholder]="'Enter your email'"
+                        [appearance]="'outline'"
+                        [errorMessages]="{ required: 'Email is required.', email: 'Please enter a valid email.' }">
+                    </app-custom-input>
                     
-                    <mat-form-field class="field col-12" id="password-field" floatlabel="auto" appearance="outline">
-                        <mat-label id="password-input-label">Password</mat-label>
-                        <input id="password-input" type="password" matInput required formControlName="password">
-                        <mat-icon matSuffix class="secondary-text" style="color: #4359df;">vpn_key</mat-icon>
-                        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-                            Password is required.
-                        </mat-error>
-                        <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">
-                            Password must contain at least 8 characters.
-                        </mat-error>
-                        <mat-error *ngIf="loginForm.controls['password'].errors?.['noSpace']">
-                            Password must not contain space.
-                        </mat-error>
-                    </mat-form-field>
+                     <app-custom-input
+                        [label]="'Password'"
+                        [matLabelId]="'password-input-label'"
+                        [inputId]="'password-input'"
+                        [type]="'password'"
+                        [control]="passwordControl"
+                        [required]="true"
+                        [icon]="'vpn_key'"
+                        [appearance]="'outline'"
+                        [iconClass]="'secondary-text'"
+                        [iconColor]="'#4359df'"
+                        [fieldClass]="'field col-12'"
+                        [placeholder]="'Enter your password'"
+                        [errorMessages]="{ required: 'Password is required.', minlength: 'Password must contain at least 8 characters.', noSpace: 'Password must not contain space.' }">
+                    </app-custom-input>
                     
                     <div class="d-flex col-12 font-weight-bold">
                         <div class="mr-auto">

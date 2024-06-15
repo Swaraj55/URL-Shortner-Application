@@ -1,0 +1,8 @@
+<mat-form-field [class]="fieldClass" floatLabel="auto" [appearance]="appearance">
+    <mat-label [id]="matLabelId">{{ label }}</mat-label>
+    <input [id]="inputId" [type]="type" [placeholder]="placeholder" matInput [formControl]="control" [required]="required">
+    <mat-icon matSuffix [class]="iconClass" [style.color]="iconColor">{{ icon }}</mat-icon>
+    <mat-error *ngFor="let error of getErrorMessages()">
+        {{ error }}
+    </mat-error>
+</mat-form-field>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
@@ -13,7 +13,7 @@ import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog/two-facto
   styleUrls: ['./login.component.scss', '../../theme.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup = new FormGroup({});
+  loginForm: UntypedFormGroup = new UntypedFormGroup({});
   isSubmitted: Boolean = false;
 
   @ViewChild('updateLoginForm') updateLoginForm: NgForm;
@@ -45,24 +45,36 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private dialog: MatDialog
-    ) {}
+    ) {
+      this.loginForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            this.passwordWithNoSpace,
+          ],
+        ],
+      });
+    }
 
   ngOnInit(): void {
     if (this.autoSlide) {
       this.autoSlideImages();
     }
 
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          this.passwordWithNoSpace,
-        ],
-      ],
-    });
+    this.loginForm.valueChanges.subscribe((val: any) => {
+      console.log(val)
+    })
+  }
+
+  get emailControl(): UntypedFormControl {
+    return this.loginForm.get('email') as UntypedFormControl;
+  }
+
+  get passwordControl(): UntypedFormControl {
+    return this.loginForm.get('password') as UntypedFormControl;
   }
 
   passwordWithNoSpace(control: AbstractControl) {
@@ -108,9 +120,8 @@ export class LoginComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '75%';
-    dialogConfig.height = '600px';
-    dialogConfig.maxWidth = '400px';
+    dialogConfig.width = '35%';
+    dialogConfig.maxHeight = 'auto';
     dialogConfig.data = obj;
     dialogConfig.panelClass = 'bg-image'
 
@@ -131,8 +142,8 @@ export class LoginComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '75%';
-    dialogConfig.maxWidth = '500px';
+    dialogConfig.width = '30%';
+    dialogConfig.maxHeight = 'auto'
     dialogConfig.data = obj;
     dialogConfig.panelClass = 'bg-image'
 
@@ -140,7 +151,7 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result.event === 'verify-totp') {
         // this.validateOTP = 'Please wait while we verify your OTP.';
-        this.commonLogin(result.data)
+       this.commonLogin(result.data)
       }
     })
   }
@@ -157,11 +168,10 @@ export class LoginComponent implements OnInit {
       password: btoa(this.loginForm.controls['password'].value),
     };
     this.commonLogin(payload)
-    
   }
 
   commonLogin(payload: any) {
-    // console.log("From Common Login..", payload)
+    console.log("From Common Login..", payload)
     this.authService.login(payload.username, payload.password, payload.totp).subscribe((data: any) => {
       if(data.body.status === 'success') {
         this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');

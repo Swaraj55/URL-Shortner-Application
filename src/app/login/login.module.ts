@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { TwoFactorAuthenticationDialogModule } from './two-factor-authentication-dialog/two-factor-authentication-dialog.module';
 import { TwoFactorAuthDialogModule } from './two-factor-auth-dialog/two-factor-auth-dialog.module';
+import { CustomInputModule } from 'src/@url-shortner/components/custom-input/cutom-input.component.module';
 @NgModule({
   declarations: [LoginComponent],
   imports: [
@@ -32,6 +33,7 @@ import { TwoFactorAuthDialogModule } from './two-factor-auth-dialog/two-factor-a
 
     TwoFactorAuthenticationDialogModule,
     TwoFactorAuthDialogModule,
+    CustomInputModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [LoginComponent],

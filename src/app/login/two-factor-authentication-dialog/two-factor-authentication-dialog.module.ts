@@ -11,6 +11,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CustomOtpInputModule } from 'src/@url-shortner/components/custom-otp-input/custom-otp-input.module';
+
 
 @NgModule({
   declarations: [TwoFactorAuthenticationDialogComponent],
@@ -25,6 +29,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule,
     MatSnackBarModule,
     MatIconModule,
+    ClipboardModule,
+    MatTooltipModule,
+    CustomOtpInputModule
   ],
   exports: [TwoFactorAuthenticationDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
