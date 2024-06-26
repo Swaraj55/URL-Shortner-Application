@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../@url-shortner/services/authenticati
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TwoFactorAuthenticationDialogComponent } from './two-factor-authentication-dialog/two-factor-authentication-dialog.component';
 import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog/two-factor-auth-dialog.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -17,34 +18,15 @@ export class LoginComponent implements OnInit {
   isSubmitted: Boolean = false;
 
   @ViewChild('updateLoginForm') updateLoginForm: NgForm;
-
-  imagesContainer: any = [
-    {
-      imageSrcUrl: '../../assets/login-first.svg',
-      imageAlt: 'Login First',
-    },
-    {
-      imageSrcUrl: '../../assets/login-second.svg',
-      imageAlt: 'Login Second',
-    },
-    {
-      imageSrcUrl: '../../assets/login-third.svg',
-      imageAlt: 'Login Third',
-    },
-  ];
-
-  selectedIndex: number = 0;
-  indicator: boolean = true;
-  controls: boolean = true;
-  autoSlide: boolean = true;
-  slideDuration: number = 3000; //Default to 3 seconds
+  isCheckboxChecked: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private authService: AuthenticationService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cookieService: CookieService,
     ) {
       this.loginForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
@@ -56,17 +38,23 @@ export class LoginComponent implements OnInit {
             this.passwordWithNoSpace,
           ],
         ],
+        remember_me: [false]
       });
     }
 
   ngOnInit(): void {
-    if (this.autoSlide) {
-      this.autoSlideImages();
-    }
-
-    this.loginForm.valueChanges.subscribe((val: any) => {
-      console.log(val)
+    this.loginForm.controls['remember_me'].valueChanges.subscribe((data) => {
+      this.isCheckboxChecked = data;
     })
+
+    if(this.cookieService.get('rememberMe')) {
+      this.loginForm.controls['remember_me'].setValue((this.cookieService.get('rememberMe') === 'true'));
+      let data = atob(this.cookieService.get('username')).split('+');
+      this.loginForm.controls['email'].setValue(data[0]);
+      this.loginForm.controls['password'].setValue(atob(data[1]))
+    } else {
+      this.loginForm.controls['remember_me'].setValue(false)
+    }
   }
 
   get emailControl(): UntypedFormControl {
@@ -83,26 +71,6 @@ export class LoginComponent implements OnInit {
         return { noSpace: true };
       }
       return null;
-    }
-  }
-
-  //changes slide in every 3 seconds
-  autoSlideImages() {
-    setInterval(() => {
-      this.onNextClick();
-    }, this.slideDuration);
-  }
-
-  //set index of images on dot/indicator click
-  selectImage(index: number) {
-    this.selectedIndex = index;
-  }
-
-  onNextClick() {
-    if (this.selectedIndex === this.imagesContainer.length - 1) {
-      this.selectedIndex = 0;
-    } else {
-      this.selectedIndex++;
     }
   }
 
@@ -171,13 +139,10 @@ export class LoginComponent implements OnInit {
   }
 
   commonLogin(payload: any) {
-    console.log("From Common Login..", payload)
-    this.authService.login(payload.username, payload.password, payload.totp).subscribe((data: any) => {
+    this.authService.login(payload.username, payload.password, payload.totp, this.isCheckboxChecked).subscribe((data: any) => {
       if(data.body.status === 'success') {
         this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
         this.router.navigate(['/dashboard/home']);
-        // console.log(data)
-        //this.updateLoginForm.resetForm({});
       } else {
         // console.log(data)
         if(data.body.status === 'failed' && data.body.results.length === 0) {

@@ -97,12 +97,12 @@
 
                     <div class="col-12 font-weight-bold">
                         <div class="mr-auto">
-                            <mat-checkbox id="terms_and_condition">I agree to the terms and condition</mat-checkbox>
+                            <mat-checkbox formControlName="termsAndCondition" (click)="this.signupForm.controls['termsAndCondition'].getRawValue() === true ? openDialog() : null" id="terms_and_condition">I agree to the terms and condition</mat-checkbox>
                         </div>
                     </div>
 
                     <div class="col-12 mt-3">
-                        <button type="submit" class="signupButton col-12" [disabled]="signupForm.invalid" mat-raised-button>Sign Up</button>
+                        <button type="submit" class="signupButton col-12" [disabled]="signupForm.invalid || !this.signupForm.controls['termsAndCondition'].getRawValue()" mat-raised-button>Sign Up {{!this.signupForm.controls['termsAndCondition'].getRawValue()}} {{signupForm.invalid}}</button>
                     </div>
 
                     <div class="col-12 text-center font-weight-bold mt-4">

@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { CustomInputModule } from 'src/@url-shortner/components/custom-input/cutom-input.component.module';
+import { TermsAndConditionModule } from './terms-and-condition/terms-and-condition.module';
 @NgModule({
   declarations: [SignUpComponent],
   imports: [
@@ -29,7 +30,8 @@ import { CustomInputModule } from 'src/@url-shortner/components/custom-input/cut
     MatSnackBarModule,
     MatIconModule,
     MatCheckboxModule,
-    CustomInputModule
+    CustomInputModule,
+    TermsAndConditionModule
   ],
   exports: [SignUpComponent],
   providers: [SignUpService],

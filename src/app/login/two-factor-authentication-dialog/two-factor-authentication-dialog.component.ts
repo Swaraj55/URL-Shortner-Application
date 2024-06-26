@@ -38,10 +38,6 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImageUrl();
-
-    this.totpForm = this._formBuilder.group({
-      totp: ['',[Validators.required, Validators.maxLength(6), Validators.pattern('^[0-9]*$')]]
-    })
   }
 
   closeDialog() {
@@ -62,9 +58,9 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
       let sendUserDetails = {
         username: this.local_data.username,
         password: this.local_data.password,
-        totp: this.totpForm.controls['totp'].value,
+        totp: this.otpValue,
       }
-  
+
       this.dialogRef.close({event: 'enable-mfa', data: sendUserDetails});
     } else {
       this.customOtpInputComponent.markFieldsInvalid();
@@ -90,6 +86,7 @@ export class TwoFactorAuthenticationDialogComponent implements OnInit {
   }
 
   onOtpChange(otp: string): void {
+    console.log(otp)
     this.otpValue = otp;
   }
 

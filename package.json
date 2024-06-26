@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~16.2.12",
     "@angular/router": "~16.2.12",
     "countries-list": "^2.6.1",
+    "ngx-cookie-service": "^18.0.0",
     "ngx-logger": "^5.0.12",
     "ngx-webstorage-service": "^5.0.0",
     "ngx-wow": "^2.0.1",

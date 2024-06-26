@@ -80,7 +80,7 @@ export class SecurityComponent implements OnInit {
   }
 
   slideMFAStatus() {
-    if(this.slideMfaStatus.value) {
+    if(!this.slideMfaStatus.value) {
       this.statusOfMFA = false
       this.mfaStatus = 'Off';
       this.textColorAccdToStatus = 'mfa-off';
@@ -96,7 +96,8 @@ export class SecurityComponent implements OnInit {
   multiFactorAuthStatus() {
     let payload = {
       mfaStatus: this.statusOfMFA,
-      creator: `${sessionStorage.getItem('id')}`
+      creator: `${sessionStorage.getItem('id')}`,
+      mfa_option: "Email"
     }
     // console.log("Status...", payload)
     if(payload.mfaStatus !== undefined) {
@@ -117,7 +118,7 @@ export class SecurityComponent implements OnInit {
 
   userInformation() {
     let params = {
-      creator: `${sessionStorage.getItem('id')}`,
+      creator: `${sessionStorage.getItem('id')}`
     }
     //console.log(params)
     this.securityService.getUserInfo(params).subscribe((data: any) => {

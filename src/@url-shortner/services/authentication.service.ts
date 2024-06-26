@@ -4,7 +4,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SESSION_STORAGE, StorageService,StorageTranscoders,StringStorageTranscoder } from 'ngx-webstorage-service';
 // import { NGXLogger } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
-
+import { CookieService } from 'ngx-cookie-service';
 const CURRENT_USER_KEY = 'currentUser';
 
 @Injectable({
@@ -16,11 +16,13 @@ export class AuthenticationService {
   apiUrl: string;
   public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  private readonly REMEMBER_ME_KEY = 'rememberMe';
+  private readonly USERNAME_KEY = 'username';
 
   constructor(
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private _httpClient: HttpClient,
-    // private logger: NGXLogger,
+    private cookieService: CookieService
   ) {
     this.currentUserSubject = new BehaviorSubject<any>(storage.get(CURRENT_USER_KEY, StorageTranscoders.JSON));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -30,7 +32,7 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   } 
 
-  login(username: string, password: string, totp: string) {
+  login(username: string, password: string, totp: string, remember_me: boolean) {
 
     // console.log("Username..", username, "Password...", password, "TOTP...", totp)
     let endPointOrigin = `${environment.basicURL}`;
@@ -61,7 +63,14 @@ export class AuthenticationService {
         sessionStorage.setItem('token', this.authenticatedUser.token);
         sessionStorage.setItem('email', this.authenticatedUser.email);
         sessionStorage.setItem('id', this.authenticatedUser.id);
-
+        console.log(remember_me)
+        if (remember_me) {
+          this.cookieService.set(this.REMEMBER_ME_KEY, 'true', { secure: true, sameSite: 'Strict' });
+          this.cookieService.set(this.USERNAME_KEY, btoa(username + '+' + password), { secure: true, sameSite: 'Strict' });
+        } else {
+          this.cookieService.delete(this.REMEMBER_ME_KEY);
+          this.cookieService.delete(this.USERNAME_KEY);
+        }
         this.currentUserSubject.next(this.authenticatedUser);
       }
 
@@ -69,11 +78,15 @@ export class AuthenticationService {
     }))
   }
 
-public isAuthenticatedUser(): boolean {
-  if(this.currentUserValue){
-    return true;
-  } else {
-    return false;
+  public isAuthenticatedUser(): boolean {
+    if(this.currentUserValue){
+      return true;
+    } else {
+      return false;
+    }
   }
-}
+
+  isRemembered(): boolean {
+    return this.cookieService.get(this.REMEMBER_ME_KEY) === 'true';
+  }
 }

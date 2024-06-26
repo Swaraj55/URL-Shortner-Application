@@ -28,6 +28,7 @@ export class SecurityService {
    }
 
    enableDisableMFA(payload: any) {
+    console.log(payload)
     const theUrl = this.url + '/update/enable-disable-mfa';
     return this.sendRequest<any>('POST', theUrl, payload, {});
    }

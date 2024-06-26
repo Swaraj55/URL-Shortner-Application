@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, NgForm, UntypedFormControl, Va
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SignUpService } from './sign-up.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -39,12 +41,14 @@ export class SignUpComponent implements OnInit {
   controls: boolean = true;
   autoSlide: boolean = true;
   slideDuration: number = 4000;//Default to 3 seconds
+  isCheckboxChecked: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignUpService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -56,11 +60,16 @@ export class SignUpComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['',[Validators.required, Validators.minLength(8), this.passwordWithNoSpace]],
-      confirmPassword: ['',[Validators.required, this.passwordWithNoSpace]]
+      confirmPassword: ['',[Validators.required, this.passwordWithNoSpace]],
+      termsAndCondition: [false]
     }, {
       validators: [
         this.comparePassword('password', 'confirmPassword')
       ]
+    });
+
+    this.signupForm.controls['termsAndCondition'].valueChanges.subscribe((data) => {
+      this.isCheckboxChecked = data;
     })
   }
 
@@ -136,6 +145,24 @@ export class SignUpComponent implements OnInit {
    });
   } 
 
+  openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '50%';
+    dialogConfig.maxHeight = '600px';
+    dialogConfig.data = '';
+    dialogConfig.panelClass = 'bg-image'
+
+    const dialogRef = this.dialog.open(TermsAndConditionComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.signupForm.controls['termsAndCondition'].setValue(true)
+      } else {
+        this.signupForm.controls['termsAndCondition'].setValue(false);
+      }
+    })
+  }
 
   onSubmit() {
     this.isSubmitted = true;

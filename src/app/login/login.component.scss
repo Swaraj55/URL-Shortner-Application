@@ -1,120 +1,30 @@
-@media screen and (max-width: 567px) {
-    .login_image_section {
-        display: none;
-        visibility: hidden;
-        position: absolute;
-    }
-}
-
-#url-shortner-image {
-    color: #4359df !important;
-    font-weight: 600;
-    font-size: 1.7rem;
-    position: absolute;
-}
-
-// Custom Carousel Section..............
-.custom_carousel {
-    position: relative;
-    margin: auto;
-    text-align: center;
-    width: 650px;
-    border-radius: 15px;
-    //box-shadow: 0px 0px 10px 0px #000000;
-}
-
-.custom_carousel img {
-    display: none;
-    border-radius: 15px;
-}
-
-.custom_carousel img.image-active {
-    display: block;
+.login_bg {
+    background-image: url('/assets/signup_login.png');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
     width: 100%;
-    height: 500px;
-}
+    height: 100vh; 
 
-//dots or indicators
-.carousel-dot-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin-bottom: 1rem;
-}
-
-.dot {
-    cursor: pointer;
-    height: 13px;
-    width: 13px;
-    margin: 0 5px;
-    background-color: #ccc;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
-
-.active,
-.dot:hover {
-    opacity: 1;
-}
-
-.fade {
-    animation-name: fade;
-    animation-duration: 3s;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0.4;
+    .welcome_back {
+        font-size: 32px;
+        font-weight: 700;
     }
-    to {
-        opacity: 1;
+
+    .custom_button {
+        background-color: #4AFFA8;
+        color: #1e1f31;
+        border-radius: 30px;
+        width: 224px !important;
+    }
+
+    .linkStyling {
+        color: #4AFFA8;
+        font-size: 16px;
+        font-weight: 400;
     }
 }
-
-
-
-
-//Login Section.............
-
-#login_text {
-    color:#4359df !important;
-    font-size: 2.5rem;
-    padding-top: 50px;
-}
-
-#login_sub_text {
-    color: #ccc !important;
-    font-size: 1.5rem;
-}
-
-//Remember me Label
-#remember_me {
-    color: #4359df !important;
-    font-size: 0.9rem;
-}
-
-//Forgot Password Label and Donot have an account
-.linkStyling {
-    text-decoration: none;
-}
-
-.loginButton {
-    background-color: #4359df !important;
-    color: white !important;
-    padding: 5px 0px;
-    font-size: 1rem;
-}
-
-.loginButton:disabled {
-    background-color: #4359df !important;
-    color: white !important;
-    opacity: 0.4;
-}
+  
 
 ::ng-deep {
     .bg-image > mat-dialog-container {
