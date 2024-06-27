@@ -10,27 +10,33 @@ $light_grey: #ccc;
 // https://stackoverflow.com/questions/75246804/mat-form-field-outline-border-color
 ::ng-deep {
     .mdc-text-field--outlined {
-        --mdc-outlined-text-field-outline-width: 2px !important;
+        --mdc-outlined-text-field-outline-width: 1px !important;
     }
 
     //The below code apply when the input field is empty or intial state of the input field
-    .mdc-notched-outline > * {
+    .mdc-notched-outline>* {
         border-color: $dark_blue_grey !important;
     }
 
     // When field is valid and focused
-    .mdc-text-field--focused .mdc-notched-outline > * {
+    .mdc-text-field--focused .mdc-notched-outline>* {
         border-color: $green !important;
     }
+    
 
     .mdc-text-field--focused .mat-mdc-form-field-flex .mat-mdc-floating-label {
         color: $green !important;
         font-weight: bold;
     }
 
+    .mdc-text-field .mat-mdc-form-field-flex .mat-mdc-floating-label {
+        color: white !important;
+        font-weight: bold;
+    }
+
     // When field is invalid 
-    .mdc-text-field--invalid .mdc-notched-outline > * {
-       border-color: $danger !important;
+    .mdc-text-field--invalid .mdc-notched-outline>* {
+        border-color: $danger !important;
     }
 
     .mdc-text-field--invalid .mat-mdc-form-field-flex .mat-mdc-floating-label {
@@ -43,9 +49,13 @@ $light_grey: #ccc;
         color: #ffffff;
         margin-top: 5px;
     }
+    .terms_and_condition .mdc-label {
+        color: #ffffff;
+        margin-top: 5px;
+    }
 
     // Change ripple circle effect back of checkbox
-    .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected ~ .mdc-checkbox__ripple {
+    .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
         background: #ffffff !important;
     }
 
@@ -60,5 +70,7 @@ $light_grey: #ccc;
         background-color: #ffffff !important;
     }
 
-    
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+        border-color: white !important;
+    }
 }

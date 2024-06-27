@@ -4,24 +4,45 @@
     background-repeat: no-repeat; 
     background-position: center center; 
     width: 100%;
-    height: 100vh; 
+    height: 100%; 
 
     .welcome_back {
         font-size: 32px;
         font-weight: 700;
     }
 
-    .custom_button {
+    .custom_button_login_signup {
         background-color: #4AFFA8;
         color: #1e1f31;
         border-radius: 30px;
         width: 224px !important;
+        font-weight: 500 !important;
+        padding: 20px 0px !important;
+    }
+
+    ::ng-deep {
+        .mdc-button__label {
+            font-weight: 600 !important;
+            font-size: 16px;
+        }
     }
 
     .linkStyling {
         color: #4AFFA8;
         font-size: 16px;
         font-weight: 400;
+    }
+
+    .custom-icon {
+        width: 24px;  /* Adjust the size as needed */
+        height: 24px; /* Adjust the size as needed */
+    }
+    
+    .social_button {
+        background-color: white !important;
+        border-radius: 100% !important;
+        width: 50px !important;
+        height: 50px !important;
     }
 }
   

@@ -175,4 +175,8 @@ export class LoginComponent implements OnInit {
       this.openSnackBar('The email or password is incorrect!', '', 'mat-snack-bar-danger');
     });
   }
+
+  navigateTo(): void {
+    this.router.navigate(['/signup'])
+  }
 }

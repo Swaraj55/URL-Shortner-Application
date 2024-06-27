@@ -17,30 +17,6 @@ export class SignUpComponent implements OnInit {
 
   @ViewChild('updateSignupForm')  updateSignupForm: NgForm;
   
-  imagesContainer: any = [
-    {
-      imageSrcUrl: '../../assets/signup-image-1.svg',
-      imageAlt: 'Signup First'
-    },
-    {
-      imageSrcUrl: '../../assets/signup-image-2.svg',
-      imageAlt: 'Signup Second'
-    },
-    {
-      imageSrcUrl: '../../assets/singup-image-3.svg',
-      imageAlt: 'Signup Third'
-    },
-    { 
-      imageSrcUrl: '../../assets/signup-image-4.svg',
-      imageAlt: 'Signup Fourth'
-    }
-  ];
-
-  selectedIndex: number = 0;
-  indicator: boolean = true;
-  controls: boolean = true;
-  autoSlide: boolean = true;
-  slideDuration: number = 4000;//Default to 3 seconds
   isCheckboxChecked: boolean = false;
 
   constructor(
@@ -52,10 +28,6 @@ export class SignUpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.autoSlide) {
-      this.autoSlideImages();
-    }
-
     this.signupForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -116,26 +88,6 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  //changes slide in every 3 seconds
-  autoSlideImages() {
-    setInterval(() => {
-      this.onNextClick();
-    }, this.slideDuration);
-  }
-
-  //set index of images on dot/indicator click
-  selectImage(index: number) {
-    this.selectedIndex = index;
-  }
-
-  onNextClick() {
-    if(this.selectedIndex === this.imagesContainer.length - 1) {
-      this.selectedIndex = 0;
-    } else {
-      this.selectedIndex++;
-    }
-  }
-
   openSnackBar(message: string, action: string, cssClass: string) {
     this._snackBar.open(message, action, {
         verticalPosition: 'top',
@@ -191,5 +143,9 @@ export class SignUpComponent implements OnInit {
         this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
       }
     })
+  }
+
+  navigateTo(): void {
+    this.router.navigate(['/login'])
   }
 }
