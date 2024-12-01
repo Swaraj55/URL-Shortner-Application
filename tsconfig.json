@@ -23,6 +23,11 @@
       "es2020",
       "dom"
     ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
+      "@url-shortner/*": ["src/@url-shortner/*"]
+    },
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
@@ -39,3 +44,7 @@
 // 1) has a type that includes undefined,
 // 2) has an explicit initializer, or
 // 3) is definitely assigned to in the constructor.
+
+/**
+* https://medium.com/@sehban.alam/almost-perfect-tsconfig-json-options-for-your-angular-projects-5bec056f23d8
+*/

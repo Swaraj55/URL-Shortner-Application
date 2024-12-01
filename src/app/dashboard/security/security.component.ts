@@ -97,7 +97,7 @@ export class SecurityComponent implements OnInit {
     let payload = {
       mfaStatus: this.statusOfMFA,
       creator: `${sessionStorage.getItem('id')}`,
-      mfa_option: "Email"
+      mfa_option: "Email" /// In future according to dropdown user can select the option "Authenticator" and "Email"
     }
     // console.log("Status...", payload)
     if(payload.mfaStatus !== undefined) {

@@ -1,18 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, NgForm, UntypedFormControl, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, NgForm, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SignUpService } from './sign-up.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
-@Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss', '../../theme.scss'],
-})
-export class SignUpComponent implements OnInit {
 
-  signupForm: FormGroup = new FormGroup({});
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
+})
+export class SignupComponent {
+  signupForm: UntypedFormGroup = new UntypedFormGroup({});
   isSubmitted: Boolean = false;
 
   @ViewChild('updateSignupForm')  updateSignupForm: NgForm;
@@ -21,10 +20,9 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignUpService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -72,7 +70,7 @@ export class SignUpComponent implements OnInit {
 
   //Custom Validator for password and confirm password to check they are same or not
   private comparePassword(password: string, confirmPassword: string) {
-    return (formGroup: FormGroup) => {
+    return (formGroup: UntypedFormGroup) => {
       const passwordControl = formGroup.controls[password];
       const confirmPasswordControl = formGroup.controls[confirmPassword];
 
@@ -134,15 +132,15 @@ export class SignUpComponent implements OnInit {
     }
 
     // console.log(payload);
-    this.signupService.signUpUser(payload).subscribe((data: any) => {
-      if(data.status === 'success') {
-        this.openSnackBar('You successfully signup in URL Shortner!', '', 'mat-snack-bar-success');
-        this.router.navigate(['/login']);
-        this.updateSignupForm.resetForm({});
-      } else {
-        this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
-      }
-    })
+    // this.authService.signUpUser(payload).subscribe((data: any) => {
+    //   if(data.status === 'success') {
+    //     this.openSnackBar('You successfully signup in URL Shortner!', '', 'mat-snack-bar-success');
+    //     this.router.navigate(['/login']);
+    //     this.updateSignupForm.resetForm({});
+    //   } else {
+    //     this.openSnackBar('Something went wrong!', '', 'mat-snack-bar-danger');
+    //   }
+    // })
   }
 
   navigateTo(): void {

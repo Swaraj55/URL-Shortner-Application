@@ -1,0 +1,47 @@
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+@mixin font-bold($weight: $font-weight-bold) {
+    font-weight: $weight;
+}
+
+@mixin margin-top($size) {
+    margin-top: $size;
+}
+
+@mixin custom-button($bg-color, $text-color, $shadow-color, $border-radius) {
+    background-color: $bg-color !important;
+    color: $text-color !important;
+    box-shadow: 0px 2px 4px $shadow-color !important;
+    padding: 6px 11px 6px 11px !important;
+    border-radius: $border-radius !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        background-color: darken($bg-color, 10%) !important;
+    }
+}
+
+@mixin circle-button($size: 24px, $bg-color: white, $radius: 100%) {
+    background-color: $bg-color !important;
+    border-radius: $radius !important;
+    width: $size !important;
+    height: $size !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@mixin card-style($bg-color, $border-radius, $width, $height, $paddingTopBottom, $paddingLeftRight) {
+    background-color: $bg-color;
+    border-radius: $border-radius;
+    width: $width;
+    height: $height;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: $paddingTopBottom $paddingLeftRight;
+    display: flex;
+}

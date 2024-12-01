@@ -12,20 +12,32 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+// Re-usable component
+import { CustomInputComponent } from '@url-shortner/components/custom-input/custom-input.component';
+import { CustomOtpInputComponent } from '@url-shortner/components/custom-otp-input/custom-otp-input.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
+  declarations: [
+    CustomInputComponent,
+    CustomOtpInputComponent
+  ],
   imports: [
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatTooltipModule,
     MatSidenavModule,
     MatToolbarModule,
     MatProgressBarModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatButtonModule,
@@ -39,7 +51,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+
+    CustomInputComponent,
+    CustomOtpInputComponent
   ],
 })
 export class MaterialModule {}

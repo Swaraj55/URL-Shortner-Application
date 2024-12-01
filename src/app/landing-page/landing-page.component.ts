@@ -11,32 +11,32 @@ export class LandingPageComponent implements OnInit {
 
   benefits_sections_contents = [
     {
-      icons: '',
+      icons: './assets/group-6.png',
       content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
       bgColor: '#3E4065'
     },
     {
-      icons: '',
+      icons: './assets/group-5.png',
+      content: 'Check the amount of clicks that your shortened url received.',
+      bgColor: '#33377A'
+    },
+    {
+      icons: './assets/group-4.png',
+      content: 'Use any link, no matter what size, ShortURL always shortens.',
+      bgColor: '#3E4065'
+    },
+    {
+      icons: './assets/group-2.png',
       content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
       bgColor: '#33377A'
     },
     {
-      icons: '',
+      icons: './assets/group-6.png',
       content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
       bgColor: '#3E4065'
     },
     {
-      icons: '',
-      content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
-      bgColor: '#33377A'
-    },
-    {
-      icons: '',
-      content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
-      bgColor: '#3E4065'
-    },
-    {
-      icons: '',
+      icons: './assets/group-3.png',
       content: 'Short URL is easy and fast, enter the long link to get your shortened link.',
       bgColor: '#33377A'
     }
@@ -44,7 +44,7 @@ export class LandingPageComponent implements OnInit {
 
   feature_sections_contents = [
     {
-      icons: 'assets/check_circle.svg',
+      icons: './assets/group-1.png',
       title: 'URL Shortner',
       sub_points: [
         'URL shortening at scale',
@@ -54,7 +54,7 @@ export class LandingPageComponent implements OnInit {
       content: 'A comprehensive solution to help make every point of connection between your content and your audience more powerful.',
     },
     {
-      icons: 'assets/check_circle.svg',
+      icons: './assets/group-1.png',
       title: 'QR Codes',
       sub_points: [
         'Fully customizable QR Codes',
@@ -64,7 +64,7 @@ export class LandingPageComponent implements OnInit {
       content: 'QR Code solutions for every customer, business and brand experience',
     },
     {
-      icons: 'assets/check_circle.svg',
+      icons: './assets/group-1.png',
       title: 'Link in Bio',
       sub_points: [
         'Fully customizable QR Codes',

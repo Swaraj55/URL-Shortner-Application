@@ -38,7 +38,7 @@
 
     <!-- MAIN SECTION OF URL SHORTNER -->
     <section class="main_section">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <p class="short-links-section">
                 <span class="link_text">Short Links</span> for Smarter Sharing
             </p>
@@ -46,15 +46,15 @@
                 URL Shortner is a web application that allows you to shorten your long URLs. It is a free service that is
                 provided by URL Shortner
             </div>
-            <div class="get-started-button">
+            <div class="get-started-button" [routerLink]="['/signup']">
                 <span class="get-started">
                     Get Started
                 </span>
             </div>
         </div>
 
-        <div class="col-md-5">
-            <img src="../../assets/www-amico 1.svg" alt="Link Image">
+        <div class="col-md-6">
+            <img src="./assets/main-landing.svg" alt="Link Image" width="450px" height="450px">
         </div>
     </section>
 
@@ -72,7 +72,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let benefit of benefits_sections_contents; let i = index">
                 <div class="custom_card mb-4" [ngStyle]="{'background-color': benefit.bgColor}">
                     <div class="custom_card_group_1">
-                        <img class="bolt" src="../assets/vectors/bolt_7_x2.svg" />
+                        <img class="bolt" src="{{benefit.icons}}" width="46px" height="46px"/>
                     </div>
                     <span class="custom_card_group_2">
                         Short URL is easy and fast, enter the long link to get your shortened link.
@@ -109,7 +109,7 @@
                     </div>
                     <ng-container *ngFor="let points of feature.sub_points">
                         <div class="feature_sub_contents">
-                            <img class="bullets" src="{{feature.icons}}" alt="">
+                            <img class="bullets" src="./assets/group-7.png" alt="">
                             <div class="sub_points">
                                 {{points}}
                             </div>
@@ -137,8 +137,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 text-white">
-                dfedf
+            <div class="col-xs-12 col-sm-12 col-md-6 text-white text-center justify-content-center">
+                <img src="../../assets/achievements.png" alt="" width="358px" height="347px">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="row">

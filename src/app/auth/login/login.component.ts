@@ -1,19 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, NgForm, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  NgForm,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../@url-shortner/services/authentication.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TwoFactorAuthenticationDialogComponent } from './two-factor-authentication-dialog/two-factor-authentication-dialog.component';
-import { TwoFactorAuthDialogComponent } from './two-factor-auth-dialog/two-factor-auth-dialog.component';
+import { TwoFactorAuthDialogComponent } from '@app/auth/login/two-factor-auth-dialog/two-factor-auth-dialog.component';
+import { TwoFactorAuthenticationDialogComponent } from '@app/auth/login/two-factor-authentication-dialog/two-factor-authentication-dialog.component';
+import { AuthenticationService } from '@url-shortner/services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../../theme.scss'],
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: UntypedFormGroup = new UntypedFormGroup({});
   isSubmitted: Boolean = false;
 
@@ -27,20 +34,34 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private cookieService: CookieService,
-    ) {
-      this.loginForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(8),
-            this.passwordWithNoSpace,
-          ],
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['',
+        [
+          Validators.required, 
+          Validators.email
+        ]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          this.passwordWithNoSpace,
         ],
-        remember_me: [false]
-      });
+      ],
+      remember_me: [false],
+    });
+  }
+
+  passwordWithNoSpace(control: AbstractControl) {
+    if (control.value) {
+      if ((control.value as string).indexOf(' ') >= 0) {
+        return { noSpace: true };
+      }
+      return null;
     }
+  }
 
   ngOnInit(): void {
     this.loginForm.controls['remember_me'].valueChanges.subscribe((data) => {
@@ -63,15 +84,6 @@ export class LoginComponent implements OnInit {
 
   get passwordControl(): UntypedFormControl {
     return this.loginForm.get('password') as UntypedFormControl;
-  }
-
-  passwordWithNoSpace(control: AbstractControl) {
-    if (control.value) {
-      if ((control.value as string).indexOf(' ') >= 0) {
-        return { noSpace: true };
-      }
-      return null;
-    }
   }
 
   openSnackBar(message: string, action: string, cssClass: string) {

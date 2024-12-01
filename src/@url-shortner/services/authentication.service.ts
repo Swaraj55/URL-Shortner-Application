@@ -89,4 +89,9 @@ export class AuthenticationService {
   isRemembered(): boolean {
     return this.cookieService.get(this.REMEMBER_ME_KEY) === 'true';
   }
+
+  signUpUser(data: any) {
+    let theURL = 'this.url' + '/signup';
+    return  this._httpClient.post(theURL, data)
+  }
 }

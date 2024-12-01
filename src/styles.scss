@@ -1,6 +1,12 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Dosis, "Montserrat", sans-serif; background-color: #1e1f31; }
+body { 
+    margin: 0; 
+    font-family: Dosis, "Montserrat", sans-serif; 
+    background-image: url('/assets/background-image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 //CUSTOM CSS CODE FOR SCROLLBAR (START)
 /* width */
@@ -19,3 +25,9 @@ body { margin: 0; font-family: Dosis, "Montserrat", sans-serif; background-color
     background: linear-gradient(to right, #4359df, #3e7fd4);
     border-radius: 10px;
 }
+
+@import './styles/variable';
+@import './styles/mixins';
+@import './styles/utilities';
+@import './styles/typography';
+// @import './styles/colors';

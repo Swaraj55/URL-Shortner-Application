@@ -1,12 +1,13 @@
 {
   "name": "url-shortner-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -21,11 +22,14 @@
     "@angular/platform-browser": "~16.2.12",
     "@angular/platform-browser-dynamic": "~16.2.12",
     "@angular/router": "~16.2.12",
+    "@ngrx/effects": "^16.2.0",
+    "@ngrx/store": "^16.2.0",
     "countries-list": "^2.6.1",
-    "ngx-cookie-service": "^18.0.0",
+    "ngx-cookie-service": "^16.1.0",
     "ngx-logger": "^5.0.12",
     "ngx-webstorage-service": "^5.0.0",
     "ngx-wow": "^2.0.1",
+    "prettier": "^3.3.3",
     "rxjs": "~7.5.0",
     "swiper": "^11.1.4",
     "tslib": "^2.3.0",
@@ -34,16 +38,27 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~16.2.11",
+    "@angular-eslint/builder": "16.2.0",
+    "@angular-eslint/eslint-plugin": "16.2.0",
+    "@angular-eslint/eslint-plugin-template": "16.2.0",
+    "@angular-eslint/schematics": "16.2.0",
+    "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "~16.2.11",
     "@angular/compiler-cli": "~16.2.12",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "prettier-eslint": "^16.3.0",
     "typescript": "5.1.6"
   }
 }

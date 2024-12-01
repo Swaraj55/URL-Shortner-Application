@@ -8,7 +8,7 @@ import { CustomOtpInputComponent } from 'src/@url-shortner/components/custom-otp
 @Component({
   selector: 'app-two-factor-authentication-dialog',
   templateUrl: './two-factor-authentication-dialog.component.html',
-  styleUrls: ['./two-factor-authentication-dialog.component.scss', '../../../theme.scss']
+  styleUrls: ['./two-factor-authentication-dialog.component.scss', '../../../../theme.scss']
 })
 export class TwoFactorAuthenticationDialogComponent implements OnInit {
 
