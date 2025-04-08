@@ -28,7 +28,6 @@ import { TermsAndConditionComponent } from './signup/terms-and-condition/terms-a
     AuthRoutingModule,
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffects]),
-
     MaterialModule
   ]
 })
