@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "url-shortner-app:build:production"
+              "buildTarget": "url-shortner-app:build:production"
             },
             "development": {
-              "browserTarget": "url-shortner-app:build:development"
+              "buildTarget": "url-shortner-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "url-shortner-app:build"
+            "buildTarget": "url-shortner-app:build"
           }
         },
         "test": {
