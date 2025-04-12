@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -13,20 +13,17 @@ export class DeleteDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: object
-  ) { 
-    this.deleteItem = data; // This data is from the parent component.
+  ) {
+    this.deleteItem = data;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   closeDialog() {
-    this.dialogRef.close({event: 'Delete', payload: this.deleteItem});
+    this.dialogRef.close({ event: 'Delete', payload: this.deleteItem });
   }
 
   onNoClick(): void {
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
-
-
 }
