@@ -151,7 +151,7 @@ export class LoginComponent {
   }
 
   commonLogin(payload: any) {
-    this.authService.login(payload.username, payload.password, payload.totp, this.isCheckboxChecked).subscribe((data: any) => {
+    this.authService.login(payload.username, payload.password, payload.provider, payload.totp, this.isCheckboxChecked).subscribe((data: any) => {
       if(data.body.status === 'success') {
         this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
         this.router.navigate(['/dashboard/home']);

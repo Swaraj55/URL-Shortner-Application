@@ -32,7 +32,7 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   } 
 
-  login(username: string, password: string, totp: string, remember_me: boolean) {
+  login(email: string, password: string, provider: string, mfaCode?: string, rememberMe?: boolean) {
 
     // console.log("Username..", username, "Password...", password, "TOTP...", totp)
     let endPointOrigin = `${environment.basicURL}`;
@@ -45,7 +45,7 @@ export class AuthenticationService {
 
     //this.logger.debug(this.apiUrl);
 
-    return this._httpClient.post(this.apiUrl, { username, password, totp }, { observe: 'response' }).pipe(map((authResponse: any) => {
+    return this._httpClient.post(this.apiUrl, { email, password, provider, mfaCode, rememberMe }, { observe: 'response' }).pipe(map((authResponse: any) => {
       const userInfo = authResponse.body;
       // console.log(userInfo);
       if(userInfo.status === 'success'){
@@ -63,14 +63,14 @@ export class AuthenticationService {
         sessionStorage.setItem('token', this.authenticatedUser.token);
         sessionStorage.setItem('email', this.authenticatedUser.email);
         sessionStorage.setItem('id', this.authenticatedUser.id);
-        console.log(remember_me)
-        if (remember_me) {
-          this.cookieService.set(this.REMEMBER_ME_KEY, 'true', { secure: true, sameSite: 'Strict' });
-          this.cookieService.set(this.USERNAME_KEY, btoa(username + '+' + password), { secure: true, sameSite: 'Strict' });
-        } else {
-          this.cookieService.delete(this.REMEMBER_ME_KEY);
-          this.cookieService.delete(this.USERNAME_KEY);
-        }
+        // console.log(remember_me)
+        // if (remember_me) {
+        //   this.cookieService.set(this.REMEMBER_ME_KEY, 'true', { secure: true, sameSite: 'Strict' });
+        //   this.cookieService.set(this.USERNAME_KEY, btoa(username + '+' + password), { secure: true, sameSite: 'Strict' });
+        // } else {
+        //   this.cookieService.delete(this.REMEMBER_ME_KEY);
+        //   this.cookieService.delete(this.USERNAME_KEY);
+        // }
         this.currentUserSubject.next(this.authenticatedUser);
       }
 

@@ -11,8 +11,8 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
-      mergeMap(({ username, password, totp, remember_me }) =>
-        this.authService.login(username, password, totp, remember_me).pipe(
+      mergeMap(({ email, password, provider, mfaCode, rememberMe }) =>
+        this.authService.login(email, password, provider, mfaCode, rememberMe).pipe(
           map((user) => AuthActions.loginSuccess({ user })),
           catchError((error) => of(AuthActions.loginFailure({ error: error.message })))
         )
