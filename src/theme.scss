@@ -1,5 +1,5 @@
 // Import theming functions
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 
 $dark_blue_grey: #ffffff;
 $green: #00bf63;

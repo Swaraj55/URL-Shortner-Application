@@ -42,7 +42,12 @@
             ],
             "scripts": [
               "node_modules/wowjs/dist/wow.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {

@@ -1,279 +1,135 @@
-<div class="container-fluid">
-    <section class="custom_navbar">
-        <div class="navbar">
-            <div class="brand_section">
-                <div class="link-svgrepo-com">
-                    <img width="40" height="40" src="../../assets/link_svgrepo.svg"/>
+<section class="main-section text-white">
+    <div class="container-fluid">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark rounded-pill px-4 py-2 mt-4 custom-navbar">
+            <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+                <!-- Left: Logo -->
+                <div class="d-flex align-items-center">
+                    <img src="assets/url-short-logo.svg" alt="Logo" class="logo-icon mr-2" />
+                    <span class="brand-name font-bold">Url Shortner</span>
                 </div>
-                <div class="url-shortner">
-                    Url Shortner
-                </div>
-            </div>
-            <div class="section_1">
-                <span class="home mrgnR">
-                    Home
-                </span>
-                <span class="about mrgnR">
-                    About
-                </span>
-                <span class="services mrgnR">
-                    Services
-                </span>
-                <span class="team">
-                    Team
-                </span>
-            </div>
-            <div class="section_2">
-                <div class="log-in mr-4" [routerLink]="['/login']">
-                    Log in
-                </div>
-                <div class="signup_button" [routerLink]="['/signup']">
-                    <span class="sign-up">
-                        Sign up
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- MAIN SECTION OF URL SHORTNER -->
-    <section class="main_section">
-        <div class="col-md-6">
-            <p class="short-links-section">
-                <span class="link_text">Short Links</span> for Smarter Sharing
-            </p>
-            <div class="url-shortner-text">
-                URL Shortner is a web application that allows you to shorten your long URLs. It is a free service that is
-                provided by URL Shortner
+                <!-- Center: Menu -->
+                <ul class="nav gap-4 mx-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Team</a></li>
+                </ul>
+
+                <!-- Right: Buttons -->
+                <div class="d-flex gap-2">
+                    <button class="btn text-white">Log in</button>
+                    <button class="btn btn-light rounded-pill">Sign up</button>
+                </div>
             </div>
-            <div class="get-started-button" [routerLink]="['/signup']">
-                <span class="get-started">
+        </nav>
+
+
+        <div class="text-center margin-top">
+            <div class="d-flex align-items-center justify-content-center px-3 py-2">
+                <img src="assets/short-links-url.svg" class="mx-2" alt="Shorts Link" />
+                <h1 class="mb-3 ml-2 page-title">for Quick Sharing</h1>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <p class="mt-4 lead text-center">
+                    Our URL shortner takes your long, unwieldy links and transforms them into concise,
+                    easy-to-share URLs that drive results
+                </p>
+            </div>
+
+            <div class="margin-top">
+                <button class="my-btn">
                     Get Started
-                </span>
+                </button>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <img src="./assets/main-landing.svg" alt="Link Image" width="450px" height="450px">
-        </div>
-    </section>
-
-    <!-- BENEFITS SECTION OF URL SHORTNER -->
-    <section class="benefits_section">
-        <div class="col-12">
-            <div class="section_title_container">
-                <div class="rectangle-8"></div>
-                <div class="benefits">
-                    Benefits
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let benefit of benefits_sections_contents; let i = index">
-                <div class="custom_card mb-4" [ngStyle]="{'background-color': benefit.bgColor}">
-                    <div class="custom_card_group_1">
-                        <img class="bolt" src="{{benefit.icons}}" width="46px" height="46px"/>
-                    </div>
-                    <span class="custom_card_group_2">
-                        Short URL is easy and fast, enter the long link to get your shortened link.
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAETURES SECTION OF URL SHORTNER -->
-    <section class="benefits_section">
-        <div class="col-12">
-            <div class="section_title_container">
-                <div class="rectangle-8"></div>
-                <div class="benefits">
-                    Features
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let feature of feature_sections_contents; let last = last">
-                <div class="custom_feature_card">
-                    <div class="rectangle_top_section"></div>
-                    <div class="feature_title_section">
-                        <div class="feature_icon">
-                            <img src="{{feature.icons}}" alt="a">
-                        </div>
-                        <div class="feature_title">
-                            {{feature.title}}
-                        </div>
-                    </div>
-                    <div class="feature_content">
-                        {{feature.content}}
-                    </div>
-                    <ng-container *ngFor="let points of feature.sub_points">
-                        <div class="feature_sub_contents">
-                            <img class="bullets" src="./assets/group-7.png" alt="">
-                            <div class="sub_points">
-                                {{points}}
-                            </div>
-                        </div>
-                    </ng-container>
-
-                    <div class="feature_get_started_button">
-                        <span>
-                            Get Started
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ACHIEVEMENTS SECTION OF URL SHORTNER -->
-    <section class="benefits_section">
-        <div class="col-12">
-            <div class="section_title_container">
-                <div class="rectangle-8"></div>
-                <div class="benefits">
-                    Achievements
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 text-white text-center justify-content-center">
-                <img src="../../assets/achievements.png" alt="" width="358px" height="347px">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6 p-4 achievements">
-                        <span class="k">
-                            500k
-                        </span>
-                        <span class="global-payments">
-                            Global payments
-                        </span>
-                     </div>
-                     <div class="col-xs-12 col-md-6 p-4 achievements">
-                        <span class="k">
-                            500k
-                        </span>
-                        <span class="global-payments">
-                            Global payments
-                        </span>
-                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-md-6 p-4 achievements">
-                        <span class="k">
-                            500k
-                        </span>
-                        <span class="global-payments">
-                            Global payments
-                        </span>
-                     </div>
-                     <div class="col-xs-12 col-md-6 p-4 achievements">
-                        <span class="k">
-                            500k
-                        </span>
-                        <span class="global-payments">
-                            Global payments
-                        </span>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- TESTIMONIALS SECTION OF URL SHORTNER -->
-    <section class="benefits_section">
-        <div class="col-12">
-            <div class="section_title_container">
-                <div class="rectangle-8"></div>
-                <div class="benefits">
-                    Testimonials
-                </div>
-            </div>
+    </div>
+</section>
+<section class="how-it-works container-fluid">
+    <div class="row p-5">
+        <!-- Left Pattern -->
+        <div class="col-md-1 d-none d-md-block left-pattern">
+            <img src="assets/WWW.svg" alt="">
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let feature of testimonials;">
-                <div class="testimonial_card">
-                    <div class="comma">
-                        <img src="{{feature.comma_image}}" alt="Comma's">
-                        <img src="{{feature.comma_image}}" alt="Comma's">
-                    </div>
+        <!-- Right Content -->
+        <div class="col-md-11">
+            <h2 class="section-title">What is URL Shortner?</h2>
+            <h1 class="gradient-text">"Short Links, Smart Insights"</h1>
 
-                    <div class="testimonial_text">
-                        {{feature.quote}}
-                    </div>
-
-                    <div class="username">
-                        {{feature.name}}
-                    </div>
-
-                    <div class="rating">
-                        <img src="{{feature.rating_image}}" alt="Rating's">
-                        <img src="{{feature.rating_image}}" alt="Rating's">
-                        <img src="{{feature.rating_image}}" alt="Rating's">
-                        <img src="{{feature.rating_image}}" alt="Rating's">
-                        <img src="{{feature.rating_image}}" alt="Rating's">
-                    </div>
-                </div>
+            <div class="d-flex align-items-center justify-content-center">
+                <p class="mt-4 url-shortener-description text-center">
+                    Our URL shortener converts long links into short, shareable URLs.
+                    Ideal for social media and emails, it also offers valuable insights
+                    like click tracking and engagement analysis to optimize your strategy.
+                </p>                
             </div>
         </div>
-    </section>
-
-    <!-- TESTIMONIALS SECTION OF URL SHORTNER -->
-    <section class="benefits_section">
-        <div class="col-12">
-            <div class="section_title_container">
-                <div class="rectangle-8"></div>
-                <div class="benefits">
-                    FAQ's
-                </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid py-5 why-url-shortner d-flex justify-content-center">
+        <div class="row align-items-center">
+          <!-- Left Side: Text Content -->
+          <div class="col-md-6 mb-4 mb-md-0 px-5">
+            <h2 class="section-heading">Why URL Shortner?</h2>
+            <p class="text-black section-description">
+                A comprehensive solution to help make every point of connection between your 
+                content and your audience more powerful.
+            </p>
+          </div>
+      
+          <!-- Right Side: Feature Cards -->
+          <div class="col-md-6 feature-cards">
+            <!-- Feature Item 1 -->
+            <div class="d-flex mb-4">
+              <div class="icon me-3">
+                <img src="assets/icons/share.svg" alt="Share Icon" width="40">
+              </div>
+              <div class="py-4 px-2">
+                <h5 class="font-bold feature-heading mb-1">Improved<br>Shareability</h5>
+                <p class="text-black mb-0 mt-2 feature-sub-heading">
+                  URL shorteners make long, complicated URLs concise and easy to share
+                </p>
+              </div>
             </div>
-        </div>
-
-        <div class="row">
-        
-        </div>
-    </section>    
-    
-
-    <!-- Footer -->
-<footer class="text-white pt-4">
-    <div class="benefits_section">
-      <div class="row">
-        <!-- First Column -->
-        <div class="col-md-4">
-            <div class="brand_section">
-                <div class="link-svgrepo-com">
-                    <img width="45" height="35" src="../../assets/link_svgrepo.svg"/>
-                </div>
-                <div style="font-size: 18px;">
-                    Url Shortner
-                </div>
+      
+            <hr>
+      
+            <!-- Feature Item 2 -->
+            <div class="d-flex mb-4">
+              <div class="icon me-3">
+                <img src="assets/icons/analytics.svg" alt="Analytics Icon" width="40">
+              </div>
+              <div class="py-4 px-2">
+                <h5 class="font-bold feature-heading mb-1">Tracking<br>and Analytics</h5>
+                <p class="text-black mb-0 mt-2 feature-sub-heading">
+                  URL shorteners often come with analytics tools that allow you to track the performance of a link
+                </p>
+              </div>
             </div>
-        </div>
-        <!-- Second Column -->
-        <div class="col-md-4">
-            <div class="row text-center">
-                <div>Home</div>
-                <div class="mx-3">About</div>
-                <div class="mx-3">Services</div>
-                <div class="mx-3">Team</div>
-            </div>
-        </div>
-        
-        <!-- Fourth Column -->
-        <div class="col-md-4">
-            <div style="float: right;">
-                <div class="text-white">Privacy Policy</div>
-                <div class="text-white mt-2">Terms & Condition</div>
+      
+            <hr>
+      
+            <!-- Feature Item 3 -->
+            <div class="d-flex">
+              <div class="icon me-3">
+                <img src="assets/icons/branding.svg" alt="Branding Icon" width="40">
+              </div>
+              <div class="py-4 px-2">
+                <h5 class="font-bold feature-heading mb-1">Branding and<br>Customization</h5>
+                <p class="text-black mb-0 mt-2 feature-sub-heading">
+                  With many URL shorteners, you can create custom-branded short links that incorporate your brand name or relevant keywords
+                </p>
+              </div>
             </div>
 
+          </div>
+          
         </div>
       </div>
-    </div>
-  </footer>
-  <!-- End Footer -->
-</div>
+      
+</section>
