@@ -147,12 +147,7 @@
 
         .icon {
             img {
-                filter: grayscale(100%);
                 transition: all 0.3s ease;
-
-                &:hover {
-                    filter: grayscale(0%);
-                }
             }
         }
 

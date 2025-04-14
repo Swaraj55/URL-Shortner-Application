@@ -1,18 +1,25 @@
 @use '../../../styles/mixins' as *;
 
-.set_view_port {
-    height: 100vh;
+.main-section {
+    background-image: url('/assets/loginAndSignup.png');
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
 
-    .signup-form-card {
-        @include card-style(white, 15px, 75%, 90%, 30px, 70px);
-        display: flex;
-        flex-direction: column;
-        align-items: start; 
-    }
-
-    .custom-icon {
-        width: 50%;
-        height: auto;
-        object-fit: contain;
+    .set_view_port {
+        height: 100vh;
+    
+        .signup-form-card {
+            @include card-style(white, 15px, 75%, 90%, 30px, 70px);
+            display: flex;
+            flex-direction: column;
+            align-items: start; 
+        }
+    
+        .custom-icon {
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+        }
     }
 }
