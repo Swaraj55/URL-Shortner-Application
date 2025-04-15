@@ -12,8 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TwoFactorAuthDialogComponent } from '@app/auth/login/two-factor-auth-dialog/two-factor-auth-dialog.component';
 import { TwoFactorAuthenticationDialogComponent } from '@app/auth/login/two-factor-authentication-dialog/two-factor-authentication-dialog.component';
+import { Store } from '@ngrx/store';
 import { AuthenticationService } from '@url-shortner/services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
+import { login } from '../state/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,7 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private authService: AuthenticationService,
+    private store: Store,
     private router: Router,
     private dialog: MatDialog,
     private cookieService: CookieService,
@@ -143,49 +145,54 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
-    let payload = {
-      username: this.loginForm.controls['email'].value,
+    const payload = {
+      email: this.loginForm.controls['email'].value,
       password: btoa(this.loginForm.controls['password'].value),
+      provider: 'local',
+      mfaCode: '', // if needed, you can fetch this from a control or input
+      rememberMe: this.isCheckboxChecked
     };
-    this.commonLogin(payload)
+  
+    // * Dispatch the action for normal login
+    this.store.dispatch(login(payload));
   }
 
   commonLogin(payload: any) {
-    this.authService.login(payload.username, payload.password, payload.provider, payload.totp, this.isCheckboxChecked).subscribe((data: any) => {
-      if(data.body.status === 'success') {
-        this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
-        this.router.navigate(['/dashboard/home']);
-      } else {
-        // console.log(data)
-        if(data.body.status === 'failed' && data.body.results.length === 0) {
-          this.openSnackBar(data.body.message, '', 'mat-snack-bar-danger');
-        }
-        if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'unenrolled') {
-          // console.log("Enabled... UnEnrolled....")
-          let result = {
-            username: this.loginForm.controls['email'].value,
-            password: btoa(this.loginForm.controls['password'].value),
-            mfa: data.body.results[0],
-            message: data.body.message
-          }
-          this.enableTwoFactorAuthentication(result);
-        }
-        if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'enrolled') {
-          // console.log("Enabled... Enrolled....")
-          if(data.body.message === '2FA Enrollment successful. Please login again.') {
-            this.openSnackBar(data.body.message, '', 'mat-snack-bar-success');
-          }
+    // this.authService.login(payload.username, payload.password, payload.provider, payload.totp, this.isCheckboxChecked).subscribe((data: any) => {
+    //   if(data.body.status === 'success') {
+    //     this.openSnackBar('You successfully logged in!', '', 'mat-snack-bar-success');
+    //     this.router.navigate(['/dashboard/home']);
+    //   } else {
+    //     // console.log(data)
+    //     if(data.body.status === 'failed' && data.body.results.length === 0) {
+    //       this.openSnackBar(data.body.message, '', 'mat-snack-bar-danger');
+    //     }
+    //     if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'unenrolled') {
+    //       // console.log("Enabled... UnEnrolled....")
+    //       let result = {
+    //         username: this.loginForm.controls['email'].value,
+    //         password: btoa(this.loginForm.controls['password'].value),
+    //         mfa: data.body.results[0],
+    //         message: data.body.message
+    //       }
+    //       this.enableTwoFactorAuthentication(result);
+    //     }
+    //     if(data.body.status === 'failed' && data.body.results[0].mfa_status === 'enabled' && data.body.results[0].mfa_state === 'enrolled') {
+    //       // console.log("Enabled... Enrolled....")
+    //       if(data.body.message === '2FA Enrollment successful. Please login again.') {
+    //         this.openSnackBar(data.body.message, '', 'mat-snack-bar-success');
+    //       }
           
-          let result = {
-            username: this.loginForm.controls['email'].value,
-            password: btoa(this.loginForm.controls['password'].value),
-          }
-          this.twoFactorAuthenticationDialog(result);
-        }
-      }
-    }, (error: any) => {
-      this.openSnackBar('The email or password is incorrect!', '', 'mat-snack-bar-danger');
-    });
+    //       let result = {
+    //         username: this.loginForm.controls['email'].value,
+    //         password: btoa(this.loginForm.controls['password'].value),
+    //       }
+    //       this.twoFactorAuthenticationDialog(result);
+    //     }
+    //   }
+    // }, (error: any) => {
+    //   this.openSnackBar('The email or password is incorrect!', '', 'mat-snack-bar-danger');
+    // });
   }
 
   navigateTo(): void {
