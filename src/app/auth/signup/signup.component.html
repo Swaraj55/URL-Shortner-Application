@@ -1,0 +1,107 @@
+<section class="main-section">
+    <div class="container-fluid">
+        <div class="row set_view_port">
+            <div class="col-6 text-white d-flex justify-content-center align-items-center">
+                <div class="d-flex flex-column text-center align-items-center">
+                    <div class="font-weight-bold font-size-lg">WELCOME TO URL SHORTNER</div>
+                    <div class="mt-3 font-size-sm">Enter your personal info to get started with us</div>
+                    <button mat-flat-button class="mt-5 custom-primary-button w-50" (click)="navigateTo()">Log In</button>
+                </div>
+            </div>
+            <div class="col-6 d-flex justify-content-center align-items-center">
+                <div class="signup-form-card">
+                    <div class="font-extra-bold font-size-md">SIGN UP</div>
+    
+                    <form class="mt-2" [formGroup]="signupForm" name="signupForm" #updateLoginForm="ngForm" novalidate>
+                        <app-custom-input 
+                            [label]="'Name'"
+                            [matLabelId]="'name-field-label'" 
+                            [inputId]="'name-input'"
+                            [type]="'text'" 
+                            [control]="nameControl" 
+                            [required]="true" 
+                            [icon]="'person'"
+                            [iconClass]="'secondary-text'" 
+                            [iconColor]="''" 
+                            [fieldClass]="'field mt-2 w-100'"
+                            [placeholder]="''" 
+                            [appearance]="'outline'"
+                            [errorMessages]="{ required: 'Name is required.'}">
+                        </app-custom-input>
+    
+                        <app-custom-input 
+                            [label]="'Email'" 
+                            [matLabelId]="'username-field-label'"
+                            [inputId]="'username-input'" 
+                            [type]="'text'" 
+                            [control]="emailControl" 
+                            [required]="true"
+                            [icon]="'mail'" 
+                            [iconClass]="'secondary-text'" 
+                            [iconColor]="''"
+                            [fieldClass]="'field mt-2 w-100'" 
+                            [placeholder]="''" 
+                            [appearance]="'outline'"
+                            [errorMessages]="{ required: 'Name is required.', email: 'Please enter a valid email.'}">
+                        </app-custom-input>
+    
+                        <app-custom-input 
+                            [label]="'Password'" 
+                            [matLabelId]="'password-field-label'"
+                            [inputId]="'password-input'" 
+                            [type]="'password'" 
+                            [control]="passwordControl"
+                            [required]="true" 
+                            [icon]="'vpn_key'" 
+                            [iconClass]="'secondary-text'" 
+                            [iconColor]="''"
+                            [fieldClass]="'field mt-2 w-100'" 
+                            [placeholder]="''" 
+                            [appearance]="'outline'"
+                            [errorMessages]="{ required: 'Password is required.', minlength: 'Password must contain at least 8 characters.', noSpace: 'Password must not contain space.' }">
+                        </app-custom-input>
+    
+                        <app-custom-input 
+                            [label]="'Confirm Password'" 
+                            [matLabelId]="'confirm-password-field-label'"
+                            [inputId]="'confirm-password-field-input'" 
+                            [type]="'password'"
+                            [control]="confirmPasswordControl" 
+                            [required]="true" 
+                            [icon]="'vpn_key'"
+                            [iconClass]="'secondary-text'" 
+                            [iconColor]="''" 
+                            [fieldClass]="'field mt-2 w-100'"
+                            [placeholder]="''" 
+                            [appearance]="'outline'"
+                            [errorMessages]="{ required: 'Password is required.', notSame: 'Password and Confirm Password must be same.'}">
+                        </app-custom-input>
+    
+                        <mat-checkbox formControlName="termsAndCondition"
+                            (click)="this.signupForm.controls['termsAndCondition'].getRawValue() === true ? openDialog() : null"
+                            class="terms_and_condition mt-2">
+                            Agree to terms & conditions
+                        </mat-checkbox>
+    
+                        <div class="mt-2 text-white text-center">
+                            <img src="assets/or-signup-with.svg" alt="" width="100%">
+                        </div>
+    
+                        <div class="mt-4 d-flex justify-content-center">
+                            <button class="social-button" mat-mini-fab aria-label="Google Login">
+                                <img src="assets/google.png" alt="Google Icon" class="custom-icon">
+                            </button>
+                            <button class="social-button ml-4" mat-mini-fab aria-label="Microsoft Login">
+                                <img src="assets/microsoft.png" alt="Microsoft Icon" class="custom-icon">
+                            </button>
+                        </div>
+    
+                        <div class="mt-5 d-flex justify-content-center">
+                            <button (click)="onSubmit()" class="custom-primary-button w-50" mat-flat-button>Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

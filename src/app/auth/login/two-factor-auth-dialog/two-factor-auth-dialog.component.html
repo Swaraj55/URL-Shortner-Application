@@ -1,0 +1,42 @@
+<div class="container-fluid twoFactorBgColor">
+    <div class="row">
+        <div class="col-12 h4">
+            <div class="two-factor-title text-white text-center">Two Factor Authentication</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <img class="security_image" src="./assets/security.png" width="70" height="70" alt="security">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center text-white auth_sub_info">
+            Enter the 6 - digit authentication code provided by your app
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 otp_input_fields">
+            <app-custom-otp-input #customOtpInputComponent (otpChange)="onOtpChange($event)" (allFieldsFilled)="onAllFieldsFilled($event)"></app-custom-otp-input>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center text-white auth_sub_info">
+            Open authentication app on your device to get your verification code.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="d-flex justify-content-center">
+                <div class="custom_verify_button" (click)="onVerify()">
+                    <span class="verify">
+                        Verify
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,4 @@
+<div class="otp-container">
+    <input *ngFor="let ctrl of otpControls; let i = index" #otpInput type="text" maxlength="1" [attr.data-index]="i"
+        (input)="onInput($event)" (keydown)="onKeyDown($event)" (paste)="onPaste($event)">
+</div>

@@ -1,0 +1,99 @@
+<div class="container-fluid enable_two_factor_auth py-4">
+    <div class="row rectangle_section">
+        <div class="col-6">
+            <div class="first_dialog_rectangle"></div>
+        </div>
+        <div class="col-6">
+            <div *ngIf="first_section_visible" class="disable_dialog_rectangle"></div>
+            <div *ngIf="!first_section_visible" class="first_dialog_rectangle"></div>
+        </div>
+    </div>
+
+    <div class="row enable_auth_title text-white">
+        <div class="col-12 text-center">
+            Enable Two Factor Authentication
+        </div>
+    </div>
+
+    <div class="row step_1 text-white">
+        <div *ngIf="first_section_visible" class="col-12 text-center">
+            Step 1:
+        </div>
+        <div *ngIf="!first_section_visible" class="col-12 text-center">
+            Step 2:
+        </div>
+    </div>
+
+    <div *ngIf="first_section_visible" class="row text-white">
+        <div class="qr_code col-12 text-center">
+            <img width="150" class="qr_code_image" height="150" [src]="qrCodeImageUrl">
+        </div>
+    </div>
+
+    <div *ngIf="first_section_visible" class="row text-white">
+        <div class="qr_code_text col-12 text-center">
+           Scan the QR code
+        </div>
+    </div>
+
+    <div *ngIf="first_section_visible" class="row">
+        <div class="col-12 line_1 text-center">
+            <img src="./assets/line_1.png" alt="Line">
+        </div>
+    </div>
+
+    <div class="row text-white">
+        <div *ngIf="first_section_visible" class="col-12 text_1 text-center">
+            <div>Having trouble scanning the QR</div>
+            <div>Enter the secret key</div>
+        </div>
+        <div *ngIf="!first_section_visible" class="col-12 text_1 text-center">
+            <div>Enter the 6 - digit authentication code </div>
+            <div>provided by your app</div>
+        </div>
+    </div>
+
+    <div *ngIf="!first_section_visible" class="row">
+        <div class="col-12 otp_input_fields">
+            <app-custom-otp-input #customOtpInputComponent (otpChange)="onOtpChange($event)" (allFieldsFilled)="onAllFieldsFilled($event)"></app-custom-otp-input>
+        </div>
+    </div>
+
+    <div *ngIf="first_section_visible" class="row text-white secret_key text-center mx-5 py-2">
+        <div class="col-10">
+            {{ getTruncatedKey(secret_key) }}
+        </div>
+        <div class="col-2">
+            <mat-icon (click)="copyText(secret_key)" matTooltip="{{copied_tooltip_msg}}">assignment</mat-icon>
+        </div>
+    </div>
+
+    <div class="d-flex" [ngClass]="first_section_visible == true ? 'last_section' : 'enroll_second_section'">
+        <div class="mr-auto">
+            <div class="first_page">
+                <div *ngIf="first_section_visible" class="content text-white text-center">
+                    1/2
+                </div>
+                <div *ngIf="!first_section_visible" class="content text-white text-center">
+                    2/2
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="first_section_visible" class="second_page" (click)="secondSection()">
+            <div class="content text-center">
+                Next
+            </div>
+        </div>
+        <div *ngIf="!first_section_visible" class="cancel_button mr-2" (click)="closeDialog()">
+            <div class="content text-center">
+                Cancel
+            </div>
+        </div>
+        <div *ngIf="!first_section_visible" class="second_page" (click)="onSubmit()">
+            <div class="content text-center">
+                Enroll
+            </div>
+        </div>
+    </div>
+</div>

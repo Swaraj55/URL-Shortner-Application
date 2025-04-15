@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -39,7 +42,12 @@
             ],
             "scripts": [
               "node_modules/wowjs/dist/wow.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -78,10 +86,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "url-shortner-app:build:production"
+              "buildTarget": "url-shortner-app:build:production"
             },
             "development": {
-              "browserTarget": "url-shortner-app:build:development"
+              "buildTarget": "url-shortner-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +97,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "url-shortner-app:build"
+            "buildTarget": "url-shortner-app:build"
           }
         },
         "test": {
@@ -109,6 +117,15 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }

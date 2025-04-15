@@ -4,14 +4,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { LandingPageModule } from './landing-page/landing-page.module';
-import { LoginModule } from './login/login.module';
-import { SignUpModule } from './sign-up/sign-up.module';
 import { JwtInterceptor } from '../@url-shortner/helpers/jwt.interceptor';
 import { TeamSectionComponent } from './team-section/team-section.component';
 import { ErrorInterceptor } from 'src/@url-shortner/helpers/error.interceptor';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -24,15 +24,12 @@ import { ErrorInterceptor } from 'src/@url-shortner/helpers/error.interceptor';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // LoggerModule.forRoot({ //Please go in to the ngx-logger package and see the documentation
-    //   disableConsoleLogging: true,
-    //   level: NgxLoggerLevel.DEBUG,
-    //   serverLogLevel: NgxLoggerLevel.ERROR
-    // }),
+
 
     LandingPageModule,
-    LoginModule,
-    SignUpModule
+    AuthModule,
+    StoreModule.forRoot({}, {}), 
+    EffectsModule.forRoot([])
   ],
   providers: [
     {

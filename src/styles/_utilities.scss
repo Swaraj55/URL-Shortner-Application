@@ -1,0 +1,33 @@
+.custom-primary-button {
+    @include custom-button($custom-bg-color, $custom-text-color, $custom-shadow-color, $custom-border-radius);
+}
+
+.font-light {
+    font-weight: $font-weight-light;
+}
+
+.font-regular {
+    font-weight: $font-weight-regular;
+}
+
+.font-medium {
+    font-weight: $font-weight-medium;
+}
+
+.font-bold {
+    font-weight: $font-weight-bold;
+}
+
+.font-extra-bold {
+    font-weight: $font-weight-extra-bold;
+}
+
+// Circle Button
+.social-button {
+    @include circle-button(50px, white, 100%);
+}
+
+// Margins
+.mt-100 {
+    @include margin-top(100px);
+}

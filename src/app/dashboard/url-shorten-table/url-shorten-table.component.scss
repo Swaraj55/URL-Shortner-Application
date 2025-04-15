@@ -1,95 +1,97 @@
+/* ✅ Import Angular Material theming first */
+@use '@angular/material' as mat;
+
+/* ✅ Define palettes using the new theming system */
+$success: mat.define-palette(mat.$green-palette);
+$danger: mat.define-palette(mat.$red-palette);
+
 #add-button {
-    background-color: #1e1f31;
-    color: aliceblue;
-    font-weight: 600;
+  background-color: #1e1f31;
+  color: aliceblue;
+  font-weight: 600;
 }
 
 table {
-    width: 100%;
-    background-color: #4359df;
-    color: aliceblue;
+  width: 100%;
+  background-color: #4359df;
+  color: aliceblue;
 }
 
 td {
-    font-size: 9pt;
-    overflow: hidden;
-    word-wrap: break-word !important;
+  font-size: 9pt;
+  overflow: hidden;
+  word-wrap: break-word !important;
 }
 
 th {
-    color: aliceblue;
+  color: aliceblue;
 }
 
 .table-no-records-found {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .url {
-    max-width: 600px; /* feel free to include any other value */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  max-width: 600px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-// Import theming functions
-@import '@angular/material/theming';
-
-$success: mat-palette($mat-green);
-$danger: mat-palette($mat-red);
-
 :host::ng-deep {
-    .mat-snack-bar-success{
-        color: #ffffff !important;
-        background-color: mat-color($success, 500) !important;
-    }
-    .mat-snack-bar-danger {
-        color: #ffffff !important;
-        background-color: mat-color($danger, 500) !important;
-    }
+  .mat-snack-bar-success {
+    color: #ffffff !important;
+    background-color: mat.get-color-from-palette($success, 500) !important;
+  }
 
-    .table-no-record-found {
-        background-color: #4359df;
-        color: aliceblue;
-        text-align: center;
-    }
+  .mat-snack-bar-danger {
+    color: #ffffff !important;
+    background-color: mat.get-color-from-palette($danger, 500) !important;
+  }
 
-    .mat-cell {
-        color: aliceblue;
-    }
+  .table-no-record-found {
+    background-color: #4359df;
+    color: aliceblue;
+    text-align: center;
+  }
 
-    .mat-paginator {
-        background-color: rgb(67, 89, 223);
-    }
+  .mat-cell {
+    color: aliceblue;
+  }
 
-    .mat-paginator-page-size {
-            width: 250px;
-            .mat-form-field-underline {
-                color: aliceblue;
-            }
-    }
-    
-    .mat-paginator-page-size-label {
-        width: 200px;
-    }
-    
-    .mat-list-item {
-        /*min-height: 80px !important;*/
-        font-size: 10pt !important;
-    }
+  .mat-paginator {
+    background-color: rgb(67, 89, 223);
+  }
 
-    .mat-paginator-page-size-label {
-        color: aliceblue;
+  .mat-paginator-page-size {
+    width: 250px;
+
+    .mat-form-field-underline {
+      color: aliceblue;
     }
-    .mat-paginator-range-label {
-        color: aliceblue;
-    }
-    .mat-select-value{
-        color: aliceblue;
-    }
-    .mat-select-arrow {
-        color: aliceblue;
-    }
+  }
+
+  .mat-paginator-page-size-label {
+    width: 200px;
+    color: aliceblue;
+  }
+
+  .mat-list-item {
+    font-size: 10pt !important;
+  }
+
+  .mat-paginator-range-label {
+    color: aliceblue;
+  }
+
+  .mat-select-value {
+    color: aliceblue;
+  }
+
+  .mat-select-arrow {
+    color: aliceblue;
+  }
 }

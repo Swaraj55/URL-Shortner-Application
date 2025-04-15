@@ -1,0 +1,48 @@
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.otp-container input {
+    width: 46px;
+    height: 46px;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 5px;
+    border-radius: 6px;
+    border: 1px solid #E3E3E3;
+    background: #FFFFFF;
+    transition: border-color 0.3s ease, border-width 0.3s ease;
+}
+
+.otp-container input:focus {
+    border-color: #4AFFA8;
+    border-width: 3px;
+    outline: none;
+    /* Remove default focus outline */
+}
+
+.otp-container input.invalid {
+    border-color: red;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-10px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(10px);
+    }
+}

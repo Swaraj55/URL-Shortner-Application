@@ -1,178 +1,409 @@
-
- <!-- Navbar for URL Shortner -->
-<nav class="navbar navbar-expand-md">
+<section class="main-section text-white">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand">
-            <img src="assets/URL.png" style="width:40px;">
-            <span id="url-shortner-image">URL Shortner</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navResponsive">
-            <ul class="navbar-nav ml-auto"> 
-                <!-- ml-auto push our content to the right of the navbar -->
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/Home']">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/team']">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink] = "['/login']" style="cursor: pointer;">Log In</a>
-                </li>
-                <li class="nav-item" id="sign-up-btn">
-                    <a class="nav-link" [routerLink] = "['/signup']" style="cursor: pointer;">Sign Up</a>
-                </li>
-            </ul>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark rounded-pill px-4 py-2 mt-4 custom-navbar">
+            <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+                <!-- Left: Logo -->
+                <div class="d-flex align-items-center">
+                    <img src="assets/url-short-logo.svg" alt="Logo" class="logo-icon mr-2" />
+                    <span class="brand-name font-bold">Url Shortner</span>
+                </div>
+
+                <!-- Center: Menu -->
+                <ul class="nav gap-4 mx-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Team</a></li>
+                </ul>
+
+                <!-- Right: Buttons -->
+                <div class="d-flex gap-2">
+                    <button class="btn text-white" [routerLink]="'/login'">Log in</button>
+                    <button class="btn btn-light rounded-pill" [routerLink]="'/signup'">Sign up</button>                    
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="text-center margin-top">
+            <div class="d-flex align-items-center justify-content-center px-3 py-2">
+                <img src="assets/short-links-url.svg" class="mx-2" alt="Shorts Link" />
+                <h1 class="mb-3 ml-2 page-title">for Quick Sharing</h1>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <p class="mt-4 lead text-center">
+                    Our URL shortner takes your long, unwieldy links and transforms them into concise,
+                    easy-to-share URLs that drive results
+                </p>
+            </div>
+
+            <div class="margin-top">
+                <button class="my-btn">
+                    Get Started
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="how-it-works container-fluid">
+    <div class="row p-5">
+        <!-- Left Pattern -->
+        <div class="col-md-1 d-none d-md-block left-pattern">
+            <img src="assets/WWW.svg" alt="">
+        </div>
+
+        <!-- Right Content -->
+        <div class="col-md-11">
+            <h2 class="section-title">What is URL Shortner?</h2>
+            <h1 class="gradient-text">"Short Links, Smart Insights"</h1>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <p class="mt-4 url-shortener-description text-center">
+                    Our URL shortener converts long links into short, shareable URLs.
+                    Ideal for social media and emails, it also offers valuable insights
+                    like click tracking and engagement analysis to optimize your strategy.
+                </p>
+            </div>
         </div>
     </div>
-</nav>
+</section>
+<section>
+    <div class="container-fluid py-5 why-url-shortner d-flex justify-content-center">
+        <div class="row align-items-center">
+            <!-- Left Side: Text Content -->
+            <div class="col-md-6 mb-4 mb-md-0 px-5">
+                <h2 class="section-heading">Why URL Shortner?</h2>
+                <p class="text-black section-description">
+                    A comprehensive solution to help make every point of connection between your
+                    content and your audience more powerful.
+                </p>
+            </div>
 
-<!-- Main Content of the landing page -->
-<div class="container-fluid">
-    <div class="row">
-
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-            <h3 class="wow animate__animated animate__fadeInDown display-4 mt-lg-5 mt-xs-2 ml-xs-2 ml-lg-5 font-weight-bold" style="color: #4359df;">
-                Welcome to URL Shortner
-            </h3>
-            <p class="wow animate__animated animate__fadeInDown lead ml-xs-2 ml-lg-5" style="color:#ffffff">
-                URL Shortner is a web application that allows you to shorten your long URLs.
-                It is a free service that is provided by URL Shortner.
-            </p>
-            <a [routerLink] = "['/login']" id="get_started_btn" class="wow animate__animated animate__fadeInDown ml-xs-2 ml-lg-5 mt-lg-5">
-                Get Started
-            </a>
-        </div>
-
-        <div class="col-md-7 col-lg-7" id="web-animation-section">
-            <div id="images">
-                <div class="web-related-icons">
-                    <img class="web_icon_styling" src="assets/website.png" alt="World Wide Web(WWW)">
-                    <img class="web_icon_styling" src="assets/browser.png" alt="Browser">
-                    <img class="web_icon_styling" src="assets/web-page.png" alt="Web Page">
-                    <img class="web_icon_styling" src="assets/search.png" alt="Searching in Websites">
-                    <img class="web_icon_styling" src="assets/share-link.png" alt="Link">
+            <!-- Right Side: Feature Cards -->
+            <div class="col-md-6 feature-cards">
+                <!-- Feature Item 1 -->
+                <div class="d-flex mb-4">
+                    <div class="icon me-3">
+                        <img src="assets/gif/share.gif" alt="Share Icon" width="80" height="80">
+                    </div>
+                    <div class="py-4 px-2">
+                        <h5 class="font-bold feature-heading mb-1">Improved<br>Shareability</h5>
+                        <p class="text-black mb-0 mt-2 feature-sub-heading">
+                            URL shorteners make long, complicated URLs concise and easy to share
+                        </p>
+                    </div>
                 </div>
-                <img id="www" src="assets/www.png" alt="World Wide Web(WWW)">
+
+                <hr>
+
+                <!-- Feature Item 2 -->
+                <div class="d-flex mb-4">
+                    <div class="icon me-3">
+                        <img src="assets/gif/analytics.gif" alt="Analytics Icon" width="80" height="80">
+                    </div>
+                    <div class="py-4 px-2">
+                        <h5 class="font-bold feature-heading mb-1">Tracking<br>and Analytics</h5>
+                        <p class="text-black mb-0 mt-2 feature-sub-heading">
+                            URL shorteners often come with analytics tools that allow you to track the performance of a
+                            link
+                        </p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Feature Item 3 -->
+                <div class="d-flex">
+                    <div class="icon me-3">
+                        <img src="assets/gif/branding.gif" alt="Branding Icon" width="80" height="80">
+                    </div>
+                    <div class="py-4 px-2">
+                        <h5 class="font-bold feature-heading mb-1">Branding and<br>Customization</h5>
+                        <p class="text-black mb-0 mt-2 feature-sub-heading">
+                            With many URL shorteners, you can create custom-branded short links that incorporate your
+                            brand name or relevant keywords
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="achievement-section">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2 class="font-bold achievement-title">Our Achievements</h2>
+                <p class="achievement-sub-title mt-2 mx-auto">
+                    A comprehensive solution to help make every point of connection between your
+                    content and your audience more powerful.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-3">
+                <div class="card p-4 achievement-card">
+                    <h3 class="font-weight-bold mb-0">500k</h3>
+                    <p class="text-black mb-0">Global payments</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-4 achievement-card">
+                    <h3 class="font-weight-bold mb-0">500k</h3>
+                    <p class="text-black mb-0">Global payments</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-4 achievement-card">
+                    <h3 class="font-weight-bold mb-0">500k</h3>
+                    <p class="text-black mb-0">Global payments</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-4 achievement-card">
+                    <h3 class="font-weight-bold mb-0">500k</h3>
+                    <p class="text-black mb-0">Global payments</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <img src="assets/wave.png" alt="Wave" id="wave">
-    </div>
-</div>
+</section>
+<section class="testimonials-section py-5">
+    <div class="container-fluid text-center">
+        <h2 class="font-weight-bold mb-2 testimonials-title">Testimonials</h2>
+        <p class="text-black mt-2 testimonials-sub-title">What people says about us !</p>
 
-<!-- Feature Section -->
-<div class="container-fluid">
-    <div class="row text-center">
-        <div class="col-12">
-            <h1 class="wow animate__animated animate__fadeInDown display-4 font-weight-bold" style="color: #4359df;">
-                Features
-            </h1>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/like.png" alt="Like" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        ShortURL is easy and fast, enter the long link to get your shortened link.
+        <div class="row testimonials-card-section">
+            <!-- Testimonial Card -->
+            <div class="col-md-4 mb-4" *ngFor="let testimonial of testimonials">
+                <div class="testimonial-card p-4">
+                    <div class="quote-icon mb-3">
+                        <img src="assets/quote-icon.png" width="56px" height="56px" alt="Quote Icon">
+                    </div>
+                    <p class="testimonial-text">
+                        Very satisfied with the services<br>amazing experience
                     </p>
+                    <h5 class="font-weight-bold mt-3">Swaraj KC</h5>
+                    <div class="stars mt-4">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-star text-warning"></i>
+                    </div>
                 </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/profits.png" alt="Statistics" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Check the amount of clicks that your shortened url received.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/link.png" alt="URL" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Use any link, no matter what size, ShortURL always shortens.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/shield.png" alt="Shield" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        It is fast and secure, our service have HTTPS protocol and data encryption.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/responsive.png" alt="Devcies" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        Compatible with smartphones, tablets and desktop.
-                    </p>
-                </div>
-              </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 mt-5">
-            <div class="card">
-                <div class="card-body text-center pt-3">
-                    <img src="assets/check.png" alt="Reliable" class="imageStyling wow animate__animated animate__fadeInDown">
-                    <p class="lead wow animate__animated animate__fadeInUp">
-                        All links that try to disseminate spam, viruses and malware are deleted.
-                    </p>
-                </div>
-              </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Footer Section -->
-<footer>
-    <div class="container-fluid">
-        <div class="row customFooterTheme">
-            <div class="col-12 pt-4 pl-4 pb-4">
-                <a href="#" class="navbar-brand">
-                    <img src="assets/URL.png" style="width:40px;">
-                    <span id="url-shortner-image">URL Shortner</span>
-                </a>
+<section class="faq-section py-5">
+    <div class="container text-center">
+        <h2 class="font-weight-bold faq-title">FAQ's</h2>
+        <p class="text-black mb-5 mt-2 faq-sub-title mx-auto">
+            A comprehensive solution to help make every point of connection between your
+            content and your audience more powerful.
+        </p>
+
+        <div id="faqAccordion" class="text-left">
+            <!-- FAQ 1 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                            What is a URL shortener ?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq1" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        A URL shortener is a tool that creates a short, unique URL that redirects to the original long
+                        URL.
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 text-center text-white"> 
-                <h5 class="wow animate__animated animate__fadeInUp ">Support</h5>
-                <hr class="dark">
-                <p class="wow animate__animated animate__fadeInUp ">Knowledge base</p>
-                <p class="wow animate__animated animate__fadeInUp ">Find an expert</p>
-                <p class="wow animate__animated animate__fadeInUp ">Request demo</p>
+
+            <!-- FAQ 2 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                            Do short links created with URL Shortener expire, and how long do they last?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq2" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        It depends on the provider. Some short links expire after a set period, while others remain
+                        indefinitely.
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 text-center text-white">
-                <h5 class="wow animate__animated animate__fadeInUp ">Company</h5>
-                <hr class="light">
-                <p class="wow animate__animated animate__fadeInUp ">About us</p>
-                <p class="wow animate__animated animate__fadeInUp ">Company Values</p>
-                <p class="wow animate__animated animate__fadeInUp ">Webinars</p>
+
+            <!-- FAQ 3 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                            Can I generate a QR code for my short link?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq3" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Yes! Every shortened URL comes with a unique QR code that you can download and share anywhere.
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 text-center text-white">
-                <h5 class="wow animate__animated animate__fadeInUp ">Follow Us</h5>
-                <hr class="light">
-                <p class="wow animate__animated animate__fadeInUp ">Facebook</p>
-                <p class="wow animate__animated animate__fadeInUp ">Instagram</p>
-                <p class="wow animate__animated animate__fadeInUp ">YouTube</p>
-                <p class="wow animate__animated animate__fadeInUp ">Twitter</p>
+
+            <!-- FAQ 4 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                            Can I customize the QR code design?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq4" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Absolutely! You can customize the color, shape, logo, and frame of your QR code before
+                        downloading it.
+                    </div>
+                </div>
             </div>
+
+            <!-- FAQ 5 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                            Does the platform provide analytics for my short URLs?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq5" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Yes, you can track clicks, location, device type, referrer, and other real-time statistics for
+                        each URL.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                            Can I edit or delete a short link after it’s created?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq6" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Yes, if you're logged in, you can manage all your links, including editing the destination or
+                        deleting them.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                            Is it possible to create a custom short URL?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq7" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Yes, you can create branded or custom aliases for your short links to make them more
+                        recognizable.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="card faq-item border-0 border-bottom">
+                <div class="card-header bg-white p-0">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link d-flex justify-content-between align-items-center w-100 text-left"
+                            data-toggle="collapse" data-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                            Do I need an account to use the service?
+                            <span class="faq-icon">+</span>
+                        </button>
+                    </h5>
+                </div>
+                <div id="faq8" class="collapse" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        No account is needed for basic shortening, but an account is required to access advanced
+                        features like analytics, editing, and QR customization.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer-section py-5">
+    <div class="container">
+        <div class="row align-items-center text-center text-md-left">
+            <!-- Left: Logo -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                    <img src="assets/url-short-logo.svg" alt="Logo" class="footer-logo mr-2">
+                    <span class="footer-brand">Url Shortner</span>
+                </div>
+            </div>
+
+            <!-- Center: Navigation + Social -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item mx-2"><a href="#">Home</a></li>
+                    <li class="list-inline-item mx-2"><a href="#">About</a></li>
+                    <li class="list-inline-item mx-2"><a href="#">Services</a></li>
+                    <li class="list-inline-item mx-2"><a href="#">Team</a></li>
+                </ul>
+                <div class="social-icons mt-2">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+
+            <!-- Right: Legal -->
+            <div class="col-md-4 text-md-right">
+                <a href="#" class="d-block">Privacy policy</a>
+                <a href="#" class="d-block">Terms & conditions</a>
+            </div>
+        </div>
+
+        <hr class="footer-divider mt-4">
+
+        <div class="text-center pt-3 small">
+            2025, All rights reserved
         </div>
     </div>
 </footer>

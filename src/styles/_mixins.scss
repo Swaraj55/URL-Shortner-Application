@@ -1,0 +1,74 @@
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+@mixin font-bold($weight: $font-weight-bold) {
+    font-weight: $weight;
+}
+
+@mixin font-family($family) {
+    font-family: $family;
+}
+
+@mixin margin-top($size) {
+    margin-top: $size;
+}
+
+@mixin custom-button(
+  $bg-color,
+  $text-color,
+  $border-radius,
+  $paddingY: null,
+  $paddingX: null,
+  $font-weight: null,
+  $width: null,
+  $font-family: null,
+  $font-size: null,
+) {
+  background-color: $bg-color !important;
+  color: $text-color !important;
+  border-radius: $border-radius !important;
+
+  @if $paddingY != null and $paddingX != null {
+    padding: $paddingY $paddingX !important;
+  }
+
+  @if $font-weight != null {
+    font-weight: $font-weight !important;
+  }
+
+  @if $width != null {
+    width: $width !important;
+  }
+
+  @if $font-family != null {
+    font-family: $font-family !important;
+  }
+
+  @if $font-size != null {
+    font-size: $font-size !important;
+  }
+}
+
+@mixin circle-button($size: 24px, $bg-color: white, $radius: 100%) {
+    background-color: $bg-color !important;
+    border-radius: $radius !important;
+    width: $size !important;
+    height: $size !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@mixin card-style($bg-color, $border-radius, $width, $height, $paddingTopBottom, $paddingLeftRight) {
+    background-color: $bg-color;
+    border-radius: $border-radius;
+    width: $width;
+    height: $height;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: $paddingTopBottom $paddingLeftRight;
+    display: flex;
+}
